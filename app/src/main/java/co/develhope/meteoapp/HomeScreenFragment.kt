@@ -48,7 +48,7 @@ class HomeScreenFragment : Fragment() {
             }
         }
 
-        //TODO remove comments below when home_recycler_view and HomeListAdapter is created
+        //TODO remove comments below when HomeListAdapter is created
        // val list = findViewById<RecyclerView>(R.id.home_recycler_view)
        // val adapter = HomeListAdapter()
        // list.adapter = adapter
