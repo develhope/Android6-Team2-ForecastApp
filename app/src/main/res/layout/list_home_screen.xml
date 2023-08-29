@@ -8,15 +8,15 @@
     android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_home_screen_list"
+            android:id="@+id/card_view_home_screen_top"
             android:layout_width="342dp"
             android:layout_height="155dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:padding="18dp"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/black"
-            android:background="@drawable/card_shadow_bottom" >
+            app:cardBackgroundColor="#66FFFFFF"
+            android:elevation="8dp" >
 
             <LinearLayout
                 android:layout_width="342dp"
@@ -42,7 +42,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter"
                             android:lineHeight="29.05dp"
-                            android:text="@string/oggi"
+                            tools:text="@string/oggi"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="600"
                             android:textSize="24sp" />
@@ -54,7 +54,7 @@
                             android:layout_marginTop="3dp"
                             android:fontFamily="Inter"
                             android:lineHeight="18.15dp"
-                            android:text="@string/_10_09"
+                            tools:text="@string/_10_09"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="400"
                             android:textSize="15sp" />
@@ -73,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter"
                             android:lineHeight="24.2dp"
-                            android:text="@string/_22"
+                            tools:text="@string/_22"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="600"
                             android:textSize="20sp" />
@@ -104,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter"
                             android:lineHeight="24.2dp"
-                            android:text="@string/_31"
+                            tools:text="@string/_31"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="600"
                             android:textSize="20sp" />
@@ -156,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter"
                             android:lineHeight="24.2dp"
-                            android:text="@string/_0_mm"
+                            tools:text="@string/_0_mm"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="600"
                             android:textSize="20sp" />
@@ -187,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter"
                             android:lineHeight="24.2dp"
-                            android:text="@string/_6kmh"
+                            tools:text="@string/_6kmh"
                             android:textColor="#FFFFFF"
                             android:textFontWeight="600"
                             android:textSize="20sp" />
