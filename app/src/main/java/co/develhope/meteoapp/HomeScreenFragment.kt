@@ -2,19 +2,14 @@ package co.develhope.meteoapp
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
 
-@Suppress("UNREACHABLE_CODE")
+
 class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
@@ -24,45 +19,52 @@ class HomeScreenFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        object {
-            @RequiresApi(Build.VERSION_CODES.O)
-            fun getWeatherDataList(): List<HomeScreenItems> {
-                val currentDate = LocalDate.now()
-                val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-                val formattedDate = currentDate.format(dateFormatter)
-
-                val dayOfTheWeek = LocalDate.now().dayOfWeek
-                val dayOfWeekText = dayOfTheWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
-
-                return listOf(
-                    HomeScreenItems(dayOfWeekText, formattedDate, 22, 30,
-                        MainActivity.weatherIcons.sun, 0, 10),
-                    HomeScreenItems(dayOfWeekText, formattedDate, 20, 28,
-                        MainActivity.weatherIcons.rain, 60, 15),
-                    HomeScreenItems(dayOfWeekText, formattedDate, 23, 31,
-                        MainActivity.weatherIcons.sun_cloud, 0, 12)
-
-                )
-                Log.v("HomeScreenFragment","the list is: ${getWeatherDataList()}")
-            }
-        }
-
-
-        //TODO remove comments below when HomeListAdapter is created
-       // val list = findViewById<RecyclerView>(R.id.home_recycler_view)
-       // val adapter = HomeListAdapter()
-       // list.adapter = adapter
-       // list.layoutManager = LinearLayoutManager(this)
-
-       // adapter.submitList(getWeatherDataList)
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setupAdapter() {
+        val weekList = Data.getWeatherDataList()
+        val itemToShow = createItemList(weekList)
 
     }
+    private fun createItemList(weekList: List<Week>): List<WeekItems> {
+        val itemToShow = mutableListOf<WeekItems>()
+
+        itemToShow.add(WeekItems.title)
+        weekList.forEach { week ->
+            if(week.type == Week.DayType.TODAY){
+                itemToShow.add(WeekItems.Today(
+                    dayOfWeek = week.dayOfWeek,
+                    date = week.date,
+                    minTemperature = week.minTemperature,
+                    maxTemperature = week.maxTemperature,
+                    weatherIcon = week.weatherIcon,
+                    precipitation = week.precipitation,
+                    windSpeed = week.windSpeed
+                ))
+            }
+
+        }
+        itemToShow.add(WeekItems.subtitle)
+        weekList.forEach { week ->
+            if(week.type == Week.DayType.DAYS){
+                itemToShow.add(WeekItems.Days(
+                    dayOfWeek = week.dayOfWeek,
+                    date = week.date,
+                    minTemperature = week.minTemperature,
+                    maxTemperature = week.maxTemperature,
+                    weatherIcon = week.weatherIcon,
+                    precipitation = week.precipitation,
+                    windSpeed = week.windSpeed
+                ))
+            }
+
+        }
+        return itemToShow
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

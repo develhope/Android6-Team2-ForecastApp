@@ -1,6 +1,6 @@
 package co.develhope.meteoapp
 
-sealed class HomeScreenItems(){
+sealed class WeekItems(){
     data class Today(
         val dayOfWeek: String,
         val date: String,
@@ -8,9 +8,8 @@ sealed class HomeScreenItems(){
         val maxTemperature: Int,
         val weatherIcon: MainActivity.weatherIcons,
         val precipitation: Int,
-        val windSpeed: Int
-    ): HomeScreenItems()
-
+        val windSpeed: Int,
+    ): WeekItems()
     data class Days(
         val dayOfWeek: String,
         val date: String,
@@ -18,10 +17,10 @@ sealed class HomeScreenItems(){
         val maxTemperature: Int,
         val weatherIcon: MainActivity.weatherIcons,
         val precipitation: Int,
-        val windSpeed: Int
-    ): HomeScreenItems()
+        val windSpeed: Int,
+    ): WeekItems()
 
-    object title : HomeScreenItems()
-    object subtitle : HomeScreenItems()
+    object title : WeekItems()
+    object subtitle : WeekItems()
 }
 
