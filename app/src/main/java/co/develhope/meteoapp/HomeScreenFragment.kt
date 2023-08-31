@@ -32,7 +32,7 @@ class HomeScreenFragment : Fragment() {
 
         object {
             @RequiresApi(Build.VERSION_CODES.O)
-            fun getWeatherDataList(): List<HomeScreenList> {
+            fun getWeatherDataList(): List<HomeScreenItems> {
                 val currentDate = LocalDate.now()
                 val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
                 val formattedDate = currentDate.format(dateFormatter)
@@ -41,11 +41,11 @@ class HomeScreenFragment : Fragment() {
                 val dayOfWeekText = dayOfTheWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
 
                 return listOf(
-                    HomeScreenList(dayOfWeekText, formattedDate, 22, 30,
+                    HomeScreenItems(dayOfWeekText, formattedDate, 22, 30,
                         MainActivity.weatherIcons.sun, 0, 10),
-                    HomeScreenList(dayOfWeekText, formattedDate, 20, 28,
+                    HomeScreenItems(dayOfWeekText, formattedDate, 20, 28,
                         MainActivity.weatherIcons.rain, 60, 15),
-                    HomeScreenList(dayOfWeekText, formattedDate, 23, 31,
+                    HomeScreenItems(dayOfWeekText, formattedDate, 23, 31,
                         MainActivity.weatherIcons.sun_cloud, 0, 12)
 
                 )
