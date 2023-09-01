@@ -29,12 +29,12 @@ class HomeScreenFragment : Fragment() {
         val itemToShow = createItemList(weekList)
 
     }
-    private fun createItemList(weekList: List<Week>): List<WeekItems> {
+    private fun createItemList(dailySummaryForecastList: List<DailySummaryForecast>): List<WeekItems> {
         val itemToShow = mutableListOf<WeekItems>()
 
         itemToShow.add(WeekItems.title)
-        weekList.forEach { week ->
-            if(week.type == Week.DayType.TODAY){
+        dailySummaryForecastList.forEach { week ->
+            if(week.type == DailySummaryForecast.DayType.TODAY){
                 itemToShow.add(WeekItems.Today(
                     dayOfWeek = week.dayOfWeek,
                     date = week.date,
@@ -48,8 +48,8 @@ class HomeScreenFragment : Fragment() {
 
         }
         itemToShow.add(WeekItems.subtitle)
-        weekList.forEach { week ->
-            if(week.type == Week.DayType.DAYS){
+        dailySummaryForecastList.forEach { week ->
+            if(week.type == DailySummaryForecast.DayType.DAYS){
                 itemToShow.add(WeekItems.Days(
                     dayOfWeek = week.dayOfWeek,
                     date = week.date,

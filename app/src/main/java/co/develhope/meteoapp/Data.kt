@@ -10,7 +10,7 @@ import java.util.Locale
 
 object Data {
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getWeatherDataList(): List<Week> {
+    fun getWeatherDataList(): List<DailySummaryForecast> {
         val currentDate = LocalDate.now()
         val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val formattedDate = currentDate.format(dateFormatter)
@@ -19,16 +19,16 @@ object Data {
         val dayOfWeekText = dayOfTheWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
 
         return listOf(
-            Week(dayOfWeekText, formattedDate, 22, 30,
-            MainActivity.weatherIcons.sun, 0, 10, Week.DayType.TODAY
+            DailySummaryForecast(dayOfWeekText, formattedDate, 22, 30,
+            MainActivity.weatherIcons.sun, 0, 10, DailySummaryForecast.DayType.TODAY
             ),
 
-            Week(dayOfWeekText, formattedDate, 20, 28,
-            MainActivity.weatherIcons.rain, 60, 15, Week.DayType.DAYS
+            DailySummaryForecast(dayOfWeekText, formattedDate, 20, 28,
+            MainActivity.weatherIcons.rain, 60, 15, DailySummaryForecast.DayType.DAYS
             ),
 
-            Week(dayOfWeekText, formattedDate, 23, 31,
-            MainActivity.weatherIcons.sun_cloud, 0, 12, Week.DayType.DAYS)
+            DailySummaryForecast(dayOfWeekText, formattedDate, 23, 31,
+            MainActivity.weatherIcons.sun_cloud, 0, 12, DailySummaryForecast.DayType.DAYS)
          )
     Log.v("HomeScreenFragment","the list is: ${getWeatherDataList()}")
     }

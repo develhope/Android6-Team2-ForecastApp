@@ -140,7 +140,7 @@
                             android:id="@+id/img_sky_list"
                             android:layout_width="46dp"
                             android:layout_height="47.4dp"
-                            android:src="@drawable/img_sun" />
+                            android:src="@drawable/sun" />
 
                     </LinearLayout>
 
