@@ -9,9 +9,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
     enum class weatherIcons(val image: Int) {
-        sun(R.drawable.img_sun),
-        rain(R.drawable.img_rain),
-        sun_cloud(R.drawable.img_sun_cloud)
+        sun(R.drawable.sun),
+        rain(R.drawable.rain),
+        sun_cloud(R.drawable.sun_cloud)
     }
 }
 
