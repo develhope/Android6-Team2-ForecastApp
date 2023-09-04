@@ -46,7 +46,7 @@
                     android:textColor="#FFFFFF"
                     android:textFontWeight="400"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="text_day_of_week_list"
+                    app:layout_constraintTop_toBottomOf="@+id/text_day_of_week_list"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_below="@+id/text_day_of_week_list"/>
 
@@ -74,7 +74,7 @@
                     android:textColor="#FFFFFF"
                     android:textFontWeight="400"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="text_min_num_list"
+                    app:layout_constraintTop_toBottomOf="@+id/text_min_num_list"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_centerHorizontal="true"
@@ -113,7 +113,7 @@
                     android:id="@+id/img_sky_list"
                     android:layout_width="46dp"
                     android:layout_height="47.4dp"
-                    android:src="SUN"
+                    android:src="@drawable/sun"
                     android:layout_alignParentBottom="true" />
 
 

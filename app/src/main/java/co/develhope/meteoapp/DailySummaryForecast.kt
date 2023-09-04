@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 //ho rinominato la classe da week a DailySummaryForecast
 data class DailySummaryForecast(
-    val dayOfWeek: LocalDate,
+    val dayOfWeek: String,
     val date: LocalDate,
     val minTemperature: Int,
     val maxTemperature: Int,

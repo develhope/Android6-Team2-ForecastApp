@@ -1,7 +1,10 @@
 package co.develhope.meteoapp
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.WeekItems.Companion.DaysId
 import co.develhope.meteoapp.WeekItems.Companion.SubtitleId
@@ -10,6 +13,9 @@ import co.develhope.meteoapp.WeekItems.Companion.TodayId
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.databinding.SubtitleBinding
 import co.develhope.meteoapp.databinding.TitleBinding
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 
 class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -22,7 +28,7 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TodayId -> TodayViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            DaysId -> DogViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            DaysId -> DaysViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             TitleId -> TitleViewHolder(TitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             SubtitleId -> SubtitleViewHolder(SubtitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             else -> throw Exception("Invalid ViewHolder Type")
@@ -35,7 +41,7 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
         val item = list[position]
         when (holder) {
             is TodayViewHolder -> holder.bind(item as WeekItems.Today, onClick)
-            is DogViewHolder -> holder.bind(item as WeekItems.Days, onClick)
+            is DaysViewHolder -> holder.bind(item as WeekItems.Days, onClick)
             is TitleViewHolder -> holder.bind(item as WeekItems.Title)
             is SubtitleViewHolder -> holder.bind(item as WeekItems.Subtitle)
             else -> throw Exception("Invalid ViewHolder Not Recognized")
@@ -43,10 +49,12 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     }
 }
 
+private fun ImageView.setImageResource(weatherIcon: DailySummaryForecast.weatherIcons) {
 
+}
 class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: WeekItems.Today, onClick: (WeekItems) -> Unit) {
-        binding.textDayOfWeekList.text = item.dayOfWeek.toString()
+        binding.textDayOfWeekList.text = "OGGI"
         binding.textDayOfMonthList.text = item.date.toString()
         binding.textMinNumList.text = item.minTemperature.toString()
         binding.textMaxNumList.text = item.maxTemperature.toString()
@@ -59,9 +67,17 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
     }
 }
 
-class DogViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
+    @RequiresApi(Build.VERSION_CODES.O)
     fun bind(item: WeekItems.Days, onClick: (WeekItems) -> Unit) {
-        binding.textDayOfWeekList.text = item.dayOfWeek.toString()
+        val tomorrow = LocalDate.now().plusDays(1).dayOfWeek
+        val tomorrowText = tomorrow.getDisplayName(TextStyle.FULL, Locale.ITALIAN)
+            .uppercase(Locale.ITALIAN)
+        if (item.dayOfWeek == tomorrowText){
+            binding.textDayOfWeekList.text = "DOMANI"
+        }else{binding.textDayOfWeekList.text = item.dayOfWeek}
         binding.textDayOfMonthList.text = item.date.toString()
         binding.textMinNumList.text = item.minTemperature.toString()
         binding.textMaxNumList.text = item.maxTemperature.toString()

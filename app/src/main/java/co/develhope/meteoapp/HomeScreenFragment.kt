@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 
 
 class HomeScreenFragment : Fragment() {
@@ -29,12 +32,17 @@ class HomeScreenFragment : Fragment() {
         val itemToShow = createItemList(weekList)
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun createItemList(dailySummaryForecastList: List<DailySummaryForecast>): List<WeekItems> {
         val itemToShow = mutableListOf<WeekItems>()
+        val today = LocalDate.now().dayOfWeek
+        val todayText = today.getDisplayName(TextStyle.FULL, Locale.ITALIAN)
+            .uppercase(Locale.ITALIAN)
 
         itemToShow.add(WeekItems.Title)
         dailySummaryForecastList.forEach { week ->
-            if(week.dayOfWeek == OGGI){
+
+            if(week.dayOfWeek == todayText){
                 itemToShow.add(WeekItems.Today(
                     dayOfWeek = week.dayOfWeek,
                     date = week.date,
@@ -49,7 +57,7 @@ class HomeScreenFragment : Fragment() {
         }
         itemToShow.add(WeekItems.Subtitle)
         dailySummaryForecastList.forEach { week ->
-            if(week.dayOfWeek != OGGI){
+            if(week.dayOfWeek != todayText){
                 itemToShow.add(WeekItems.Days(
                     dayOfWeek = week.dayOfWeek,
                     date = week.date,
