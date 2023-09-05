@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#230EA5</color>
     <color name="cardview_bg">#5B51CB</color>
+    <color name="line_color">#ABA4FF</color>
 
 </resources>
