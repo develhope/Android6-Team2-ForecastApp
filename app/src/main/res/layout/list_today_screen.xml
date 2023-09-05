@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:id="@+id/summary_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -19,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter"
-            android:textSize="15sp"
-            tools:text="00:00" />
+            android:textSize="16sp"
+            tools:text="00:00"
+            android:textColor="@color/blue"/>
 
         <ImageView
             android:id="@+id/weather_today_image"
@@ -63,8 +65,169 @@
             android:layout_gravity="center"
             android:layout_marginStart="50dp"
             android:src="@drawable/arrow"/>
-
-
-
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/today_cardview"
+        android:layout_width="342dp"
+        android:layout_height="214dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="8dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/summary_linear_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/perceived_tv_today"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Percepita"/>
+
+            <TextView
+                android:id="@+id/perceived_degrees_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:textStyle="bold"
+                tools:text="45°"
+                android:layout_below="@id/perceived_tv_today"/>
+
+            <TextView
+                android:id="@+id/uv_index_tv_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:text="Indice UV"
+                android:layout_marginStart="80dp"
+                android:layout_toEndOf="@id/perceived_tv_today"/>
+            
+            <TextView
+                android:id="@+id/uv_index_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:textStyle="bold"
+                tools:text="5/10"
+                android:layout_alignStart="@id/uv_index_tv_today"
+                android:layout_below="@id/uv_index_tv_today"/>
+
+            <View
+                android:id="@+id/first_line_today"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/uv_index_today"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/humidity_tv_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/first_line_today"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:text="Umidità"/>
+
+            <TextView
+                android:id="@+id/humidity_percentage_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/humidity_tv_today"
+                tools:text="60%"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/wind_tv_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/uv_index_today"
+                android:layout_below="@id/first_line_today"
+                android:layout_marginTop="16dp"
+                android:text="Vento"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/wind_speed_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/wind_tv_today"
+                android:layout_below="@id/wind_tv_today"
+                tools:text="SSE 7km/h"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <View
+                android:id="@+id/second_line_today"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/wind_speed_today"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/coverage_tv_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/second_line_today"
+                android:layout_marginTop="8dp"
+                android:text="Copertura"
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/coverage_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/coverage_tv_today"
+                tools:text="24%"
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/rain_tv_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/wind_speed_today"
+                android:layout_below="@id/second_line_today"
+                android:layout_marginTop="8dp"
+                android:text="Pioggia"
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/rain_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/rain_tv_today"
+                android:layout_below="@id/rain_tv_today"
+                tools:text="0cm"
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
