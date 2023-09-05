@@ -7,12 +7,12 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.WeekItems.Companion.DaysId
-import co.develhope.meteoapp.WeekItems.Companion.SubtitleId
-import co.develhope.meteoapp.WeekItems.Companion.TitleId
+import co.develhope.meteoapp.WeekItems.Companion.HomeSubtitleId
+import co.develhope.meteoapp.WeekItems.Companion.HomeTitleId
 import co.develhope.meteoapp.WeekItems.Companion.TodayId
+import co.develhope.meteoapp.databinding.HomeSubtitleBinding
+import co.develhope.meteoapp.databinding.HomeTitleBinding
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
-import co.develhope.meteoapp.databinding.SubtitleBinding
-import co.develhope.meteoapp.databinding.TitleBinding
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
@@ -29,21 +29,22 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
         return when (viewType) {
             TodayId -> TodayViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             DaysId -> DaysViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            TitleId -> TitleViewHolder(TitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            SubtitleId -> SubtitleViewHolder(SubtitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            HomeTitleId -> TitleViewHolder(HomeTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            HomeSubtitleId -> SubtitleViewHolder(HomeSubtitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             else -> throw Exception("Invalid ViewHolder Type")
         }
     }
 
     override fun getItemCount(): Int = list.size
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
         when (holder) {
             is TodayViewHolder -> holder.bind(item as WeekItems.Today, onClick)
             is DaysViewHolder -> holder.bind(item as WeekItems.Days, onClick)
-            is TitleViewHolder -> holder.bind(item as WeekItems.Title)
-            is SubtitleViewHolder -> holder.bind(item as WeekItems.Subtitle)
+            is TitleViewHolder -> holder.bind(item as WeekItems.HomeTitle)
+            is SubtitleViewHolder -> holder.bind(item as WeekItems.HomeSubtitle)
             else -> throw Exception("Invalid ViewHolder Not Recognized")
         }
     }
@@ -90,14 +91,14 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
     }
 }
 
-class TitleViewHolder(private val binding: TitleBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: WeekItems.Title) {
+class TitleViewHolder(private val binding: HomeTitleBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: WeekItems.HomeTitle) {
 
     }
 }
 
-class SubtitleViewHolder(private val binding: SubtitleBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: WeekItems.Subtitle) {
+class SubtitleViewHolder(private val binding: HomeSubtitleBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: WeekItems.HomeSubtitle) {
 
     }
 }

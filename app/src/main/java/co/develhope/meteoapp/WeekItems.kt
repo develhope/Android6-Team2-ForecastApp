@@ -23,14 +23,14 @@ sealed class WeekItems(val id : Int){
         val windSpeed: Int,
     ): WeekItems(DaysId)
 
-    object Title: WeekItems(TitleId)
+    object HomeTitle: WeekItems(HomeTitleId)
 
-    object Subtitle : WeekItems(SubtitleId)
+    object HomeSubtitle : WeekItems(HomeSubtitleId)
     companion object {
         const val TodayId = 1
         const val DaysId = 2
-        const val TitleId = 3
-        const val SubtitleId = 4
+        const val HomeTitleId = 3
+        const val HomeSubtitleId = 4
     }
 }
 

@@ -16,20 +16,29 @@ import java.util.Locale
 class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         return root
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAdapter() {
         val weekList = Data.getWeatherDataList()
-        val itemToShow = createItemList(weekList)
+        val itemsToShow = createItemList(weekList)
+        binding.homeRecyclerView.adapter = WeekAdapter(list = itemsToShow) {}
 
     }
     @RequiresApi(Build.VERSION_CODES.O)
@@ -39,7 +48,7 @@ class HomeScreenFragment : Fragment() {
         val todayText = today.getDisplayName(TextStyle.FULL, Locale.ITALIAN)
             .uppercase(Locale.ITALIAN)
 
-        itemToShow.add(WeekItems.Title)
+        itemToShow.add(WeekItems.HomeTitle)
         dailySummaryForecastList.forEach { week ->
 
             if(week.dayOfWeek == todayText){
@@ -55,7 +64,7 @@ class HomeScreenFragment : Fragment() {
             }
 
         }
-        itemToShow.add(WeekItems.Subtitle)
+        itemToShow.add(WeekItems.HomeSubtitle)
         dailySummaryForecastList.forEach { week ->
             if(week.dayOfWeek != todayText){
                 itemToShow.add(WeekItems.Days(
@@ -71,6 +80,7 @@ class HomeScreenFragment : Fragment() {
 
         }
         return itemToShow
+
     }
 
     override fun onDestroyView() {

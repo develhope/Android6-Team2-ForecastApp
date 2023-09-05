@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeScreenFragment"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_home_screen" />
+        tools:listitem="@layout/list_home_screen"
+        tools:itemCount="7"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.core.widget.NestedScrollView>
