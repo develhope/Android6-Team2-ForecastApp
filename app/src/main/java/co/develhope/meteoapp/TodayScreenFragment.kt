@@ -38,6 +38,51 @@ class TodayScreenFragment : Fragment() {
             TodayData("16:00",R.drawable.sun,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
                 "Percepita","22°","Indice UV,","1/10","Umidità","60%"
                 ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("12:00",R.drawable.sun,"30°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("13:00",R.drawable.sun_cloud,"28°",R.drawable.droplet,"1%",R.drawable.arrow,
+                "Percepita","25°","Indice UV,","1/10","Umidità","50%"
+                ,"Vento","SSE 3km/h","Copertura","28%","Pioggia","0cm"),
+            TodayData("14:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 5km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("15:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("16:00",R.drawable.sun,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("12:00",R.drawable.sun,"30°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("13:00",R.drawable.sun_cloud,"28°",R.drawable.droplet,"1%",R.drawable.arrow,
+                "Percepita","25°","Indice UV,","1/10","Umidità","50%"
+                ,"Vento","SSE 3km/h","Copertura","28%","Pioggia","0cm"),
+            TodayData("14:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 5km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("15:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("16:00",R.drawable.sun,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("12:00",R.drawable.sun,"30°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("13:00",R.drawable.sun_cloud,"28°",R.drawable.droplet,"1%",R.drawable.arrow,
+                "Percepita","25°","Indice UV,","1/10","Umidità","50%"
+                ,"Vento","SSE 3km/h","Copertura","28%","Pioggia","0cm"),
+            TodayData("14:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 5km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("15:00",R.drawable.sun_cloud,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
+            TodayData("16:00",R.drawable.sun,"27°",R.drawable.droplet,"0%",R.drawable.arrow,
+                "Percepita","22°","Indice UV,","1/10","Umidità","60%"
+                ,"Vento","SSE 7km/h","Copertura","24%","Pioggia","0cm"),
         )
 
         binding.todayRecyclerview.adapter = TodayAdapter(todayList)
