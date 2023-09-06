@@ -1,25 +1,31 @@
 package co.develhope.meteoapp
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.GONE
-import androidx.recyclerview.widget.RecyclerView.VISIBLE
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 
-class TodayAdapter(val todayList: List<TodayData>): Adapter<TodayAdapter.TodayViewHolder>(){
+class TodayAdapter(val todayList: List<TodayData>): Adapter<TodayAdapter.TodayViewHolder>() {
 
-    class TodayViewHolder(val binding: ListTodayScreenBinding): ViewHolder(binding.root)
+    class TodayViewHolder(val binding: ListTodayScreenBinding) : ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodayViewHolder {
-        return TodayViewHolder(ListTodayScreenBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return TodayViewHolder(
+            ListTodayScreenBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
         return todayList.size
     }
+
 
     override fun onBindViewHolder(holder: TodayViewHolder, position: Int) {
         val model = todayList[position]
@@ -46,15 +52,16 @@ class TodayAdapter(val todayList: List<TodayData>): Adapter<TodayAdapter.TodayVi
         holder.binding.arrowImageToday.setOnClickListener {
 
             holder.binding.arrowImageToday.animate().apply {
-                rotationBy(180f)
+                rotationXBy(180f)
             }
 
-            if (holder.binding.todayCardview.visibility == View.VISIBLE){
+            // Toggle visibility of the CardView
+            if (holder.binding.todayCardview.visibility == View.VISIBLE) {
                 holder.binding.todayCardview.visibility = View.GONE
-            } else{
+            } else {
                 holder.binding.todayCardview.visibility = View.VISIBLE
             }
         }
-    }
 
+    }
 }
