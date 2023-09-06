@@ -21,14 +21,17 @@ sealed class TodayData(val type: Int) {
         val todayCoverage: String,
         val todayRainHeightTitle: String,
         val todayRainHeight: String
-    ): TodayData(todayItem)
+    ) : TodayData(todayItem)
 
-    companion object{
+    data class TodayTitle(
+        val todayLocation: String,
+        val todayDay: String,
+        val todayDate: String
+    ) : TodayData(todayTitle)
+
+    companion object {
         const val todayItem = 1
+        const val todayTitle = 2
     }
 
-}
-
-enum class TodayType{
-    ITEM
 }
