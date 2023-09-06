@@ -1,11 +1,11 @@
 package co.develhope.meteoapp
 
-import java.time.LocalDate
+import org.threeten.bp.OffsetDateTime
 
 sealed class WeekItems(val id : Int){
     //today in questo caso è ridondante anche alla luce dei commenti negl ialtri files
     data class Today(
-        val date: LocalDate,
+        val date: OffsetDateTime,
         val minTemperature: Int,
         val maxTemperature: Int,
         val weatherIcon: DailySummaryForecast.WeatherIcon,
@@ -13,7 +13,7 @@ sealed class WeekItems(val id : Int){
         val windSpeed: Int,
     ): WeekItems(TodayId)
     data class Days(
-        val date: LocalDate,
+        val date: OffsetDateTime,
         val minTemperature: Int,
         val maxTemperature: Int,
         val weatherIcon: DailySummaryForecast.WeatherIcon,

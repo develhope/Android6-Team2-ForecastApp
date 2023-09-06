@@ -13,10 +13,8 @@ import co.develhope.meteoapp.WeekItems.Companion.TodayId
 import co.develhope.meteoapp.databinding.HomeSubtitleBinding
 import co.develhope.meteoapp.databinding.HomeTitleBinding
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -74,7 +72,7 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
 class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
     @RequiresApi(Build.VERSION_CODES.O)
     fun bind(item: WeekItems.Days, onClick: (WeekItems) -> Unit) {
-        val tomorrow = LocalDate.now().plusDays(1)
+        val tomorrow = OffsetDateTime.now().plusDays(1)
 
         if (item.date.dayOfMonth == tomorrow.dayOfMonth){
             //Le stringhe hardcoded non devono esistere, create la risorsa stringa che vi serve e usatela da subito

@@ -2,13 +2,13 @@ package co.develhope.meteoapp
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import org.threeten.bp.OffsetDateTime
 import java.time.LocalDate
 
 object Data {
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getWeatherDataList(): List<DailySummaryForecast> {
 
-        val today = LocalDate.now()
+        val today = OffsetDateTime.now()
         val tomorrow = today.plusDays(1)
         val todayPlus2 = today.plusDays(2)
         val todayPlus3 = today.plusDays(3)
