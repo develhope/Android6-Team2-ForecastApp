@@ -5,25 +5,25 @@ import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.ViewHolder(binding.root){
-    fun onBind(model: TodayData.TodayItem){
-        binding.todayTimeTv.text = model.todayTime
-        binding.weatherTodayImage.setImageResource(model.todayWeatherImage)
-        binding.degreesToday.text = model.todayDegrees
-        binding.rainChanceImage.setImageResource(model.todayRainChanceImage)
-        binding.rainChanceTv.text = model.todayRainChance
-        binding.arrowImageToday.setImageResource(model.todayArrowImage)
-        binding.perceivedTvToday.text = model.todayPerceivedTitle
-        binding.perceivedDegreesToday.text = model.todayPerceived
-        binding.uvIndexTvToday.text = model.todayUvIndexTitle
-        binding.uvIndexToday.text = model.todayUvIndex
-        binding.humidityTvToday.text = model.todayHumidityTitle
-        binding.humidityPercentageToday.text = model.todayHumidity
-        binding.windTvToday.text = model.todayWindTitle
-        binding.windSpeedToday.text = model.todayWind
-        binding.coverageTvToday.text = model.todayCoverageTitle
-        binding.coverageToday.text = model.todayCoverage
-        binding.rainTvToday.text = model.todayRainHeightTitle
-        binding.rainToday.text = model.todayRainHeight
+    fun onBind(item: TodayData.TodayItem){
+        binding.todayTimeTv.text = item.todayTime
+        binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
+        binding.degreesToday.text = item.todayDegrees
+        binding.rainChanceImage.setImageResource(item.todayRainChanceImage)
+        binding.rainChanceTv.text = item.todayRainChance
+        binding.arrowImageToday.setImageResource(item.todayArrowImage)
+        binding.perceivedTvToday.text = item.todayPerceivedTitle
+        binding.perceivedDegreesToday.text = item.todayPerceived
+        binding.uvIndexTvToday.text = item.todayUvIndexTitle
+        binding.uvIndexToday.text = item.todayUvIndex
+        binding.humidityTvToday.text = item.todayHumidityTitle
+        binding.humidityPercentageToday.text = item.todayHumidity
+        binding.windTvToday.text = item.todayWindTitle
+        binding.windSpeedToday.text = item.todayWind
+        binding.coverageTvToday.text = item.todayCoverageTitle
+        binding.coverageToday.text = item.todayCoverage
+        binding.rainTvToday.text = item.todayRainHeightTitle
+        binding.rainToday.text = item.todayRainHeight
 
         binding.arrowImageToday.setOnClickListener {
 
