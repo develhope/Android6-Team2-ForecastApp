@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TodayScreenFragment"
-    android:background="@color/screen_color_today">
+    android:background="@color/screen_color_today"
+    tools:context=".TodayScreenFragment">
 
     <TextView
         android:id="@+id/location_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Palermo, Sicilia"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:text="Palermo, Sicilia"
         android:textColor="@color/blue"
-        android:fontFamily="@font/inter"/>
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/date_short_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Oggi,"
-        android:textSize="20sp"
         android:fontFamily="@font/inter"
-        android:textStyle="bold"
+        android:text="Oggi,"
         android:textColor="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/location_today"
-        app:layout_constraintStart_toStartOf="@id/location_today"/>
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/location_today"
+        app:layout_constraintTop_toBottomOf="@id/location_today" />
 
     <TextView
         android:id="@+id/date_long_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Domenica 10 Settembre"
         android:fontFamily="@font/inter"
+        android:text="Domenica 10 Settembre"
+        android:textColor="@color/blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/date_short_today"
-        app:layout_constraintStart_toStartOf="@id/date_short_today"/>
+        app:layout_constraintStart_toStartOf="@id/date_short_today"
+        app:layout_constraintTop_toBottomOf="@id/date_short_today" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/today_recyclerview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        tools:itemCount="8"
-        tools:listitem="@layout/list_today_screen"
+        android:layout_marginTop="40dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/date_long_today"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_long_today"
+        tools:itemCount="2"
+        tools:listitem="@layout/list_today_screen" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
