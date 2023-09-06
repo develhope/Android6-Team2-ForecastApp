@@ -1,10 +1,11 @@
 package co.develhope.meteoapp
 
-data class TodayData(val todayTime: String,
+data class TodayData(
+    val todayTime: String,
     val todayWeatherImage: Int,
     val todayDegrees: String,
     val todayRainChanceImage: Int,
-    val todayRainChange: String,
+    val todayRainChance: String,
     val todayArrowImage: Int,
     val todayPerceivedTitle: String,
     val todayPerceived: String,
@@ -17,4 +18,5 @@ data class TodayData(val todayTime: String,
     val todayCoverageTitle: String,
     val todayCoverage: String,
     val todayRainHeightTitle: String,
-    val todayRainHeight: String)
+    val todayRainHeight: String
+)
