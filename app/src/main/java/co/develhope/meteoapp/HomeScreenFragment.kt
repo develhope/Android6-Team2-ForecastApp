@@ -43,17 +43,14 @@ class HomeScreenFragment : Fragment() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createItemList(dailySummaryForecastList: List<DailySummaryForecast>): List<WeekItems> {
+        // manca una un pezzo di logica fondamentale. Sei sicura che la lista sia ordinata nel modo corretto?
+
         val itemToShow = mutableListOf<WeekItems>()
-        val today = LocalDate.now().dayOfWeek
-        val todayText = today.getDisplayName(TextStyle.FULL, Locale.ITALIAN)
-            .uppercase(Locale.ITALIAN)
 
         itemToShow.add(WeekItems.HomeTitle)
         dailySummaryForecastList.forEach { week ->
-
-            if(week.dayOfWeek == todayText){
+            if(week.date.dayOfMonth == LocalDate.now().dayOfMonth){
                 itemToShow.add(WeekItems.Today(
-                    dayOfWeek = week.dayOfWeek,
                     date = week.date,
                     minTemperature = week.minTemperature,
                     maxTemperature = week.maxTemperature,
@@ -62,13 +59,13 @@ class HomeScreenFragment : Fragment() {
                     windSpeed = week.windSpeed
                 ))
             }
-
         }
+
+
         itemToShow.add(WeekItems.HomeSubtitle)
         dailySummaryForecastList.forEach { week ->
-            if(week.dayOfWeek != todayText){
+            if(week.date.dayOfMonth != LocalDate.now().dayOfMonth){
                 itemToShow.add(WeekItems.Days(
-                    dayOfWeek = week.dayOfWeek,
                     date = week.date,
                     minTemperature = week.minTemperature,
                     maxTemperature = week.maxTemperature,

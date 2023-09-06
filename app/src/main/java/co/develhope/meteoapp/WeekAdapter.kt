@@ -14,6 +14,7 @@ import co.develhope.meteoapp.databinding.HomeSubtitleBinding
 import co.develhope.meteoapp.databinding.HomeTitleBinding
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -50,7 +51,7 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     }
 }
 
-private fun ImageView.setImageResource(weatherIcon: DailySummaryForecast.weatherIcons) {
+private fun ImageView.setImageResource(weatherIcon: DailySummaryForecast.WeatherIcon) {
 
 }
 class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -73,12 +74,14 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
 class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
     @RequiresApi(Build.VERSION_CODES.O)
     fun bind(item: WeekItems.Days, onClick: (WeekItems) -> Unit) {
-        val tomorrow = LocalDate.now().plusDays(1).dayOfWeek
-        val tomorrowText = tomorrow.getDisplayName(TextStyle.FULL, Locale.ITALIAN)
-            .uppercase(Locale.ITALIAN)
-        if (item.dayOfWeek == tomorrowText){
+        val tomorrow = LocalDate.now().plusDays(1)
+
+        if (item.date.dayOfMonth == tomorrow.dayOfMonth){
+            //Le stringhe hardcoded non devono esistere, create la risorsa stringa che vi serve e usatela da subito
             binding.textDayOfWeekList.text = "DOMANI"
-        }else{binding.textDayOfWeekList.text = item.dayOfWeek}
+        }else{
+            binding.textDayOfWeekList.text = item.date.format(DateTimeFormatter.ofPattern("dd/MM"))
+        }
         binding.textDayOfMonthList.text = item.date.toString()
         binding.textMinNumList.text = item.minTemperature.toString()
         binding.textMaxNumList.text = item.maxTemperature.toString()
