@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.today
 
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.SubtitleTodayScreenBinding

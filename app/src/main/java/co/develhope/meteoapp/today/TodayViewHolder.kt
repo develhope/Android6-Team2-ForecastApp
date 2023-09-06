@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.today
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

@@ -1,11 +1,13 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.today
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import co.develhope.meteoapp.R
 import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
+import co.develhope.meteoapp.today.adapter.TodayAdapter
 
 class TodayScreenFragment : Fragment() {
     private var _binding: FragmentTodayScreenBinding? = null
@@ -23,8 +25,8 @@ class TodayScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val todayList: List<TodayData> = listOf(
-            TodayData.TodayTitle("Palermo, Sicilia","Oggi, ","Domenica 10 Settembre")
-            ,TodayData.TodayItem(
+            TodayData.TodayTitle("Palermo, Sicilia", "Oggi, ", "Domenica 10 Settembre")
+            , TodayData.TodayItem(
                 "12:00",
                 R.drawable.sun,
                 "30°",

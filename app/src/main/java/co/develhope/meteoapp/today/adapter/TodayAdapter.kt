@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.today.adapter
 
 
 import android.view.LayoutInflater
@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.databinding.SubtitleTodayScreenBinding
+import co.develhope.meteoapp.today.TodayData
+import co.develhope.meteoapp.today.TodayTitleViewHolder
+import co.develhope.meteoapp.today.TodayViewHolder
 import java.lang.Exception
 
 class TodayAdapter(val todayList: List<TodayData>): Adapter<ViewHolder>() {

@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.today
 
 sealed class TodayData(val type: Int) {
 
