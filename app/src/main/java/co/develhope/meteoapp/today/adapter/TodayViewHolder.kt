@@ -1,8 +1,9 @@
-package co.develhope.meteoapp.today
+package co.develhope.meteoapp.today.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
+import co.develhope.meteoapp.today.TodayData
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.ViewHolder(binding.root){
     fun onBind(item: TodayData.TodayItem){

@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.databinding.TitleTodayScreenBinding
 import co.develhope.meteoapp.today.TodayData
-import co.develhope.meteoapp.today.TodayTitleViewHolder
-import co.develhope.meteoapp.today.TodayViewHolder
 import java.lang.Exception
 
 class TodayAdapter(val todayList: List<TodayData>): Adapter<ViewHolder>() {
