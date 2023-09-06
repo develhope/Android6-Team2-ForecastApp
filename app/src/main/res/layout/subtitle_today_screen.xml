@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:padding="16dp">
-    
+
     <TextView
-        app:layout_constraintBottom_toTopOf="@id/today_subtitle_short_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Palermo, Sicilia"
-        android:textSize="16sp"
+        android:id="@+id/today_location_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/inter"
         android:textColor="@color/blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/today_subtitle_short_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Palermo, Sicilia" />
 
     <TextView
         android:id="@+id/today_subtitle_short_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Oggi,"
-        android:fontFamily="@font/inter"
-        android:textSize="20sp"
-        android:textColor="@color/blue"
-        android:textStyle="bold"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        tools:text="Oggi," />
 
     <TextView
         android:id="@+id/today_subtitle_long_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Domenica 10 Settembre"
         android:fontFamily="@font/inter"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="@color/blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/today_subtitle_short_tv"
         app:layout_constraintTop_toBottomOf="@id/today_subtitle_short_tv"
-        app:layout_constraintStart_toStartOf="@id/today_subtitle_short_tv"/>
+        tools:text="Domenica 10 Settembre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
