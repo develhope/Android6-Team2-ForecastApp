@@ -1,9 +1,10 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.data
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import co.develhope.meteoapp.data.domain.DailySummaryForecast
+import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.RAIN
+import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN
+import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN_CLOUD
 import org.threeten.bp.OffsetDateTime
-import java.time.LocalDate
 
 object Data {
     fun getWeatherDataList(): List<DailySummaryForecast> {
@@ -41,7 +42,7 @@ object Data {
                 date = today,
                 minTemperature = 22,
                 maxTemperature = 30,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN,
+                weatherIcon = SUN,
                 precipitation = 0,
                 windSpeed = 10
             ),
@@ -49,7 +50,7 @@ object Data {
                 date = tomorrow,
                 minTemperature = 22,
                 maxTemperature = 30,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN,
+                weatherIcon = SUN,
                 precipitation = 0,
                 windSpeed = 10
             ),
@@ -57,7 +58,7 @@ object Data {
                 date = todayPlus2,
                 minTemperature = 20,
                 maxTemperature = 28,
-                weatherIcon = DailySummaryForecast.WeatherIcon.RAIN,
+                weatherIcon = RAIN,
                 precipitation = 60,
                 windSpeed = 15
             ),
@@ -65,7 +66,7 @@ object Data {
                 date = todayPlus3,
                 minTemperature = 23,
                 maxTemperature = 31,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN_CLOUD,
+                weatherIcon = SUN_CLOUD,
                 precipitation = 0,
                 windSpeed = 12
             ),
@@ -73,7 +74,7 @@ object Data {
                 date = todayPlus4,
                 minTemperature = 23,
                 maxTemperature = 31,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN_CLOUD,
+                weatherIcon = SUN_CLOUD,
                 precipitation = 5,
                 windSpeed = 15
             ),
@@ -81,7 +82,7 @@ object Data {
                 date = todayPlus5,
                 minTemperature = 20,
                 maxTemperature = 28,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN_CLOUD,
+                weatherIcon = SUN_CLOUD,
                 precipitation = 0,
                 windSpeed = 12
             ),
@@ -89,7 +90,7 @@ object Data {
                 date = todayPlus6,
                 minTemperature = 18,
                 maxTemperature = 24,
-                weatherIcon = DailySummaryForecast.WeatherIcon.RAIN,
+                weatherIcon = RAIN,
                 precipitation = 70,
                 windSpeed = 30
             ),
@@ -97,7 +98,7 @@ object Data {
                 date = todayPlus7,
                 minTemperature = 23,
                 maxTemperature = 31,
-                weatherIcon = DailySummaryForecast.WeatherIcon.SUN_CLOUD,
+                weatherIcon = SUN_CLOUD,
                 precipitation = 0,
                 windSpeed = 12
             )

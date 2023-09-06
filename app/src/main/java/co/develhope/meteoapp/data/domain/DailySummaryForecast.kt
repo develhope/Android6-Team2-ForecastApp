@@ -1,5 +1,6 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.data.domain
 
+import co.develhope.meteoapp.R.drawable
 import org.threeten.bp.OffsetDateTime
 
 data class DailySummaryForecast(
@@ -11,8 +12,8 @@ data class DailySummaryForecast(
     val windSpeed: Int,
 ) {
     enum class WeatherIcon(val image: Int) {
-        SUN(R.drawable.sun),
-        RAIN(R.drawable.rain),
-        SUN_CLOUD(R.drawable.sun_cloud)
+        SUN(drawable.sun),
+        RAIN(drawable.rain),
+        SUN_CLOUD(drawable.sun_cloud)
     }
 }

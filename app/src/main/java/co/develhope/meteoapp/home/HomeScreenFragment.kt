@@ -1,11 +1,18 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import co.develhope.meteoapp.home.WeekItems.Days
+import co.develhope.meteoapp.home.WeekItems.HomeSubtitle
+import co.develhope.meteoapp.home.WeekItems.HomeTitle
+import co.develhope.meteoapp.home.WeekItems.Today
+import co.develhope.meteoapp.data.Data
+import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
+import co.develhope.meteoapp.home.adapter.WeekAdapter
 import org.threeten.bp.OffsetDateTime
 
 
@@ -40,11 +47,11 @@ class HomeScreenFragment : Fragment() {
 
         val itemToShow = mutableListOf<WeekItems>()
 
-        itemToShow.add(WeekItems.HomeTitle)
+        itemToShow.add(HomeTitle)
         dailySummaryForecastList.forEach { week ->
             if (week.date.dayOfMonth == OffsetDateTime.now().dayOfMonth) {
                 itemToShow.add(
-                    WeekItems.Today(
+                    Today(
                         date = week.date,
                         minTemperature = week.minTemperature,
                         maxTemperature = week.maxTemperature,
@@ -57,11 +64,11 @@ class HomeScreenFragment : Fragment() {
         }
 
 
-        itemToShow.add(WeekItems.HomeSubtitle)
+        itemToShow.add(HomeSubtitle)
         dailySummaryForecastList.forEach { week ->
             if (week.date.dayOfMonth != OffsetDateTime.now().dayOfMonth) {
                 itemToShow.add(
-                    WeekItems.Days(
+                    Days(
                         date = week.date,
                         minTemperature = week.minTemperature,
                         maxTemperature = week.maxTemperature,
