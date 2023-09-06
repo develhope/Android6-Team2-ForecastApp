@@ -1,10 +1,13 @@
 package co.develhope.meteoapp.today
 
+import co.develhope.meteoapp.R
+import org.threeten.bp.OffsetDateTime
+
 sealed class TodayData(val type: Int) {
 
     data class TodayItem(
-        val todayTime: String,
-        val todayWeatherImage: Int,
+        val todayTime: OffsetDateTime,
+        val todayWeatherImage: TodayWeatherIcon,
         val todayDegrees: String,
         val todayRainChanceImage: Int,
         val todayRainChance: String,
@@ -34,4 +37,11 @@ sealed class TodayData(val type: Int) {
         const val todayTitle = 2
     }
 
+}
+
+enum class TodayWeatherIcon(val image: Int){
+    SUN(R.drawable.sun),
+    RAIN(R.drawable.rain),
+    SUN_CLOUD(R.drawable.sun_cloud),
+    MOON(R.drawable.moon)
 }
