@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
-import co.develhope.meteoapp.databinding.SubtitleTodayScreenBinding
+import co.develhope.meteoapp.databinding.TitleTodayScreenBinding
 import co.develhope.meteoapp.today.TodayData
 import co.develhope.meteoapp.today.TodayTitleViewHolder
 import co.develhope.meteoapp.today.TodayViewHolder
@@ -22,7 +22,7 @@ class TodayAdapter(val todayList: List<TodayData>): Adapter<ViewHolder>() {
         return when(viewType){
             TodayData.todayItem -> TodayViewHolder(ListTodayScreenBinding.inflate
                 (LayoutInflater.from(parent.context),parent,false))
-            TodayData.todayTitle -> TodayTitleViewHolder(SubtitleTodayScreenBinding.inflate(
+            TodayData.todayTitle -> TodayTitleViewHolder(TitleTodayScreenBinding.inflate(
                 LayoutInflater.from(parent.context),parent,false))
             else -> throw Exception("Error: invalid ViewHolder")
         }
