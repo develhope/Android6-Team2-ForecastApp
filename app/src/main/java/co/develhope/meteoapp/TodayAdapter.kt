@@ -41,21 +41,6 @@ class TodayAdapter(val todayList: List<TodayData>): Adapter<TodayAdapter.TodayVi
         holder.binding.coverageToday.text = model.todayCoverage
         holder.binding.rainTvToday.text = model.todayRainHeightTitle
         holder.binding.rainToday.text = model.todayRainHeight
-
-
-        holder.binding.arrowImageToday.setOnClickListener {
-
-            holder.binding.arrowImageToday.animate().apply {
-                rotationBy(180f)
-            }
-
-
-            if(holder.binding.todayCardview.visibility == GONE){
-                holder.binding.todayCardview.visibility == VISIBLE
-            } else{
-                holder.binding.todayCardview.visibility == GONE
-            }
-        }
     }
 
 }
