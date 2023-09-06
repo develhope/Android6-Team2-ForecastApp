@@ -28,7 +28,7 @@ class TodayScreenFragment : Fragment() {
             TodayData.TodayTitle("Palermo, Sicilia", "Oggi, ", "Domenica 10 Settembre")
             , TodayData.TodayItem(
                 "12:00",
-                R.drawable.sun,
+                TodayWeatherIcon.SUN,
                 "30°",
                 R.drawable.droplet,
                 "0%",
@@ -48,7 +48,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "13:00",
-                R.drawable.sun_cloud,
+                TodayWeatherIcon.SUN_CLOUD,
                 "28°",
                 R.drawable.droplet,
                 "1%",
@@ -68,7 +68,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "14:00",
-                R.drawable.sun_cloud,
+                TodayWeatherIcon.SUN_CLOUD,
                 "27°",
                 R.drawable.droplet,
                 "0%",
@@ -88,7 +88,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "15:00",
-                R.drawable.sun_cloud,
+                TodayWeatherIcon.SUN_CLOUD,
                 "27°",
                 R.drawable.droplet,
                 "0%",
@@ -108,7 +108,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "16:00",
-                R.drawable.sun,
+                TodayWeatherIcon.SUN_CLOUD,
                 "27°",
                 R.drawable.droplet,
                 "0%",

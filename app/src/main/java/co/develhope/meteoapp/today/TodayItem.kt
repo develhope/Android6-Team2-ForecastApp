@@ -6,7 +6,7 @@ import org.threeten.bp.OffsetDateTime
 sealed class TodayData(val type: Int) {
 
     data class TodayItem(
-        val todayTime: OffsetDateTime,
+        val todayTime: String,
         val todayWeatherImage: TodayWeatherIcon,
         val todayDegrees: String,
         val todayRainChanceImage: Int,
