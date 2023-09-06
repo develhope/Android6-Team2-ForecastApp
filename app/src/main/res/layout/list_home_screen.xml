@@ -30,7 +30,7 @@
                     android:fontFamily="@font/inter"
                     android:lineHeight="29.05dp"
                     tools:text="@string/oggi"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/black"
                     android:textFontWeight="600"
                     android:textSize="24sp"
                     />

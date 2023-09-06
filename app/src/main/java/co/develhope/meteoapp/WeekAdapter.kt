@@ -1,6 +1,7 @@
 package co.develhope.meteoapp
 
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -25,6 +26,7 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        Log.d("WeekAdapter", "viewType is $viewType")
         return when (viewType) {
             TodayId -> TodayViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             DaysId -> DaysViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -39,6 +41,8 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
+        Log.d("WeekAdapter", "holder is $holder")
+
         when (holder) {
             is TodayViewHolder -> holder.bind(item as WeekItems.Today, onClick)
             is DaysViewHolder -> holder.bind(item as WeekItems.Days, onClick)
@@ -50,7 +54,6 @@ class WeekAdapter(val list: List<WeekItems>, val onClick: (WeekItems) -> Unit) :
 }
 
 private fun ImageView.setImageResource(weatherIcon: DailySummaryForecast.WeatherIcon) {
-
 }
 class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: WeekItems.Today, onClick: (WeekItems) -> Unit) {
@@ -94,7 +97,7 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
 
 class TitleViewHolder(private val binding: HomeTitleBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: WeekItems.HomeTitle) {
-
+        // Qui manca il codice per settare il testo sulla text view, il luogo del meteo può cambiare quindi lo devi far arrivare fin qui
     }
 }
 

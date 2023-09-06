@@ -5,17 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/home_subtitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginStart="33dp"
+        android:layout_margin="33dp"
         android:text="@string/prossimi_5_giorni"
         android:fontFamily="@font/inter"
         android:textFontWeight="400"
         android:textSize="16sp"
-        android:lineHeight="19.36dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

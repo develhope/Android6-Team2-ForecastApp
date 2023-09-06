@@ -73,7 +73,7 @@ class HomeScreenFragment : Fragment() {
             }
 
         }
-        return itemToShow
+        return itemToShow.toList()
 
     }
 
