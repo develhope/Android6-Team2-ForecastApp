@@ -64,7 +64,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginStart="50dp"
-            android:rotation="180f"
+            android:rotation="180"
             android:src="@drawable/arrow"/>
     </LinearLayout>
 
