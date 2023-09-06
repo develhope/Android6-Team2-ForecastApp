@@ -5,6 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp">
+    
+    <TextView
+        app:layout_constraintBottom_toTopOf="@id/today_subtitle_short_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Palermo, Sicilia"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textColor="@color/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/today_subtitle_short_tv"
@@ -27,6 +37,7 @@
         android:fontFamily="@font/inter"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:textColor="@color/blue"
         app:layout_constraintTop_toBottomOf="@id/today_subtitle_short_tv"
         app:layout_constraintStart_toStartOf="@id/today_subtitle_short_tv"/>
 
