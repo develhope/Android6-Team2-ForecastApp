@@ -23,7 +23,8 @@ class TodayScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val todayList: List<TodayData> = listOf(
-            TodayData.TodayItem(
+            TodayData.TodayTitle("Palermo, Sicilia","Oggi, ","Domenica 10 Settembre")
+            ,TodayData.TodayItem(
                 "12:00",
                 R.drawable.sun,
                 "30°",
