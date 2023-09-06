@@ -1,6 +1,7 @@
 package co.develhope.meteoapp
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.GONE
@@ -41,6 +42,19 @@ class TodayAdapter(val todayList: List<TodayData>): Adapter<TodayAdapter.TodayVi
         holder.binding.coverageToday.text = model.todayCoverage
         holder.binding.rainTvToday.text = model.todayRainHeightTitle
         holder.binding.rainToday.text = model.todayRainHeight
+
+        holder.binding.arrowImageToday.setOnClickListener {
+
+            holder.binding.arrowImageToday.animate().apply {
+                rotationBy(180f)
+            }
+
+            if (holder.binding.todayCardview.visibility == View.VISIBLE){
+                holder.binding.todayCardview.visibility = View.GONE
+            } else{
+                holder.binding.todayCardview.visibility = View.VISIBLE
+            }
+        }
     }
 
 }
