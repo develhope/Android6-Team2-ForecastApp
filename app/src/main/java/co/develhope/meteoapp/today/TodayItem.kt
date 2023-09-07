@@ -7,7 +7,7 @@ sealed class TodayData(val type: Int) {
 
     data class TodayItem(
         val todayTime: String,
-        val todayWeatherImage: TodayWeatherIcon,
+        val todayWeatherImage: Int,
         val todayDegrees: String,
         val todayRainChanceImage: Int,
         val todayRainChance: String,
