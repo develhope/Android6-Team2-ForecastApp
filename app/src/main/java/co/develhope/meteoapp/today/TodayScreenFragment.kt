@@ -25,10 +25,10 @@ class TodayScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val todayList: List<TodayData> = listOf(
-            TodayData.TodayTitle("Palermo, Sicilia", "Oggi, ", "Domenica 10 Settembre")
-            , TodayData.TodayItem(
+            TodayData.TodayTitle("Palermo, Sicilia", "Oggi, ", "Domenica 10 Settembre"),
+            TodayData.TodayItem(
                 "12:00",
-                TodayWeatherIcon.SUN,
+                R.drawable.sun,
                 "30°",
                 R.drawable.droplet,
                 "0%",
@@ -45,10 +45,9 @@ class TodayScreenFragment : Fragment() {
                 "24%",
                 "Pioggia",
                 "0cm"
-            ),
-            TodayData.TodayItem(
+            ), TodayData.TodayItem(
                 "13:00",
-                TodayWeatherIcon.SUN_CLOUD,
+                R.drawable.sun_cloud,
                 "28°",
                 R.drawable.droplet,
                 "1%",
@@ -68,7 +67,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "14:00",
-                TodayWeatherIcon.SUN_CLOUD,
+                R.drawable.sun_cloud,
                 "27°",
                 R.drawable.droplet,
                 "0%",
@@ -88,7 +87,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "15:00",
-                TodayWeatherIcon.SUN_CLOUD,
+                R.drawable.sun_cloud,
                 "27°",
                 R.drawable.droplet,
                 "0%",
@@ -108,7 +107,7 @@ class TodayScreenFragment : Fragment() {
             ),
             TodayData.TodayItem(
                 "16:00",
-                TodayWeatherIcon.SUN_CLOUD,
+                R.drawable.sun_cloud,
                 "27°",
                 R.drawable.droplet,
                 "0%",
