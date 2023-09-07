@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="191dp"
+    android:layout_height="165dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
@@ -30,7 +30,7 @@
                     android:fontFamily="@font/inter"
                     android:lineHeight="29.05dp"
                     tools:text="@string/oggi"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="24sp"
                     />

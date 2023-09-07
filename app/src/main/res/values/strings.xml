@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">meteoapp</string>
-    <string name="palermo_sicilia">Palermo, Sicilia</string>
-    <string name="oggi">Oggi</string>
+    <string name="napoli_campania">Napoli, Campania</string>
     <string name="_10_09">10/09</string>
     <string name="_22">22°</string>
     <string name="min">min</string>
@@ -12,6 +11,8 @@
     <string name="_6kmh">6kmh</string>
     <string name="vento">vento</string>
     <string name="prossimi_5_giorni">PROSSIMI 5 GIORNI</string>
+    <string name="domani">Domani</string>
+    <string name="oggi">Oggi</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

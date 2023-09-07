@@ -13,7 +13,7 @@
         android:fontFamily="@font/inter"
         android:textFontWeight="400"
         android:textSize="16sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

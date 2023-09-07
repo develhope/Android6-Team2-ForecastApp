@@ -4,7 +4,6 @@ import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.home.WeekItems.Companion.DaysId
@@ -15,13 +14,11 @@ import co.develhope.meteoapp.home.WeekItems.Days
 import co.develhope.meteoapp.home.WeekItems.HomeSubtitle
 import co.develhope.meteoapp.home.WeekItems.HomeTitle
 import co.develhope.meteoapp.home.WeekItems.Today
-import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.databinding.HomeSubtitleBinding
 import co.develhope.meteoapp.databinding.HomeTitleBinding
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.home.WeekItems
-import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.format.DateTimeFormatter
+
 
 class WeekAdapter(private val list: List<WeekItems>, private val onClick: (WeekItems) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,10 +31,38 @@ class WeekAdapter(private val list: List<WeekItems>, private val onClick: (WeekI
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         Log.d("WeekAdapter", "viewType is $viewType")
         return when (viewType) {
-            TodayId -> TodayViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            DaysId -> DaysViewHolder(ListHomeScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            HomeTitleId -> TitleViewHolder(HomeTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            HomeSubtitleId -> SubtitleViewHolder(HomeSubtitleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            TodayId -> TodayViewHolder(
+                ListHomeScreenBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+            DaysId -> DaysViewHolder(
+                ListHomeScreenBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+            HomeTitleId -> TitleViewHolder(
+                HomeTitleBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+            HomeSubtitleId -> SubtitleViewHolder(
+                HomeSubtitleBinding.inflate(
+                    LayoutInflater.from(
+                        parent.context
+                    ), parent, false
+                )
+            )
+
             else -> throw Exception("Invalid ViewHolder Type")
         }
     }

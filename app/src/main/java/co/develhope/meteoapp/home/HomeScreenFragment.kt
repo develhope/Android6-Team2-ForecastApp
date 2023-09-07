@@ -1,9 +1,11 @@
 package co.develhope.meteoapp.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import co.develhope.meteoapp.home.WeekItems.Days
 import co.develhope.meteoapp.home.WeekItems.HomeSubtitle
@@ -14,6 +16,9 @@ import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
 import co.develhope.meteoapp.home.adapter.WeekAdapter
 import org.threeten.bp.OffsetDateTime
+
+
+
 
 
 class HomeScreenFragment : Fragment() {
@@ -31,23 +36,30 @@ class HomeScreenFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAdapter() {
         val weekList = Data.getWeatherDataList()
-        val itemsToShow = createItemList(weekList)
+        val titleHome = Data.getTitle()
+        val itemsToShow = createItemList(weekList, titleHome)
         binding.homeRecyclerView.adapter = WeekAdapter(list = itemsToShow) {}
 
     }
-    private fun createItemList(dailySummaryForecastList: List<DailySummaryForecast>): List<WeekItems> {
-        // manca una un pezzo di logica fondamentale. Sei sicura che la lista sia ordinata nel modo corretto?
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createItemList(
+        dailySummaryForecastList: List<DailySummaryForecast>,
+        titleHome: String
+    ): List<WeekItems> {
 
         val itemToShow = mutableListOf<WeekItems>()
 
-        itemToShow.add(HomeTitle)
+        itemToShow.add(HomeTitle(titleHome))
+
         dailySummaryForecastList.forEach { week ->
             if (week.date.dayOfMonth == OffsetDateTime.now().dayOfMonth) {
                 itemToShow.add(
@@ -65,7 +77,11 @@ class HomeScreenFragment : Fragment() {
 
 
         itemToShow.add(HomeSubtitle)
-        dailySummaryForecastList.forEach { week ->
+        val currentDate = OffsetDateTime.now().dayOfMonth
+        val sortedList = dailySummaryForecastList
+            .filter { it.date.dayOfMonth != currentDate }
+            .sortedBy { it.date }
+        sortedList.forEach { week ->
             if (week.date.dayOfMonth != OffsetDateTime.now().dayOfMonth) {
                 itemToShow.add(
                     Days(
