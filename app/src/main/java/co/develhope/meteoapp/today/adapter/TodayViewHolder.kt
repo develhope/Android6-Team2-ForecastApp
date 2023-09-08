@@ -40,6 +40,8 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.V
             } else {
                 binding.todayCardview.visibility = View.VISIBLE
             }
+            }
+
+            }
+
         }
-    }
-}
