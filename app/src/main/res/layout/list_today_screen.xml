@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
 
@@ -20,66 +20,62 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter"
+            android:textColor="@color/blue"
             android:textSize="16sp"
-            tools:text="00:00"
-            android:textColor="@color/blue"/>
+            tools:text="00:00" />
 
         <ImageView
             android:id="@+id/weather_today_image"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:src="@drawable/sun"
-            android:layout_marginStart="40dp"/>
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/sun" />
 
         <TextView
             android:id="@+id/degrees_today"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            tools:text="31°"/>
-        
-        <ImageView
-            android:id="@+id/rain_chance_image"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/droplet"
-            android:layout_gravity="center"
-            android:layout_marginStart="60dp"/>
+            tools:text="31°" />
 
         <TextView
             android:id="@+id/rain_chance_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="0%"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"/>
-        
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/droplet"
+            android:textSize="20sp"
+            app:drawableStartCompat="@drawable/droplet"
+            tools:text="0%" />
+
         <ImageView
             android:id="@+id/arrow_image_today"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"
-            android:layout_marginStart="30dp"
             android:rotation="180"
-            android:src="@drawable/arrow"/>
+            android:src="@drawable/arrow" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/today_cardview"
         android:layout_width="342dp"
         android:layout_height="214dp"
-        app:cardCornerRadius="8dp"
-        android:elevation="16dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/summary_linear_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="16dp"
+        tools:visibility="visible"
         android:visibility="gone"
-        >
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summary_linear_layout">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,51 +84,51 @@
 
             <TextView
                 android:id="@+id/perceived_tv_today"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Percepita"/>
+                android:fontFamily="@font/inter"
+                android:text="Percepita"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/perceived_degrees_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:layout_below="@id/perceived_tv_today"
                 android:fontFamily="@font/inter"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                tools:text="45°"
-                android:layout_below="@id/perceived_tv_today"/>
+                tools:text="45°" />
 
             <TextView
                 android:id="@+id/uv_index_tv_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:layout_marginStart="80dp"
+                android:layout_toEndOf="@id/perceived_tv_today"
                 android:fontFamily="@font/inter"
                 android:text="Indice UV"
-                android:layout_marginStart="80dp"
-                android:layout_toEndOf="@id/perceived_tv_today"/>
-            
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/uv_index_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter"
-                android:textStyle="bold"
-                tools:text="5/10"
+                android:layout_below="@id/uv_index_tv_today"
                 android:layout_alignStart="@id/uv_index_tv_today"
-                android:layout_below="@id/uv_index_tv_today"/>
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="5/10" />
 
             <View
                 android:id="@+id/first_line_today"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_below="@id/uv_index_today"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_below="@id/uv_index_today"
-                android:background="@color/line_color"/>
+                android:background="@color/line_color" />
 
             <TextView
                 android:id="@+id/humidity_tv_today"
@@ -140,50 +136,50 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/first_line_today"
                 android:layout_marginTop="16dp"
-                android:textSize="16sp"
                 android:fontFamily="@font/inter"
-                android:text="Umidità"/>
+                android:text="Umidità"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/humidity_percentage_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/humidity_tv_today"
-                tools:text="60%"
-                android:textSize="16sp"
                 android:fontFamily="@font/inter"
-                android:textStyle="bold"/>
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="60%" />
 
             <TextView
                 android:id="@+id/wind_tv_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignStart="@id/uv_index_today"
                 android:layout_below="@id/first_line_today"
+                android:layout_alignStart="@id/uv_index_today"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:text="Vento"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/wind_speed_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignStart="@id/wind_tv_today"
                 android:layout_below="@id/wind_tv_today"
-                tools:text="SSE 7km/h"
+                android:layout_alignStart="@id/wind_tv_today"
+                android:layout_centerHorizontal="true"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:text="SSE 7km/h" />
 
             <View
                 android:id="@+id/second_line_today"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_below="@id/wind_speed_today"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_below="@id/wind_speed_today"
-                android:background="@color/line_color"/>
+                android:background="@color/line_color" />
 
             <TextView
                 android:id="@+id/coverage_tv_today"
@@ -191,42 +187,41 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/second_line_today"
                 android:layout_marginTop="8dp"
-                android:text="Copertura"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"/>
+                android:text="Copertura"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/coverage_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coverage_tv_today"
-                tools:text="24%"
                 android:fontFamily="@font/inter"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:text="24%" />
 
             <TextView
                 android:id="@+id/rain_tv_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/wind_speed_today"
                 android:layout_below="@id/second_line_today"
+                android:layout_alignStart="@id/wind_speed_today"
                 android:layout_marginTop="8dp"
-                android:text="Pioggia"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"/>
+                android:text="Pioggia"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/rain_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/rain_tv_today"
                 android:layout_below="@id/rain_tv_today"
-                tools:text="0cm"
+                android:layout_alignStart="@id/rain_tv_today"
                 android:fontFamily="@font/inter"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold"
+                tools:text="0cm" />
 
 
         </RelativeLayout>
@@ -236,10 +231,10 @@
         android:id="@+id/third_line_today"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/today_cardview"
+        android:layout_margin="16dp"
         android:layout_marginTop="16dp"
         android:background="@color/line_color"
-        android:layout_margin="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/today_cardview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
