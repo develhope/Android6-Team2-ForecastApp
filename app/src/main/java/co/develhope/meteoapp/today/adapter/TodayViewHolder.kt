@@ -5,13 +5,17 @@ import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.today.TodayData
 
-open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.ViewHolder(binding.root){
-    fun onBind(item: TodayData.TodayItem){
-
+open class TodayViewHolder(val binding: ListTodayScreenBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun onBind(
+        item: TodayData.TodayItem,
+        position: Int,
+        openedItems: MutableList<Int>,
+        onClick: () -> Unit
+    ) {
         binding.todayTimeTv.text = item.todayTime
         binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
         binding.degreesToday.text = item.todayDegrees
-        binding.rainChanceImage.setImageResource(item.todayRainChanceImage)
         binding.rainChanceTv.text = item.todayRainChance
         binding.arrowImageToday.setImageResource(item.todayArrowImage)
         binding.perceivedTvToday.text = item.todayPerceivedTitle
@@ -27,21 +31,20 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.V
         binding.rainTvToday.text = item.todayRainHeightTitle
         binding.rainToday.text = item.todayRainHeight
 
-        binding.arrowImageToday.setOnClickListener {
-
-            binding.arrowImageToday.animate().apply {
-                rotationXBy(180f)
-            }
-
-            // Toggle visibility of the CardView
-            if (binding.todayCardview.visibility == View.VISIBLE) {
-
-                binding.todayCardview.visibility = View.GONE
-            } else {
-                binding.todayCardview.visibility = View.VISIBLE
-            }
-            }
-
-            }
-
+        // Toggle visibility of the CardView
+        if (position in openedItems) {
+            binding.arrowImageToday.rotation = 180f
+            binding.todayCardview.visibility = View.VISIBLE
+        } else {
+            binding.arrowImageToday.rotation = 0f
+            binding.todayCardview.visibility = View.GONE
         }
+
+        binding.root.setOnClickListener {
+            if (position in openedItems) openedItems.remove(position)
+            else openedItems.add(position)
+
+            onClick()
+        }
+    }
+}
