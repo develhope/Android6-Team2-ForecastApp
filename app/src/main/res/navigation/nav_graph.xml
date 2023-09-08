@@ -11,23 +11,19 @@
         android:name="co.develhope.meteoapp.home.HomeScreenFragment"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
-        <action
-            android:id="@+id/action_home_screen_to_today_screen"
-            app:destination="@id/today_screen" />
-        <action
-            android:id="@+id/action_home_screen_to_tomorrow_screen"
-            app:destination="@id/tomorrow_screen" />
     </fragment>
     <fragment
         android:id="@+id/today_screen"
         android:name="co.develhope.meteoapp.TodayScreenFragment"
         android:label="fragment_today_screen"
-        tools:layout="@layout/fragment_today_screen" />
+        tools:layout="@layout/fragment_today_screen" >
+    </fragment>
     <fragment
         android:id="@+id/tomorrow_screen"
         android:name="co.develhope.meteoapp.TomorrowScreenFragment"
         android:label="fragment_tomorrow_screen"
-        tools:layout="@layout/fragment_tomorrow_screen" />
+        tools:layout="@layout/fragment_tomorrow_screen" >
+    </fragment>
     <fragment
         android:id="@+id/search_screen"
         android:name="co.develhope.meteoapp.SearchScreenFragment"

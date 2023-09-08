@@ -33,8 +33,10 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
         binding.textPrecipNumList.text = item.precipitation
         binding.textWindNumList.text = item.windSpeed
         binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_home_screen_to_tomorrow_screen)
+            binding.root.findNavController().navigate(R.id.tomorrow_screen)
             onClick(item)
-        }
+            }
+
+
     }
 }

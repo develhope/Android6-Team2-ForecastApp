@@ -19,7 +19,7 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
         binding.textPrecipNumList.text = item.precipitation.toString()
         binding.textWindNumList.text = item.windSpeed.toString()
         binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_home_screen_to_today_screen)
+            binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
         }
     }
