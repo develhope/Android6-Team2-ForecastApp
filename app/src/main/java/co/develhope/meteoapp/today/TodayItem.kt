@@ -2,6 +2,7 @@ package co.develhope.meteoapp.today
 
 import co.develhope.meteoapp.R
 import org.threeten.bp.OffsetDateTime
+import kotlin.random.Random
 
 sealed class TodayData(val type: Int) {
 

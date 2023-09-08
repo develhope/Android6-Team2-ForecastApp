@@ -424,6 +424,8 @@ class TodayScreenFragment : Fragment() {
             ),
         )
 
+        binding.todayRecyclerview.setHasFixedSize(true)
+
         binding.todayRecyclerview.adapter = TodayAdapter(todayList)
 
     }

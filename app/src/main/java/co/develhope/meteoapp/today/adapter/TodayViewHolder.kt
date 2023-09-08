@@ -7,6 +7,7 @@ import co.develhope.meteoapp.today.TodayData
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) : RecyclerView.ViewHolder(binding.root){
     fun onBind(item: TodayData.TodayItem){
+
         binding.todayTimeTv.text = item.todayTime
         binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
         binding.degreesToday.text = item.todayDegrees
