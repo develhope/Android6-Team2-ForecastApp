@@ -36,7 +36,11 @@ class TodayAdapter(val todayList: List<TodayData>) : Adapter<ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = todayList[position]
         when (holder) {
-            is TodayViewHolder -> holder.onBind(item as TodayData.TodayItem, position, openedItems) {
+            is TodayViewHolder -> holder.onBind(
+                item as TodayData.TodayItem,
+                position,
+                openedItems
+            ) {
                 notifyItemChanged(position)
             }
 
