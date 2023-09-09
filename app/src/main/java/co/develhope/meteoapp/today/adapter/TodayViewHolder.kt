@@ -15,21 +15,14 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
     ) {
         binding.todayTimeTv.text = item.todayTime
         binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
-        binding.degreesToday.text = item.todayDegrees
-        binding.rainChanceTv.text = item.todayRainChance
-        binding.arrowImageToday.setImageResource(item.todayArrowImage)
-        binding.perceivedTvToday.text = item.todayPerceivedTitle
-        binding.perceivedDegreesToday.text = item.todayPerceived
-        binding.uvIndexTvToday.text = item.todayUvIndexTitle
+        binding.degreesToday.text = "${item.todayDegrees}°"
+        binding.rainChanceTv.text = "${item.todayRainChance}%"
+        binding.perceivedDegreesToday.text = "${item.todayPerceived}°"
         binding.uvIndexToday.text = item.todayUvIndex
-        binding.humidityTvToday.text = item.todayHumidityTitle
-        binding.humidityPercentageToday.text = item.todayHumidity
-        binding.windTvToday.text = item.todayWindTitle
-        binding.windSpeedToday.text = item.todayWind
-        binding.coverageTvToday.text = item.todayCoverageTitle
-        binding.coverageToday.text = item.todayCoverage
-        binding.rainTvToday.text = item.todayRainHeightTitle
-        binding.rainToday.text = item.todayRainHeight
+        binding.humidityPercentageToday.text = "${item.todayHumidity}%"
+        binding.windSpeedToday.text = "SSE ${item.todayWind}km/h"
+        binding.coverageToday.text = "${item.todayCoverage}%"
+        binding.rainToday.text = "${item.todayRainHeight}cm"
 
         // Toggle visibility of the CardView
         if (position in openedItems) {

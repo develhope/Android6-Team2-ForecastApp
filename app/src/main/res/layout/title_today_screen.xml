@@ -27,7 +27,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/today_location_tv"
-        tools:text="Oggi," />
+        android:text="Oggi," />
 
     <TextView
         android:id="@+id/today_subtitle_long_tv"

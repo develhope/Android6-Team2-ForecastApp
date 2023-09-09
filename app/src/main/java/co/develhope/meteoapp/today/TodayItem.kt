@@ -2,6 +2,7 @@ package co.develhope.meteoapp.today
 
 import co.develhope.meteoapp.R
 import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.OffsetTime
 import kotlin.random.Random
 
 sealed class TodayData(val type: Int) {
@@ -9,27 +10,18 @@ sealed class TodayData(val type: Int) {
     data class TodayItem(
         val todayTime: String,
         val todayWeatherImage: Int,
-        val todayDegrees: String,
-        val todayRainChance: String,
-        val todayArrowImage: Int,
-        val todayPerceivedTitle: String,
-        val todayPerceived: String,
-        val todayUvIndexTitle: String,
+        val todayDegrees: Int,
+        val todayRainChance: Int,
+        val todayPerceived: Int,
         val todayUvIndex: String,
-        val todayHumidityTitle: String,
-        val todayHumidity: String,
-        val todayWindTitle: String,
-        val todayWind: String,
-        val todayCoverageTitle: String,
-        val todayCoverage: String,
-        val todayRainHeightTitle: String,
-        val todayRainHeight: String
+        val todayHumidity: Int,
+        val todayWind: Int,
+        val todayCoverage: Int,
+        val todayRainHeight: Int
     ) : TodayData(todayItem)
 
     data class TodayTitle(
         val todayLocation: String,
-        val todayDay: String,
-        val todayDate: String
     ) : TodayData(todayTitle)
 
     companion object {
