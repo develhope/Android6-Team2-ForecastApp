@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 import co.develhope.meteoapp.R
 import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
 import co.develhope.meteoapp.today.adapter.TodayAdapter
+import org.threeten.bp.LocalTime
+import org.threeten.bp.OffsetTime
+import org.threeten.bp.ZoneOffset
+import org.threeten.bp.format.DateTimeFormatter
 
 class TodayScreenFragment : Fragment() {
     private var _binding: FragmentTodayScreenBinding? = null
@@ -24,168 +28,71 @@ class TodayScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val todayList: List<TodayData> = listOf(
-            TodayData.TodayTitle("Palermo,Sicilia"),
-            TodayData.TodayItem(
-                "12:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "13:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "14:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "15:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "16:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "17:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "18:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "19:00",
-                R.drawable.sun,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "20:00",
-                R.drawable.moon,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "21:00",
-                R.drawable.moon,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "22:00",
-                R.drawable.moon,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "23:00",
-                R.drawable.moon,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-            TodayData.TodayItem(
-                "00:00",
-                R.drawable.moon,
-                (0..30).random(),
-                (0..100).random(),
-                (0..30).random(),
-                "1/10",
-                (0..100).random(),
-                (0..5).random(),
-                (0..100).random(),
-                (0..5).random()
-            ),
-        )
+        val currentHour = OffsetTime.now().hour
 
+        val todayList = mutableListOf<TodayData>()
+
+        todayList.add(TodayData.TodayTitle("Palermo, Sicilia"))
+
+
+
+        var hour = currentHour
+
+        while(hour <= 23){
+            val image = R.drawable.sun
+            val degrees = (0..35).random()
+            val rainChance = (0..100).random()
+            val perceived = degrees - ((0..5).random())
+            val humidity = (0..100).random()
+            val wind = (0..5).random()
+            val coverage = (0..100).random()
+            val rainHeight = (0..5).random()
+
+            val todayData = createWeatherData(
+                hour,
+                image,
+                degrees,
+                rainChance,
+                perceived,
+                humidity,
+                wind,
+                coverage,
+                rainHeight
+            )
+            todayList.add(todayData)
+
+            hour++
+        }
 
         binding.todayRecyclerview.adapter = TodayAdapter(todayList)
 
+
     }
+
+    fun createWeatherData(
+        hour: Int,
+        image: Int,
+        degrees: Int,
+        rainChance: Int,
+        perceived: Int,
+        humidity: Int,
+        wind: Int,
+        coverage: Int,
+        rainHeight: Int
+    ): TodayData.TodayItem {
+        val time = OffsetTime.of(LocalTime.of(hour, 0), ZoneOffset.UTC)
+        val formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm"))
+        return TodayData.TodayItem(
+            formattedTime,
+            image,
+            degrees,
+            rainChance,
+            perceived,
+            humidity,
+            wind,
+            coverage,
+            rainHeight)
+    }
+
+
 }

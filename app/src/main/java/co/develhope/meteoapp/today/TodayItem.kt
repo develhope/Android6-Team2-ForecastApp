@@ -13,7 +13,6 @@ sealed class TodayData(val type: Int) {
         val todayDegrees: Int,
         val todayRainChance: Int,
         val todayPerceived: Int,
-        val todayUvIndex: String,
         val todayHumidity: Int,
         val todayWind: Int,
         val todayCoverage: Int,
