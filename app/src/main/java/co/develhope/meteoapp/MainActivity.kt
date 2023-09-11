@@ -1,7 +1,7 @@
 package co.develhope.meteoapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
@@ -63,4 +63,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
     }
+
 }
+

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="165dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_home_screen_list"
+            android:layout_width="342dp"
+            android:layout_height="155dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#66FFFFFF"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <RelativeLayout
+                 android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/text_day_of_week_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:lineHeight="29.05dp"
+                    tools:text="@string/oggi"
+                    android:textColor="@color/white"
+                    android:textFontWeight="600"
+                    android:textSize="24sp"
+                    />
+
+                <TextView
+                    android:id="@+id/text_day_of_month_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="Inter"
+                    android:lineHeight="18.15dp"
+                    tools:text="@string/_10_09"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="400"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@+id/text_day_of_week_list"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_below="@+id/text_day_of_week_list"/>
+
+
+                <TextView
+                    android:id="@+id/text_min_num_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:lineHeight="24.2dp"
+                    tools:text="@string/_22"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="600"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/text_min_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="Inter"
+                    android:lineHeight="18.15dp"
+                    android:text="@string/min"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="400"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@+id/text_min_num_list"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/text_min_num_list"/>
+
+
+                <TextView
+                    android:id="@+id/text_max_num_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:lineHeight="24.2dp"
+                    tools:text="@string/_31"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="600"
+                    android:textSize="20sp"
+                    android:layout_toRightOf="@+id/text_min_num_list"
+                    android:layout_marginLeft="60dp"/>
+
+                <TextView
+                    android:id="@+id/text_max_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="Inter"
+                    android:lineHeight="16.94dp"
+                    android:text="@string/max"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="400"
+                    android:textSize="14sp"
+                    android:layout_below="@+id/text_max_num_list"
+                    android:layout_alignLeft="@+id/text_max_num_list"/>
+
+
+                <ImageView
+                    android:id="@+id/img_sky_list"
+                    android:layout_width="46dp"
+                    android:layout_height="47.4dp"
+                    android:src="@drawable/sun"
+                    android:layout_alignParentBottom="true" />
+
+
+                <TextView
+                    android:id="@+id/text_precip_num_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:lineHeight="24.2dp"
+                    tools:text="@string/_0_mm"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="600"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/text_precip_list"/>
+
+                <TextView
+                    android:id="@+id/text_precip_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="Inter"
+                    android:lineHeight="18.15dp"
+                    android:text="@string/precip"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="400"
+                    android:textSize="15sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"/>
+
+
+                <TextView
+                    android:id="@+id/text_wind_num_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:lineHeight="24.2dp"
+                    tools:text="@string/_6kmh"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="600"
+                    android:textSize="20sp"
+                    android:layout_alignLeft="@+id/text_wind_list"
+                    android:layout_above="@+id/text_wind_list"/>
+
+                <TextView
+                    android:id="@+id/text_wind_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="Inter"
+                    android:lineHeight="18.15dp"
+                    android:text="@string/vento"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="400"
+                    android:textSize="15sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@+id/text_max_list"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
