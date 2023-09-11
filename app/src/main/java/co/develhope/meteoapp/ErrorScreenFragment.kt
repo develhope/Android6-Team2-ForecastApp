@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.develhope.meteoapp.databinding.FragmentErrorScreenBinding
+import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
 
 
 class ErrorScreenFragment : Fragment() {
@@ -16,7 +17,7 @@ class ErrorScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentErrorScreenBinding().inflate(inflater, container, false)
+        _binding = FragmentSearchScreenBinding().inflate(inflater, container, false)
 
         return binding.root
     }
