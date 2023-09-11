@@ -5,18 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import co.develhope.meteoapp.databinding.FragmentErrorScreenBinding
 
 
 class ErrorScreenFragment : Fragment() {
 
-
+    private var _binding: FragmentErrorScreenBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_error_screen, container, false)
+        _binding = FragmentErrorScreenBinding().inflate(inflater, container, false)
+
+        return binding.root
     }
+
+
+
 
 
 }
