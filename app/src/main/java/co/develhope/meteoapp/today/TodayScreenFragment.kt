@@ -28,70 +28,11 @@ class TodayScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val currentHour = OffsetTime.now().hour
-
-        val todayList = mutableListOf<TodayData>()
-
-        todayList.add(TodayData.TodayTitle("Palermo, Sicilia"))
 
 
-
-        var hour = currentHour
-
-        while(hour <= 23){
-            val image = R.drawable.sun
-            val degrees = (0..35).random()
-            val rainChance = (0..100).random()
-            val perceived = degrees - ((0..5).random())
-            val humidity = (0..100).random()
-            val wind = (0..5).random()
-            val coverage = (0..100).random()
-            val rainHeight = (0..5).random()
-
-            val todayData = createWeatherData(
-                hour,
-                image,
-                degrees,
-                rainChance,
-                perceived,
-                humidity,
-                wind,
-                coverage,
-                rainHeight
-            )
-            todayList.add(todayData)
-
-            hour++
-        }
-
-        binding.todayRecyclerview.adapter = TodayAdapter(todayList)
+        binding.todayRecyclerview.adapter = TodayAdapter(createRandomValues())
 
 
-    }
-
-    fun createWeatherData(
-        hour: Int,
-        image: Int,
-        degrees: Int,
-        rainChance: Int,
-        perceived: Int,
-        humidity: Int,
-        wind: Int,
-        coverage: Int,
-        rainHeight: Int
-    ): TodayData.TodayItem {
-        val time = OffsetTime.of(LocalTime.of(hour, 0), ZoneOffset.UTC)
-        val formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm"))
-        return TodayData.TodayItem(
-            formattedTime,
-            image,
-            degrees,
-            rainChance,
-            perceived,
-            humidity,
-            wind,
-            coverage,
-            rainHeight)
     }
 
 
