@@ -1,12 +1,14 @@
 package co.develhope.meteoapp
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
 
-class DataSearchAdapter(val dataList: List<DataSearch>) :
+class DataSearchAdapter(val dataList: List<DataSearches>) :
     RecyclerView.Adapter<DataSearchAdapter.VHDataSearch>() {
+
 
     class VHDataSearch(val binding: SearchRecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root)
