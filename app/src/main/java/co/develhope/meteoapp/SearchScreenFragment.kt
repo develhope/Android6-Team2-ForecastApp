@@ -20,4 +20,26 @@ class SearchScreenFragment : Fragment() {
         _binding = FragmentSearchScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val searchAdapterData = listOf<DataSearch>(
+            DataSearch("Palermo", "14°", "soleggiato"),
+            DataSearch("Agrigento", "16°", "parz. nuvoloso"),
+            DataSearch("Catania", "20°", "soleggiato"),
+            DataSearch("Siracusa", "12°", "pioggia"),
+        )
+
+        binding.searchRecyclerView.adapter = DataSearchAdapter(searchAdapterData)
+
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

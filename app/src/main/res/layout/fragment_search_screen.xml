@@ -47,6 +47,7 @@
             android:fontFamily="@font/inter"
             android:alpha="0.7"
             android:textSize="16sp"
+            android:inputType="text"
             android:hint="Cerca città"/>
 
 
