@@ -2,6 +2,7 @@ package co.develhope.meteoapp.data
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import co.develhope.meteoapp.DataSearches
 import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.RAIN
@@ -12,6 +13,18 @@ import org.threeten.bp.OffsetDateTime
 
 
 object Data {
+
+    fun getSearchData() : List<DataSearches>{
+        return  listOf<DataSearches>(
+            DataSearches("Palermo", "14°", "soleggiato"),
+            DataSearches("Agrigento", "16°", "parz. nuvoloso"),
+            DataSearches("Catania", "20°", "soleggiato"),
+            DataSearches("Siracusa", "12°", "pioggia"),
+        )
+    }
+
+
+
     fun getTitle(): String {
         val homeTitle = WeekItems.HomeTitle(locality = "Palermo, Sicilia")
         return homeTitle.locality
