@@ -5,13 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import co.develhope.meteoapp.R
+import co.develhope.meteoapp.data.Data.createRandomValues
 import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
 import co.develhope.meteoapp.today.adapter.TodayAdapter
-import org.threeten.bp.LocalTime
-import org.threeten.bp.OffsetTime
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
 
 class TodayScreenFragment : Fragment() {
     private var _binding: FragmentTodayScreenBinding? = null
