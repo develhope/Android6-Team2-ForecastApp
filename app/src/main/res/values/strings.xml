@@ -102,4 +102,11 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="perceived_text">Percepita</string>
+    <string name="uv_index_text">Indice UV</string>
+    <string name="humidity_text">Umidità</string>
+    <string name="wind_text">Vento</string>
+    <string name="coverage_text">Copertura</string>
+    <string name="rain_text">Pioggia</string>
+    <string name="uv_placeholder_value_text">1/10</string>
 </resources>
