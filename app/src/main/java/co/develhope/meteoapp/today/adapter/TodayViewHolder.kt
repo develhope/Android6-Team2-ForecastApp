@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.today.TodayData
+import org.threeten.bp.format.DateTimeFormatter
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -13,7 +14,7 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
         openedItems: MutableList<Int>,
         onClick: () -> Unit
     ) {
-        binding.todayTimeTv.text = item.todayTime
+        binding.todayTimeTv.text = item.todayTime.format(DateTimeFormatter.ofPattern("HH:mm"))
         binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
         binding.degreesToday.text = "${item.todayDegrees}°"
         binding.rainChanceTv.text = "${item.todayRainChance}%"

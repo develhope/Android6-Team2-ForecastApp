@@ -7,6 +7,7 @@ import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.RAIN
 import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN
 import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN_CLOUD
+import co.develhope.meteoapp.data.domain.HourlySummaryForecast
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.today.TodayData
 import org.threeten.bp.LocalTime
@@ -18,70 +19,226 @@ import org.threeten.bp.format.DateTimeFormatter
 
 object Data {
 
-    fun createRandomValues(): MutableList<TodayData> {
-        val currentHour = OffsetTime.now().hour
+//    fun createRandomValues(): MutableList<TodayData> {
+//        val currentHour = OffsetTime.now().hour
+//
+//        val todayList = mutableListOf<TodayData>()
+//
+//        todayList.add(TodayData.TodayTitle("Palermo, Sicilia"))
+//
+//
+//
+//        var hour = currentHour
+//
+//        while(hour <= 23){
+//            val image = R.drawable.sun
+//            val degrees = (0..35).random()
+//            val rainChance = (0..100).random()
+//            val perceived = degrees - ((0..5).random())
+//            val humidity = (0..100).random()
+//            val wind = (0..5).random()
+//            val coverage = (0..100).random()
+//            val rainHeight = (0..5).random()
+//
+//            val todayData = createWeatherData(
+//                hour,
+//                image,
+//                degrees,
+//                rainChance,
+//                perceived,
+//                humidity,
+//                wind,
+//                coverage,
+//                rainHeight
+//            )
+//            todayList.add(todayData)
+//
+//            hour++
+//        }
+//
+//        return todayList
+//
+//    }
+//
+//    fun createWeatherData(
+//        hour: Int,
+//        image: Int,
+//        degrees: Int,
+//        rainChance: Int,
+//        perceived: Int,
+//        humidity: Int,
+//        wind: Int,
+//        coverage: Int,
+//        rainHeight: Int
+//    ): TodayData.TodayItem {
+//        val time = OffsetTime.of(LocalTime.of(hour, 0), ZoneOffset.UTC)
+//        val formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm"))
+//        return TodayData.TodayItem(
+//            formattedTime,
+//            image,
+//            degrees,
+//            rainChance,
+//            perceived,
+//            humidity,
+//            wind,
+//            coverage,
+//            rainHeight)
+//    }
 
-        val todayList = mutableListOf<TodayData>()
+    fun getTodayDataList(): List<HourlySummaryForecast>{
+        val currentHour = OffsetDateTime.now()
 
-        todayList.add(TodayData.TodayTitle("Palermo, Sicilia"))
+        return listOf(
+            HourlySummaryForecast(
+                currentHour,
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(1),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(2),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(3),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(4),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(5),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(6),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(7),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(8),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(9),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(10),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(11),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
+            HourlySummaryForecast(
+                currentHour.plusHours(12),
+                R.drawable.sun,
+                20,
+                10,
+                22,
+                30,
+                2,
+                10,
+                2
+            ),
 
-
-
-        var hour = currentHour
-
-        while(hour <= 23){
-            val image = R.drawable.sun
-            val degrees = (0..35).random()
-            val rainChance = (0..100).random()
-            val perceived = degrees - ((0..5).random())
-            val humidity = (0..100).random()
-            val wind = (0..5).random()
-            val coverage = (0..100).random()
-            val rainHeight = (0..5).random()
-
-            val todayData = createWeatherData(
-                hour,
-                image,
-                degrees,
-                rainChance,
-                perceived,
-                humidity,
-                wind,
-                coverage,
-                rainHeight
-            )
-            todayList.add(todayData)
-
-            hour++
-        }
-
-        return todayList
-
+        )
     }
 
-    fun createWeatherData(
-        hour: Int,
-        image: Int,
-        degrees: Int,
-        rainChance: Int,
-        perceived: Int,
-        humidity: Int,
-        wind: Int,
-        coverage: Int,
-        rainHeight: Int
-    ): TodayData.TodayItem {
-        val time = OffsetTime.of(LocalTime.of(hour, 0), ZoneOffset.UTC)
-        val formattedTime = time.format(DateTimeFormatter.ofPattern("HH:mm"))
-        return TodayData.TodayItem(
-            formattedTime,
-            image,
-            degrees,
-            rainChance,
-            perceived,
-            humidity,
-            wind,
-            coverage,
-            rainHeight)
+    fun getTodayTitle(): String {
+        val todayTitle = TodayData.TodayTitle(todayLocation = "Palermo, Sicilia")
+        return todayTitle.todayLocation
     }
 
     fun getTitle(): String {

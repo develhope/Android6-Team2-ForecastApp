@@ -11,7 +11,7 @@ import kotlin.random.Random
 sealed class TodayData(val type: Int) {
 
     data class TodayItem(
-        val todayTime: String,
+        val todayTime: OffsetDateTime,
         val todayWeatherImage: Int,
         val todayDegrees: Int,
         val todayRainChance: Int,
