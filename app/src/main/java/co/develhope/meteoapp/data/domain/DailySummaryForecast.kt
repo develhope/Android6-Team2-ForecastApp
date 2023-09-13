@@ -6,11 +6,11 @@ import org.threeten.bp.OffsetDateTime
 
 data class DailySummaryForecast(
     val date: OffsetDateTime,
-    val minTemperature: String,
-    val maxTemperature: String,
+    val minTemperature: Int,
+    val maxTemperature: Int,
     val weatherIcon: WeatherIcon,
-    val precipitation: String,
-    val windSpeed: String
+    val precipitation: Int,
+    val windSpeed: Int
 )
 
 
