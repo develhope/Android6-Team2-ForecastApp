@@ -17,4 +17,10 @@
     <dimen name="marginLeft_mediumText_card_view_home_list_item">60dp</dimen>
     <dimen name="width_imageView_card_view_home_list_item">46dp</dimen>
     <dimen name="height_imageView_card_view_home_list_item">47.4dp</dimen>
+    <dimen name="today_weather_icon_height">30dp</dimen>
+    <dimen name="arrow_icon_width">24dp</dimen>
+    <dimen name="arrow_icon_height">24dp</dimen>
+    <dimen name="today_cardview_width">342dp</dimen>
+    <dimen name="today_cardview_height">214dp</dimen>
+    <dimen name="uv_index_start_margin">80dp</dimen>
 </resources>

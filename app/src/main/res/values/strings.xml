@@ -104,4 +104,11 @@
     </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="riprova">Riprova</string>
+    <string name="perceived_text">Percepita</string>
+    <string name="uv_index_text">Indice UV</string>
+    <string name="humidity_text">Umidità</string>
+    <string name="wind_text">Vento</string>
+    <string name="coverage_text">Copertura</string>
+    <string name="rain_text">Pioggia</string>
+    <string name="uv_placeholder_value_text">1/10</string>
 </resources>
