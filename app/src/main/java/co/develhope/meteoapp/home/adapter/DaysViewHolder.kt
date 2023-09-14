@@ -27,13 +27,13 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
                     .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
         }
         binding.textDayOfMonthList.text =  item.date.format(DateTimeFormatter.ofPattern("dd/MM"))
-        binding.textMinNumList.text = item.minTemperature
-        binding.textMaxNumList.text = item.maxTemperature
+        binding.textMinNumList.text = "${item.minTemperature}°"
+        binding.textMaxNumList.text = "${item.maxTemperature}°"
         binding.imgSkyList.setWeatherIcon(item.weatherIcon)
-        binding.textPrecipNumList.text = item.precipitation
-        binding.textWindNumList.text = item.windSpeed
+        binding.textPrecipNumList.text = "${item.precipitation} mm"
+        binding.textWindNumList.text = "${item.windSpeed} km/h"
         binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.tomorrow_screen)
+            binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
             }
 
