@@ -3,26 +3,27 @@ package co.develhope.meteoapp.today.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
-import co.develhope.meteoapp.today.TodayData
+import co.develhope.meteoapp.today.HourlyForecastItems
 import org.threeten.bp.format.DateTimeFormatter
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(
-        item: TodayData.TodayItem,
+        item: HourlyForecastItems.HourlyForecast,
         position: Int,
         openedItems: MutableList<Int>,
         onClick: () -> Unit
     ) {
-        binding.todayTimeTv.text = item.todayTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
+
         binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
-        binding.degreesToday.text = "${item.todayDegrees}°"
-        binding.rainChanceTv.text = "${item.todayRainChance}%"
-        binding.perceivedDegreesToday.text = "${item.todayPerceived}°"
-        binding.humidityPercentageToday.text = "${item.todayHumidity}%"
-        binding.windSpeedToday.text = "SSE ${item.todayWind}km/h"
-        binding.coverageToday.text = "${item.todayCoverage}%"
-        binding.rainToday.text = "${item.todayRainHeight}cm"
+        binding.degreesToday.text = "${item.forecast.hourlyTemp}°"
+        binding.rainChanceTv.text = "${item.forecast.possibleRain}%"
+        binding.perceivedDegreesToday.text = "${item.forecast.apparentTemp}°"
+        binding.humidityPercentageToday.text = "${item.forecast.humidity}%"
+        binding.windSpeedToday.text = "${item.forecast.windDirection} ${item.forecast.windSpeed} km/h"
+        binding.coverageToday.text = "${item.forecast.cloudyness}%"
+        binding.rainToday.text = "${item.forecast.rain}cm"
 
         // Toggle visibility of the CardView
         if (position in openedItems) {

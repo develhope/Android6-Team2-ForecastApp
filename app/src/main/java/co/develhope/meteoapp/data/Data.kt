@@ -9,12 +9,8 @@ import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN
 import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN_CLOUD
 import co.develhope.meteoapp.data.domain.HourlySummaryForecast
 import co.develhope.meteoapp.home.WeekItems
-import co.develhope.meteoapp.today.TodayData
-import org.threeten.bp.LocalTime
+import co.develhope.meteoapp.today.HourlyForecastItems
 import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.OffsetTime
-import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
 
 
 object Data {
@@ -85,20 +81,66 @@ object Data {
 //            rainHeight)
 //    }
 
-    fun getTodayDataList(): List<HourlySummaryForecast>{
+    data class HourlyForecast(
+        val date: OffsetDateTime,
+        val hourlyTemp: Int,
+        val possibleRain: Int,
+        val apparentTemp: Int, //temp percepita
+        val uvIndex: Int,
+        val humidity: Int,
+        val windDirection: String,
+        val windSpeed: Int,
+        val cloudyness: Int,
+        val rain: Int,
+        val forecastIndex: Int
+    )
+
+    fun getHourlyForecast(): List<HourlyForecast> = listOf(
+        HourlyForecast(
+            date = OffsetDateTime.now(),
+            hourlyTemp = 2682,
+            possibleRain = 1167,
+            apparentTemp = 1670,
+            uvIndex = 2399,
+            humidity = 8136,
+            windDirection = "expetenda",
+            windSpeed = 8736,
+            cloudyness = 7981,
+            rain = 3059,
+            forecastIndex = 1845,
+        ),
+        HourlyForecast(
+            date = OffsetDateTime.now().plusHours(1),
+            hourlyTemp = 7787,
+            possibleRain = 2319,
+            apparentTemp = 7046,
+            uvIndex = 9413,
+            humidity = 2990,
+            windDirection = "causae",
+            windSpeed = 1264,
+            cloudyness = 2157,
+            rain = 8658,
+            forecastIndex = 7452
+        )
+
+
+    )
+
+
+    fun getTodayDataList(): List<HourlySummaryForecast> {
         val currentHour = OffsetDateTime.now()
 
         return listOf(
             HourlySummaryForecast(
-                currentHour,
-                R.drawable.sun,
-                20,
-                10,
-                22,
-                30,
-                2,
-                10,
-                2
+                time = currentHour,
+                weatherImage = R.drawable.sun,
+                degrees = 20,
+                rainChance = 10,
+                perceived = 22,
+                humidity = 30,
+                wind = 2,
+                coverage = 10,
+                rainHeight = 2
             ),
             HourlySummaryForecast(
                 currentHour.plusHours(1),
@@ -236,10 +278,7 @@ object Data {
         )
     }
 
-    fun getTodayTitle(): String {
-        val todayTitle = TodayData.TodayTitle(todayLocation = "Palermo, Sicilia")
-        return todayTitle.todayLocation
-    }
+    fun getTodayTitle(): String = "Palermo, Sicilia"
 
     fun getTitle(): String {
         val homeTitle = WeekItems.HomeTitle(locality = "Palermo, Sicilia")
