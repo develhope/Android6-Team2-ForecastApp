@@ -13,11 +13,11 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
     fun bind(item: Today, onClick: (WeekItems) -> Unit) {
         binding.textDayOfWeekList.text = binding.root.context.getString(R.string.oggi)
         binding.textDayOfMonthList.text = item.date.format(DateTimeFormatter.ofPattern("dd/MM"))
-        binding.textMinNumList.text = item.minTemperature.toString()
-        binding.textMaxNumList.text = item.maxTemperature.toString()
+        binding.textMinNumList.text = "${item.minTemperature}°"
+        binding.textMaxNumList.text = "${item.maxTemperature}°"
         binding.imgSkyList.setWeatherIcon(item.weatherIcon)
-        binding.textPrecipNumList.text = item.precipitation.toString()
-        binding.textWindNumList.text = item.windSpeed.toString()
+        binding.textPrecipNumList.text = "${item.precipitation} mm"
+        binding.textWindNumList.text = "${item.windSpeed} km/h"
         binding.root.setOnClickListener {
             binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
