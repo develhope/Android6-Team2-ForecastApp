@@ -25,6 +25,7 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
         binding.degreesToday.text = "${item.forecast.hourlyTemp}°"
         binding.rainChanceTv.text = "${item.forecast.possibleRain}%"
         binding.perceivedDegreesToday.text = "${item.forecast.apparentTemp}°"
+        binding.uvIndexToday.text = "${item.forecast.uvIndex}/10"
         binding.humidityPercentageToday.text = "${item.forecast.humidity}%"
         binding.windSpeedToday.text = "${item.forecast.windDirection} ${item.forecast.windSpeed} km/h"
         binding.coverageToday.text = "${item.forecast.cloudyness}%"
