@@ -10,12 +10,13 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="354dp"
-        android:layout_height="58dp"
+        android:id="@+id/search_edit_text_cardview"
+        android:layout_width="@dimen/search_edit_text_cardview_width"
+        android:layout_height="@dimen/search_edit_text_cardview_height"
         android:layout_gravity="center"
         android:layout_marginTop="78dp"
         android:layout_weight="0"
-        app:cardCornerRadius="28dp">
+        app:cardCornerRadius="@dimen/search_edit_text_cardview_corner_radius">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,14 +36,14 @@
 
             <EditText
                 android:id="@+id/search_edit_text"
-                android:layout_width="298dp"
+                android:layout_width="@dimen/search_edit_text_width"
                 android:layout_height="match_parent"
                 android:alpha="0.7"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/inter"
-                android:hint="Cerca città"
+                android:hint="@string/city_search"
                 android:inputType="text"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_hint_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/search_vector"
@@ -61,7 +62,7 @@
         android:fontFamily="@font/inter"
         android:text="@string/recent_research"
         android:textColor="@color/text_color"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_title_recent_search"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

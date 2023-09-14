@@ -1,3 +1,19 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_size_hint_search">16sp</dimen>
+    <dimen name="text_size_title_recent_search">18sp</dimen>
+    <dimen name="search_edit_text_width">298dp</dimen>
+    <dimen name="search_edit_text_cardview_width">354dp</dimen>
+    <dimen name="search_edit_text_cardview_height">58dp</dimen>
+    <dimen name="search_edit_text_cardview_corner_radius">28dp</dimen>
+
+<!--    Dimen search item recycler view-->
+
+    <dimen name="search_item_cardview_width">354dp</dimen>
+    <dimen name="search_item_cardview_heigth">66dp</dimen>
+    <dimen name="recent_city_item_title">22sp</dimen>
+    <dimen name="temperature_item_size">18sp</dimen>
+    <dimen name="weather_item_size">10sp</dimen>
+    <dimen name="search_item_cardview_corner_radius">4dp</dimen>
+
 </resources>
