@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import co.develhope.meteoapp.data.Data
-import co.develhope.meteoapp.data.Data.HourlyForecast
+import co.develhope.meteoapp.data.domain.HourlyForecast
 import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
 import co.develhope.meteoapp.today.adapter.TodayAdapter
 import org.threeten.bp.OffsetDateTime
@@ -53,7 +53,7 @@ class TodayScreenFragment : Fragment() {
         //E' un operatore che fa la stessa cosa di forEach o di un while ma in modo più compatto e più facile da leggere
         hourlySummaryForecastList.map { forecast ->
             shownItems.add(
-                HourlyForecastItems.HourlyForecast(
+                HourlyForecastItems.Forecast(
                     forecast = forecast
                 )
             )

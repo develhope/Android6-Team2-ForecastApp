@@ -1,13 +1,13 @@
 package co.develhope.meteoapp.today
 
 import co.develhope.meteoapp.R
-import co.develhope.meteoapp.data.Data.HourlyForecast
+import co.develhope.meteoapp.data.domain.HourlyForecast
 import org.threeten.bp.OffsetDateTime
 
 sealed class HourlyForecastItems(val type: Int) {
 
-    data class HourlyForecast(
-        val forecast: co.develhope.meteoapp.data.Data.HourlyForecast
+    data class Forecast(
+        val forecast: HourlyForecast
     ) : HourlyForecastItems(hourlyForecast)
 
     data class Title(

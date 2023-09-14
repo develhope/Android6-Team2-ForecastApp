@@ -37,7 +37,7 @@ class TodayAdapter(val items: List<HourlyForecastItems>) : Adapter<ViewHolder>()
         val item = items[position]
         when (holder) {
             is TodayViewHolder -> holder.onBind(
-                item as HourlyForecastItems.HourlyForecast,
+                item as HourlyForecastItems.Forecast,
                 position,
                 openedItems
             ) {

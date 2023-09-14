@@ -2,21 +2,26 @@ package co.develhope.meteoapp.today.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import co.develhope.meteoapp.data.domain.WeatherIcon
+import co.develhope.meteoapp.data.domain.WeatherIcon.NOTAVAILABLE
+import co.develhope.meteoapp.data.domain.WeatherIcon.SUN_CLOUD
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
+import co.develhope.meteoapp.home.setWeatherIcon
 import co.develhope.meteoapp.today.HourlyForecastItems
+import co.develhope.meteoapp.today.getWeatherIconbasedonId
 import org.threeten.bp.format.DateTimeFormatter
 
 open class TodayViewHolder(val binding: ListTodayScreenBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(
-        item: HourlyForecastItems.HourlyForecast,
+        item: HourlyForecastItems.Forecast,
         position: Int,
         openedItems: MutableList<Int>,
         onClick: () -> Unit
     ) {
         binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
 
-        binding.weatherTodayImage.setImageResource(item.todayWeatherImage)
+       binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.forecastIndex))
         binding.degreesToday.text = "${item.forecast.hourlyTemp}°"
         binding.rainChanceTv.text = "${item.forecast.possibleRain}%"
         binding.perceivedDegreesToday.text = "${item.forecast.apparentTemp}°"
