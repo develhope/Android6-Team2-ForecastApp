@@ -111,4 +111,7 @@
     <string name="coverage_text">Copertura</string>
     <string name="rain_text">Pioggia</string>
     <string name="uv_placeholder_value_text">1/10</string>
+    <string name="degrees">%1$s°</string>
+    <string name="millimetres">%1$s mm</string>
+    <string name="kilometers_per_hour">%1$s km/h</string>
 </resources>
