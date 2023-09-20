@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="@dimen/margin_image_text_error_sreen"
         />
 
 
@@ -31,20 +31,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/error_image"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="@dimen/margin_text_button_error_sreen"
         />
 
     <Button
         android:id="@+id/error_retry_button"
-        android:layout_width="308dp"
+        android:layout_width="@dimen/width_button_error_screen"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="@dimen/margin_button_text_error_screen"
         android:backgroundTint="@color/button_color"
         android:fontFamily="@font/inter"
         android:text="@string/riprova"
         android:textAllCaps="false"
-        android:textSize="16sp"
-        app:cornerRadius="14dp"
+        android:textSize="@dimen/textSize_button_error_screen"
+        app:cornerRadius="@dimen/cornerRadius_button_error_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
