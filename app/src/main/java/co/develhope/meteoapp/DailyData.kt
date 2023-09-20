@@ -3,7 +3,7 @@ package co.develhope.meteoapp
 
 import com.google.gson.annotations.SerializedName
 
-data class DailySummaryService(
+data class DailyData(
     @SerializedName("current_weather")
     val currentWeather: CurrentWeather?,
     @SerializedName("elevation")
