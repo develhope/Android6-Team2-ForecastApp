@@ -14,15 +14,14 @@ import org.threeten.bp.OffsetDateTime
 
 object Data {
 
-    fun getSearchData() : List<DataSearches>{
-        return  listOf<DataSearches>(
-            DataSearches("Palermo", "14°", "soleggiato"),
-            DataSearches("Agrigento", "16°", "parz. nuvoloso"),
-            DataSearches("Catania", "20°", "soleggiato"),
-            DataSearches("Siracusa", "12°", "pioggia"),
+    fun getSearchData(): List<DataSearches.itemSearch> {
+        return listOf<DataSearches.itemSearch>(
+            DataSearches.itemSearch("Palermo", "14°", "soleggiato"),
+            DataSearches.itemSearch("Agrigento", "16°", "parz. nuvoloso"),
+            DataSearches.itemSearch("Catania", "20°", "soleggiato"),
+            DataSearches.itemSearch("Siracusa", "12°", "pioggia"),
         )
     }
-
 
 
     fun getTitle(): String {

@@ -37,20 +37,6 @@ class SearchScreenFragment : Fragment() {
         val adapter = DataSearchAdapter(Data.getSearchData())
         binding.searchRecyclerView.adapter = adapter
 
-
-        // Questo ancora non funziona, ma lo tengo per dopo.
-//        binding.searchEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-//            override fun afterTextChanged(s: Editable?) {
-//                val cityName = s.toString()
-//                // Avvia il TodayScreenFragment passando il nome della città
-//                val action = R.id.today_screen
-//                findNavController().navigate(action)
-//            }
-//        })
-
-
     }
 
 
