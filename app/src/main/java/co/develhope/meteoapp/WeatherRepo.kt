@@ -1,5 +1,8 @@
 package co.develhope.meteoapp
 
+import co.develhope.meteoapp.data.local.DailyDataLocal
+import co.develhope.meteoapp.data.remote.DailyDataRemote
+import co.develhope.meteoapp.data.remote.toDailyDataLocal
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -11,14 +14,16 @@ object WeatherRepo {
 
     var weatherService: WeatherService? = null
 
-    var dailyData = "temperature_2m,relativehumidity_2m,windspeed_10m"
+    var dailyData = "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,rain,weathercode,cloudcover,windspeed_10m,winddirection_10m,uv_index,is_day"
 
-    suspend fun getWeather(): Response<DailyData>? {
+    suspend fun getWeather(): DailyDataLocal? {
         if (weatherService == null){
             weatherService = createRetrofitInstance().create(WeatherService::class.java)
         }
 
-        return weatherService?.getDaily(41.8919,12.5113, dailyData,"GMT",1)
+        val response = weatherService?.getDaily(41.8919,12.5113, dailyData,"GMT",1)
+
+        return response?.toDailyDataLocal()
     }
 
 

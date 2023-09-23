@@ -1,5 +1,6 @@
 package co.develhope.meteoapp
 
+import co.develhope.meteoapp.data.remote.DailyDataRemote
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +14,6 @@ interface WeatherService {
         @Query("hourly") hourly: String,
         @Query("timezone") timezone: String,
         @Query("forecast_days") forecastDays: Int
-    ): Response<DailyData>
+    ): Response<DailyDataRemote>
 
 }
