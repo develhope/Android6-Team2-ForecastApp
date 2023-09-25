@@ -2,11 +2,8 @@ package co.develhope.meteoapp.today.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import co.develhope.meteoapp.data.domain.WeatherIcon
-import co.develhope.meteoapp.data.domain.WeatherIcon.NOTAVAILABLE
-import co.develhope.meteoapp.data.domain.WeatherIcon.SUN_CLOUD
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
-import co.develhope.meteoapp.home.setWeatherIcon
+import co.develhope.meteoapp.data.domain.setWeatherIcon
 import co.develhope.meteoapp.today.HourlyForecastItems
 import co.develhope.meteoapp.today.getWeatherIconbasedonId
 import org.threeten.bp.format.DateTimeFormatter

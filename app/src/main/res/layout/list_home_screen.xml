@@ -155,7 +155,8 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_mediumText_card_view_home_list_item"
-                    android:layout_alignLeft="@+id/text_wind_list"
+                    android:layout_toRightOf="@+id/text_precip_num_list"
+                    android:layout_marginLeft="40dp"
                     android:layout_above="@+id/text_wind_list"/>
 
                 <TextView

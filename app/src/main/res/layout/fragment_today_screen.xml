@@ -10,11 +10,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/today_recyclerview"
-        android:paddingBottom="100dp"
+        android:paddingBottom="@dimen/padding_recycleView_today_screen"
         android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="@dimen/zero"
+        android:layout_marginTop="@dimen/marginTop_recycleView_today_screen"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
