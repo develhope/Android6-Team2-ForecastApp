@@ -4,10 +4,14 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import co.develhope.meteoapp.DataSearches
 import co.develhope.meteoapp.R
+
 import co.develhope.meteoapp.data.domain.DailySummaryForecast
-import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.RAIN
-import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN
-import co.develhope.meteoapp.data.domain.DailySummaryForecast.WeatherIcon.SUN_CLOUD
+import co.develhope.meteoapp.data.domain.HourlyForecast
+import co.develhope.meteoapp.data.domain.HourlySummaryForecast
+import co.develhope.meteoapp.data.domain.WeatherIcon.RAIN
+import co.develhope.meteoapp.data.domain.WeatherIcon.SUN
+import co.develhope.meteoapp.data.domain.WeatherIcon.SUN_CLOUD
+import co.develhope.meteoapp.data.domain.WeatherIcon
 import co.develhope.meteoapp.home.WeekItems
 import org.threeten.bp.OffsetDateTime
 
@@ -24,6 +28,38 @@ object Data {
     }
 
 
+
+//insrisci i dati giusti
+    fun getHourlyForecast(): List<HourlyForecast> = listOf(
+        HourlyForecast(
+            date = OffsetDateTime.now(),
+            hourlyTemp = 30,
+            possibleRain = 20,
+            apparentTemp = 31,
+            uvIndex = 2,
+            humidity = 10,
+            windDirection = "SSE",
+            windSpeed = 3,
+            cloudyness = 20,
+            rain = 3,
+            forecastIndex = 1,
+        ),
+        HourlyForecast(
+            date = OffsetDateTime.now().plusHours(1),
+            hourlyTemp = 31,
+            possibleRain = 20,
+            apparentTemp = 31,
+            uvIndex = 2,
+            humidity = 10,
+            windDirection = "SSE",
+            windSpeed = 4,
+            cloudyness = 22,
+            rain = 3,
+            forecastIndex = 2
+        )
+    )
+    fun getTodayTitle(): String = "Palermo, Sicilia"
+
     fun getTitle(): String {
         val homeTitle = WeekItems.HomeTitle(locality = "Palermo, Sicilia")
         return homeTitle.locality
@@ -38,65 +74,56 @@ object Data {
         val todayPlus3 = today.plusDays(3)
         val todayPlus4 = today.plusDays(4)
         val todayPlus5 = today.plusDays(5)
-        val todayPlus6 = today.plusDays(6)
 
 
         return listOf(
             DailySummaryForecast(
                 date = tomorrow,
-                minTemperature = "22°",
-                maxTemperature = "30°",
+                minTemperature = 22,
+                maxTemperature = 30,
                 weatherIcon = SUN,
-                precipitation = "0mm",
-                windSpeed = "10kmh"
+                precipitation = 0,
+                windSpeed = 10
             ),
             DailySummaryForecast(
                 date = today,
-                minTemperature = "22°",
-                maxTemperature = "30°",
+                minTemperature = 22,
+                maxTemperature = 30,
                 weatherIcon = SUN,
-                precipitation = "0mm",
-                windSpeed = "10kmh"
+                precipitation = 0,
+                windSpeed = 10
             ),
             DailySummaryForecast(
                 date = todayPlus3,
-                minTemperature = "22°",
-                maxTemperature = "31°",
+                minTemperature = 20,
+                maxTemperature = 28,
                 weatherIcon = SUN_CLOUD,
-                precipitation = "0mm",
-                windSpeed = "12kmh"
+                precipitation = 0,
+                windSpeed = 12
             ),
             DailySummaryForecast(
                 date = todayPlus5,
-                minTemperature = "21°",
-                maxTemperature = "30°",
+                minTemperature = 21,
+                maxTemperature = 30,
                 weatherIcon = SUN_CLOUD,
-                precipitation = "0mm",
-                windSpeed = "12kmh"
+                precipitation = 0,
+                windSpeed = 12
             ),
             DailySummaryForecast(
                 date = todayPlus2,
-                minTemperature = "22°",
-                maxTemperature = "31°",
+                minTemperature = 18,
+                maxTemperature = 25,
                 weatherIcon = RAIN,
-                precipitation = "60mm",
-                windSpeed = "15kmh"
+                precipitation = 60,
+                windSpeed = 15
             ),
             DailySummaryForecast(
                 date = todayPlus4,
-                minTemperature = "22°",
-                maxTemperature = "31°",
+                minTemperature = 21,
+                maxTemperature = 29,
                 weatherIcon = SUN_CLOUD,
-                precipitation = "5mm",
-                windSpeed = "15kmh"
-            ),
-            DailySummaryForecast(
-                date = todayPlus6,
-                minTemperature = "18°",
-                maxTemperature = "25°",
-                weatherIcon = RAIN,
-                precipitation = "70mm",
-                windSpeed = "30kmh"
+                precipitation = 5,
+                windSpeed = 15
             )
 
         )
