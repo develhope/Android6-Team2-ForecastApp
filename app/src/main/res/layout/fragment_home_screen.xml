@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="55dp"
+    android:layout_marginBottom="@dimen/margin_nestedScrollView_home_screen"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.HomeScreenFragment"
     android:background="@drawable/gradient_background"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/list_home_screen"
-        tools:itemCount="7"
+        tools:itemCount="6"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.core.widget.NestedScrollView>
 

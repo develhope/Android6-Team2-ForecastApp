@@ -33,7 +33,6 @@ object Data {
         val todayPlus3 = today.plusDays(3)
         val todayPlus4 = today.plusDays(4)
         val todayPlus5 = today.plusDays(5)
-        val todayPlus6 = today.plusDays(6)
 
 
         return listOf(
@@ -55,8 +54,8 @@ object Data {
             ),
             DailySummaryForecast(
                 date = todayPlus3,
-                minTemperature = 22,
-                maxTemperature = 31,
+                minTemperature = 20,
+                maxTemperature = 28,
                 weatherIcon = SUN_CLOUD,
                 precipitation = 0,
                 windSpeed = 12
@@ -71,27 +70,19 @@ object Data {
             ),
             DailySummaryForecast(
                 date = todayPlus2,
-                minTemperature = 22,
-                maxTemperature = 31,
+                minTemperature = 18,
+                maxTemperature = 25,
                 weatherIcon = RAIN,
                 precipitation = 60,
                 windSpeed = 15
             ),
             DailySummaryForecast(
                 date = todayPlus4,
-                minTemperature = 22,
-                maxTemperature = 31,
+                minTemperature = 21,
+                maxTemperature = 29,
                 weatherIcon = SUN_CLOUD,
                 precipitation = 5,
                 windSpeed = 15
-            ),
-            DailySummaryForecast(
-                date = todayPlus6,
-                minTemperature = 18,
-                maxTemperature = 25,
-                weatherIcon = RAIN,
-                precipitation = 70,
-                windSpeed = 30
             )
 
         )

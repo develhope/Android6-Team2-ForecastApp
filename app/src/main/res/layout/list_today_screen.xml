@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="@dimen/padding_list_today_screen">
 
 
     <LinearLayout
@@ -21,12 +21,12 @@
             android:layout_gravity="center"
             android:fontFamily="@font/inter"
             android:textColor="@color/blue"
-            android:textSize="16sp"
-            tools:text="00:00" />
+            android:textSize="@dimen/textSize_small_list_today_screen"
+            tools:text="@string/_00_00" />
 
         <ImageView
             android:id="@+id/weather_today_image"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="@dimen/today_weather_icon_height"
             android:layout_gravity="center"
             android:layout_weight="1"
@@ -34,26 +34,26 @@
 
         <TextView
             android:id="@+id/degrees_today"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/textSize_big_list_today_screen"
             android:textStyle="bold"
-            tools:text="31°" />
+            tools:text="@string/_31" />
 
         <TextView
             android:id="@+id/rain_chance_tv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_big_list_today_screen"
             android:layout_weight="1"
             android:drawableStart="@drawable/droplet"
-            android:textSize="20sp"
+            android:textSize="@dimen/textSize_big_list_today_screen"
             app:drawableStartCompat="@drawable/droplet"
-            tools:text="0%" />
+            tools:text="@string/_0" />
 
         <ImageView
             android:id="@+id/arrow_image_today"
@@ -68,11 +68,11 @@
         android:id="@+id/today_cardview"
         android:layout_width="@dimen/today_cardview_width"
         android:layout_height="@dimen/today_cardview_height"
-        android:layout_marginTop="10dp"
-        android:elevation="16dp"
+        android:layout_marginTop="@dimen/marginTop_cardView_list_today_screen"
+        android:elevation="@dimen/elevation_cardView_list_today_screen"
         tools:visibility="visible"
         android:visibility="gone"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/cardCornerRadius_cardView_list_today_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summary_linear_layout">
@@ -80,7 +80,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="12dp">
+            android:padding="@dimen/padding_cardView_list_today_screen">
 
             <TextView
                 android:id="@+id/perceived_tv_today"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
                 android:text="@string/perceived_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/perceived_degrees_today"
@@ -96,9 +96,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/perceived_tv_today"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
-                tools:text="45°" />
+                tools:text="@string/_45" />
 
             <TextView
                 android:id="@+id/uv_index_tv_today"
@@ -108,7 +108,7 @@
                 android:layout_toEndOf="@id/perceived_tv_today"
                 android:fontFamily="@font/inter"
                 android:text="@string/uv_index_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/uv_index_today"
@@ -117,17 +117,17 @@
                 android:layout_below="@id/uv_index_tv_today"
                 android:layout_alignStart="@id/uv_index_tv_today"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
                 android:text="@string/uv_placeholder_value_text" />
 
             <View
                 android:id="@+id/first_line_today"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/one"
                 android:layout_below="@id/uv_index_today"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_big_list_today_screen"
                 android:background="@color/line_color" />
 
             <TextView
@@ -135,10 +135,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/first_line_today"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_big_list_today_screen"
                 android:fontFamily="@font/inter"
                 android:text="@string/humidity_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/humidity_percentage_today"
@@ -146,9 +146,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/humidity_tv_today"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
-                tools:text="60%" />
+                tools:text="@string/_60" />
 
             <TextView
                 android:id="@+id/wind_tv_today"
@@ -157,9 +157,9 @@
                 android:layout_below="@id/first_line_today"
                 android:layout_alignStart="@id/uv_index_today"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_big_list_today_screen"
                 android:text="@string/wind_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/wind_speed_today"
@@ -168,17 +168,17 @@
                 android:layout_below="@id/wind_tv_today"
                 android:layout_alignStart="@id/wind_tv_today"
                 android:layout_centerHorizontal="true"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
-                tools:text="SSE 7km/h" />
+                tools:text="@string/sse_7km_h" />
 
             <View
                 android:id="@+id/second_line_today"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/one"
                 android:layout_below="@id/wind_speed_today"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_big_list_today_screen"
                 android:background="@color/line_color" />
 
             <TextView
@@ -186,10 +186,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/second_line_today"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_small_list_today_screen"
                 android:fontFamily="@font/inter"
                 android:text="@string/coverage_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/coverage_today"
@@ -197,9 +197,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coverage_tv_today"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
-                tools:text="24%" />
+                tools:text="@string/_24" />
 
             <TextView
                 android:id="@+id/rain_tv_today"
@@ -207,10 +207,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/second_line_today"
                 android:layout_alignStart="@id/wind_speed_today"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/margin_small_list_today_screen"
                 android:fontFamily="@font/inter"
                 android:text="@string/rain_text"
-                android:textSize="16sp" />
+                android:textSize="@dimen/textSize_small_list_today_screen" />
 
             <TextView
                 android:id="@+id/rain_today"
@@ -219,9 +219,9 @@
                 android:layout_below="@id/rain_tv_today"
                 android:layout_alignStart="@id/rain_tv_today"
                 android:fontFamily="@font/inter"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_small_list_today_screen"
                 android:textStyle="bold"
-                tools:text="0cm" />
+                tools:text="@string/_0cm" />
 
 
         </RelativeLayout>
@@ -230,9 +230,9 @@
     <View
         android:id="@+id/third_line_today"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="@dimen/one"
+        android:layout_margin="@dimen/margin_big_list_today_screen"
+        android:layout_marginTop="@dimen/margin_big_list_today_screen"
         android:background="@color/line_color"
         app:layout_constraintTop_toBottomOf="@id/today_cardview" />
 
