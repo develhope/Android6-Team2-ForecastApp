@@ -12,13 +12,27 @@ import kotlinx.coroutines.launch
 class DailyViewModel : ViewModel() {
 
     private val _result = MutableLiveData<DailyDataLocal?>()
+
+    private val _isLoading = MutableLiveData<Boolean>()
+
     val result: LiveData<DailyDataLocal?>
         get() = _result
 
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
+    init {
+        _isLoading.value = false
+    }
+
     fun getDaily() {
+
+        _isLoading.postValue(true)
+
         viewModelScope.launch(IO) {
             val response = WeatherRepo.getWeather()
             if (response != null) {
+                _isLoading.postValue(false)
                 _result.postValue(response)
                 Log.i("NETWORK DATA", "$response")
             } else {

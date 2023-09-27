@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import co.develhope.meteoapp.DailyViewModel
@@ -45,6 +46,11 @@ class TodayScreenFragment : Fragment() {
     }
 
     private fun setupObserver() {
+
+        dailyViewModel.isLoading.observe(viewLifecycleOwner){
+            binding.todayProgress.isVisible = it
+        }
+
         dailyViewModel.result.observe(viewLifecycleOwner) {
             (binding.todayRecyclerview.adapter as TodayAdapter).setNewList(it.toHourlyForecastItems())
         }
