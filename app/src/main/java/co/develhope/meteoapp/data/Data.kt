@@ -2,6 +2,7 @@ package co.develhope.meteoapp.data
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import co.develhope.meteoapp.DataSearches
 import co.develhope.meteoapp.R
 
 import co.develhope.meteoapp.data.domain.DailySummaryForecast
