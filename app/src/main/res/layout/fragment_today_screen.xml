@@ -7,6 +7,16 @@
     android:background="@color/screen_color_today"
     tools:context=".today.TodayScreenFragment">
 
+    <ProgressBar
+        android:id="@+id/today_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/today_recyclerview"

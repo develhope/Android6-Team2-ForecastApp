@@ -21,10 +21,3 @@ sealed class HourlyForecastItems(val type: Int) {
     }
 
 }
-
-enum class TodayWeatherIcon(val image: Int){
-    SUN(R.drawable.sun),
-    RAIN(R.drawable.rain),
-    SUN_CLOUD(R.drawable.sun_cloud),
-    MOON(R.drawable.moon)
-}

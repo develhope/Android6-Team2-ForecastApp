@@ -9,7 +9,7 @@ import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.databinding.TitleTodayScreenBinding
 import co.develhope.meteoapp.today.HourlyForecastItems
 
-class TodayAdapter(val items: List<HourlyForecastItems>) : Adapter<ViewHolder>() {
+class TodayAdapter(private var items: List<HourlyForecastItems>) : Adapter<ViewHolder>() {
     private val openedItems = mutableListOf<Int>()
 
     override fun getItemViewType(position: Int): Int {
@@ -50,6 +50,11 @@ class TodayAdapter(val items: List<HourlyForecastItems>) : Adapter<ViewHolder>()
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun setNewList(newList: List<HourlyForecastItems>){
+        items = newList
+        notifyDataSetChanged()
     }
 
 
