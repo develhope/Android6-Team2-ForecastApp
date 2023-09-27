@@ -1,6 +1,12 @@
 package co.develhope.meteoapp.data.remote
+import android.os.Build
+import androidx.annotation.RequiresApi
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import com.google.gson.annotations.SerializedName
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.ZoneOffset
+import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Response
 
 
@@ -85,6 +91,7 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
 
         val model = DailyDataLocal()
 
+
         response?.hourly?.time?.forEachIndexed { index, s ->
             model.add(
                 DailyDataLocal.HourlyLocal(
@@ -95,7 +102,7 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
                     uvIndex = response.hourly.uvIndex?.getOrNull(index),
                     rain = response.hourly.rain?.getOrNull(index),
                     temperature2m = response.hourly.temperature2m?.getOrNull(index),
-                    time = s,
+                    time = LocalDateTime.parse(s).atZone(ZoneOffset.UTC).toOffsetDateTime(),
                     weathercode = response.hourly.weathercode?.getOrNull(index),
                     windSpeed = response.hourly.windspeed10m?.getOrNull(index),
                     windDirection = response.hourly.winddirection10m?.getOrNull(index),

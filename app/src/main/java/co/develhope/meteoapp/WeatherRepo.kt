@@ -21,7 +21,7 @@ object WeatherRepo {
             weatherService = createRetrofitInstance().create(WeatherService::class.java)
         }
 
-        val response = weatherService?.getDaily(41.8919,12.5113, dailyData,"GMT",1)
+        val response = weatherService?.getDaily(41.8919,12.5113, dailyData,"UTC",1)
 
         return response?.toDailyDataLocal()
     }

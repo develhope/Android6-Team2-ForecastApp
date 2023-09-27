@@ -14,7 +14,7 @@ class DailyDataLocal() : ArrayList<DailyDataLocal.HourlyLocal>() {
         val uvIndex: Double?,
         val rain: Double?,
         val temperature2m: Double?,
-        val time: String?,
+        val time: OffsetDateTime,
         val weathercode: Int?,
         val windSpeed: Double?,
         val windDirection: Int?,
@@ -33,7 +33,7 @@ fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
         newList.add(
             HourlyForecastItems.Forecast(
                 HourlyForecast(
-                    date = OffsetDateTime.now(),
+                    date = hourly.time,
                     hourlyTemp = hourly.temperature2m?.toInt()?:0,
                     possibleRain = hourly.rainChance?:0,
                     apparentTemp = hourly.apparentTemperature?.toInt()?:0,
