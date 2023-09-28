@@ -11,6 +11,7 @@
     <color name="bg_color">#F0EFFF</color>
     <color name="button_color">#5347DC</color>
     <color name="blue">#230EA5</color>
+    <color name="text_color">#230EA5</color>
     <color name="cardview_bg">#5B51CB</color>
     <color name="line_color">#ABA4FF</color>
     <color name="screen_color_today">#F0EFFF</color>
