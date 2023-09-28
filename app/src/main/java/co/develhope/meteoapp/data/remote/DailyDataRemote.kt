@@ -1,12 +1,9 @@
 package co.develhope.meteoapp.data.remote
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Response
 
 
@@ -86,13 +83,14 @@ data class DailyDataRemote(
 }
 
 fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
-    return if(this.isSuccessful){
+    return if (this.isSuccessful) {
         val response = this.body()
 
         val model = DailyDataLocal()
 
 
         response?.hourly?.time?.forEachIndexed { index, s ->
+            val windDirection = mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
             model.add(
                 DailyDataLocal.HourlyLocal(
                     apparentTemperature = response.hourly.apparentTemperature?.getOrNull(index),
@@ -105,7 +103,7 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
                     time = LocalDateTime.parse(s).atZone(ZoneOffset.UTC).toOffsetDateTime(),
                     weathercode = response.hourly.weathercode?.getOrNull(index),
                     windSpeed = response.hourly.windspeed10m?.getOrNull(index),
-                    windDirection = response.hourly.winddirection10m?.getOrNull(index),
+                    windDirection = windDirection,
                     isDay = response.hourly.isDay?.getOrNull(index)
                 )
             )
@@ -113,5 +111,28 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
         model
     } else {
         null
+    }
+}
+
+fun mapWindDirection(windDirection: Int?): String {
+    return when (windDirection) {
+        in (350.. 360) -> "N"
+        in (10..19) -> "N"
+        in (20.. 30) -> "N/NE"
+        in (40.. 50) ->  "NE"
+        in (60.. 70) -> "E/NE"
+        in (80.. 100) -> "E"
+        in (110.. 120) -> "E/SE"
+        in (130.. 140) -> "SE"
+        in (150.. 160) -> "S/SE"
+        in (170.. 190) -> "S"
+        in (200.. 210) -> "S/SW"
+        in (220.. 230) -> "SW"
+        in (240.. 250) -> "W/SW"
+        in (260.. 280) -> "W"
+        in (290.. 300) -> "W/NW"
+        in (310.. 320) -> "NW"
+        in (330.. 340) -> "N/NW"
+        else -> "N/A"
     }
 }

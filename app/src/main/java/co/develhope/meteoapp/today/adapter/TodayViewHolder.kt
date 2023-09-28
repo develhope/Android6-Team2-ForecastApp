@@ -16,6 +16,7 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
         openedItems: MutableList<Int>,
         onClick: () -> Unit
     ) {
+
         binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
 
        binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.forecastIndex))

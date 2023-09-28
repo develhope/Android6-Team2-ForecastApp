@@ -58,6 +58,8 @@ class TodayScreenFragment : Fragment() {
     //TODO: DA FINIRE
 
     private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
+
+
         val newList = mutableListOf<HourlyForecastItems>()
 
         newList.add(HourlyForecastItems.Title("Palermo, Sicilia", OffsetDateTime.now()))

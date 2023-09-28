@@ -17,7 +17,7 @@ class DailyDataLocal() : ArrayList<DailyDataLocal.HourlyLocal>() {
         val time: OffsetDateTime,
         val weathercode: Int?,
         val windSpeed: Double?,
-        val windDirection: Int?,
+        val windDirection: String?,
         val isDay: Int?
     )
 }
