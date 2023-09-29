@@ -90,7 +90,8 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
 
 
         response?.hourly?.time?.forEachIndexed { index, s ->
-            val windDirection = mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
+            val windDirection =
+                mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
             model.add(
                 DailyDataLocal.HourlyLocal(
                     apparentTemperature = response.hourly.apparentTemperature?.getOrNull(index),
@@ -114,25 +115,13 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
     }
 }
 
-fun mapWindDirection(windDirection: Int?): String {
-    return when (windDirection) {
-        in (350.. 360) -> "N"
-        in (10..19) -> "N"
-        in (20.. 30) -> "N/NE"
-        in (40.. 50) ->  "NE"
-        in (60.. 70) -> "E/NE"
-        in (80.. 100) -> "E"
-        in (110.. 120) -> "E/SE"
-        in (130.. 140) -> "SE"
-        in (150.. 160) -> "S/SE"
-        in (170.. 190) -> "S"
-        in (200.. 210) -> "S/SW"
-        in (220.. 230) -> "SW"
-        in (240.. 250) -> "W/SW"
-        in (260.. 280) -> "W"
-        in (290.. 300) -> "W/NW"
-        in (310.. 320) -> "NW"
-        in (330.. 340) -> "N/NW"
-        else -> "N/A"
-    }
+fun mapWindDirection(degree: Int?): String {
+    if (degree == null) return "N/A"
+
+    val directions = listOf("N", "NE", "E", "SE", "S", "SW", "W", "NW", "N")
+
+    // Calculate the index matching the cardinal direction.
+    val index = ((degree + 22.5) / 45).toInt() % 8
+
+    return directions[index]
 }
