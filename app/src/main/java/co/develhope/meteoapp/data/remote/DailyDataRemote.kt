@@ -1,12 +1,9 @@
 package co.develhope.meteoapp.data.remote
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.ZoneOffset
-import org.threeten.bp.format.DateTimeFormatter
 import retrofit2.Response
 
 
@@ -86,13 +83,15 @@ data class DailyDataRemote(
 }
 
 fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
-    return if(this.isSuccessful){
+    return if (this.isSuccessful) {
         val response = this.body()
 
         val model = DailyDataLocal()
 
 
         response?.hourly?.time?.forEachIndexed { index, s ->
+            val windDirection =
+                mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
             model.add(
                 DailyDataLocal.HourlyLocal(
                     apparentTemperature = response.hourly.apparentTemperature?.getOrNull(index),
@@ -105,7 +104,7 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
                     time = LocalDateTime.parse(s).atZone(ZoneOffset.UTC).toOffsetDateTime(),
                     weathercode = response.hourly.weathercode?.getOrNull(index),
                     windSpeed = response.hourly.windspeed10m?.getOrNull(index),
-                    windDirection = response.hourly.winddirection10m?.getOrNull(index),
+                    windDirection = windDirection,
                     isDay = response.hourly.isDay?.getOrNull(index)
                 )
             )
@@ -114,4 +113,15 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
     } else {
         null
     }
+}
+
+fun mapWindDirection(degree: Int?): String {
+    if (degree == null) return "N/A"
+
+    val directions = listOf("N", "NE", "E", "SE", "S", "SW", "W", "NW", "N")
+
+    // Calculate the index matching the cardinal direction.
+    val index = ((degree + 22.5) / 45).toInt() % 8
+
+    return directions[index]
 }

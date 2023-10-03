@@ -16,15 +16,18 @@ object WeatherRepo {
 
     var dailyData = "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,rain,weathercode,cloudcover,windspeed_10m,winddirection_10m,uv_index,is_day"
 
-    suspend fun getWeather(): DailyDataLocal? {
+    suspend fun getWeather(lat: Double,
+                           lon: Double): DailyDataLocal? {
         if (weatherService == null){
             weatherService = createRetrofitInstance().create(WeatherService::class.java)
         }
 
-        val response = weatherService?.getDaily(41.8919,12.5113, dailyData,"UTC",1)
+        val response = weatherService?.getDaily(lat,lon,dailyData,"UTC",1)
 
         return response?.toDailyDataLocal()
     }
+
+//    41.8919,12.5113 Palermo, Sicilia
 
 
 

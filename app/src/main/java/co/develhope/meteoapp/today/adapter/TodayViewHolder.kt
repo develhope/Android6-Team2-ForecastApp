@@ -16,17 +16,18 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
         openedItems: MutableList<Int>,
         onClick: () -> Unit
     ) {
+
         binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
 
        binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.forecastIndex))
-        binding.degreesToday.text = "${item.forecast.hourlyTemp}°"
-        binding.rainChanceTv.text = "${item.forecast.possibleRain}%"
-        binding.perceivedDegreesToday.text = "${item.forecast.apparentTemp}°"
-        binding.uvIndexToday.text = "${item.forecast.uvIndex}/10"
-        binding.humidityPercentageToday.text = "${item.forecast.humidity}%"
-        binding.windSpeedToday.text = "${item.forecast.windDirection} ${item.forecast.windSpeed} km/h"
-        binding.coverageToday.text = "${item.forecast.cloudyness}%"
-        binding.rainToday.text = "${item.forecast.rain}cm"
+        binding.degreesToday.text = item.forecast.hourlyTemp.toString().plus("°")
+        binding.rainChanceTv.text = item.forecast.possibleRain.toString().plus("%")
+        binding.perceivedDegreesToday.text = item.forecast.apparentTemp.toString().plus("°")
+        binding.uvIndexToday.text = item.forecast.uvIndex.toString().plus("/10")
+        binding.humidityPercentageToday.text = item.forecast.humidity.toString().plus("%")
+        binding.windSpeedToday.text = item.forecast.windDirection.plus((" ").plus(item.forecast.windSpeed.toString().plus("Km/h")))
+        binding.coverageToday.text = item.forecast.cloudyness.toString().plus("%")
+        binding.rainToday.text = item.forecast.rain.toString().plus("cm")
 
         // Toggle visibility of the CardView
         if (position in openedItems) {
