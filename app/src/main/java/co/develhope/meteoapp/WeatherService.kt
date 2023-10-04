@@ -24,7 +24,8 @@ interface WeatherService {
     suspend fun getSearchCity(
         @Query("name") name : String,
         @Query("count") count : Int,
-        ) : Response<Result>
+        @Query("language") language : String
+        ) : Response<SearchDataRemote>
 
 
 }

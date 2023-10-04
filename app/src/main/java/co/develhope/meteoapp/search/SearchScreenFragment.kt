@@ -9,21 +9,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.viewModelScope
 import co.develhope.meteoapp.WeatherService
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SearchScreenFragment : Fragment() {
 
-    private val searchViewModel : SearchViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by viewModels()
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
 
-    private val searchEditText  = binding.searchEditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,41 +35,24 @@ class SearchScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+//        fun getHintText(){
+//            searchViewModel.getHintText()
+//        }
 
-        binding.searchVector.setOnClickListener {
-        }
+        searchViewModel.getHintText()
 
-        val adapter = DataSearchAdapter(emptyList())
+
+        val adapter = DataSearchAdapter(listOf())
         binding.searchRecyclerView.adapter = adapter
 
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    override fun onResume() {
-        super.onResume()
-
-    }
+//    private fun observeData(){
+//        searchViewModel.cityHints.observe(viewLifecycleOwner){
+//            binding.searchRecyclerView.adapter = DataSearchAdapter(it?.results)
+//        }
+//    }
 
 
     override fun onDestroyView() {

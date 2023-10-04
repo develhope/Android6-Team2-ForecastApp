@@ -17,11 +17,23 @@ import retrofit2.Retrofit
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchViewModel(private val apiService : WeatherService) : ViewModel() {
+class SearchViewModel : ViewModel() {
 
-    private val _cityHints = MutableLiveData<List<String>>()
-    val cityHints: LiveData<List<String>>
+    private val _cityHints = MutableLiveData<SearchDataRemote?>()
+    val cityHints: LiveData<SearchDataRemote?>
         get() = _cityHints
 
+    fun getHintText() {
 
+        viewModelScope.launch(IO) {
+
+            var response = WeatherRepo.getSearchCity()
+            if (response != null) {
+                _cityHints.postValue(response.body())
+            } else {
+                Log.e("ERROR", "network error ")
+            }
+        }
+    }
 }
+
