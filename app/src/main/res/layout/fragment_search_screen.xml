@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     android:orientation="vertical"
-    tools:context=".SearchScreenFragment">
+    tools:context=".search.SearchScreenFragment">
 
 
     <androidx.cardview.widget.CardView
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/search_edit_text"
                 android:layout_width="@dimen/search_edit_text_width"
                 android:layout_height="match_parent"
@@ -48,6 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/search_vector"
                 app:layout_constraintTop_toTopOf="parent" />
+            
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,7 +62,7 @@
         android:layout_marginTop="26dp"
         android:fontFamily="@font/inter"
         android:text="@string/recent_research"
-        android:textColor="@color/text_color"
+        android:textColor="@color/blue"
         android:textSize="@dimen/text_size_title_recent_search"
         android:textStyle="bold" />
 

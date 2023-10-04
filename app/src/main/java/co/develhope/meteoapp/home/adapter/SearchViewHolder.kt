@@ -1,7 +1,7 @@
 package co.develhope.meteoapp.home.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import co.develhope.meteoapp.DataSearches
+import co.develhope.meteoapp.search.DataSearches
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
 
 class SearchViewHolder(val binding: SearchRecyclerviewItemBinding) :
