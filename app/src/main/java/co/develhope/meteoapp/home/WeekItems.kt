@@ -1,5 +1,6 @@
 package co.develhope.meteoapp.home
 
+import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.data.domain.WeatherIcon
 import org.threeten.bp.OffsetDateTime
 
@@ -7,20 +8,10 @@ import org.threeten.bp.OffsetDateTime
 sealed class WeekItems(val id : Int){
 
     data class Today(
-        val date: OffsetDateTime,
-        val minTemperature: Int,
-        val maxTemperature: Int,
-        val weatherIcon: WeatherIcon,
-        val precipitation: Int,
-        val windSpeed: Int,
+        val forecast: DailySummaryForecast
     ): WeekItems(TodayId)
     data class Days(
-        val date: OffsetDateTime,
-        val minTemperature: Int,
-        val maxTemperature: Int,
-        val weatherIcon: WeatherIcon,
-        val precipitation: Int,
-        val windSpeed: Int,
+        val forecast: DailySummaryForecast
     ): WeekItems(DaysId)
 
     data class HomeTitle(
