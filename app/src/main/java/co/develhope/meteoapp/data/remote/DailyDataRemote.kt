@@ -2,8 +2,7 @@ package co.develhope.meteoapp.data.remote
 
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import com.google.gson.annotations.SerializedName
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
+import org.threeten.bp.OffsetDateTime
 import retrofit2.Response
 
 
@@ -42,7 +41,7 @@ data class DailyDataRemote(
         @SerializedName("temperature_2m")
         val temperature2m: List<Double?>?,
         @SerializedName("time")
-        val time: List<String?>?,
+        val time: List<OffsetDateTime>?,
         @SerializedName("uv_index")
         val uvIndex: List<Double?>?,
         @SerializedName("weathercode")
@@ -89,25 +88,27 @@ fun Response<DailyDataRemote>.toDailyDataLocal(): DailyDataLocal? {
         val model = DailyDataLocal()
 
 
-        response?.hourly?.time?.forEachIndexed { index, s ->
-            val windDirection =
-                mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
-            model.add(
-                DailyDataLocal.HourlyLocal(
-                    apparentTemperature = response.hourly.apparentTemperature?.getOrNull(index),
-                    cloudCover = response.hourly.cloudcover?.getOrNull(index),
-                    rainChance = response.hourly.precipitationProbability?.getOrNull(index),
-                    humidity = response.hourly.relativehumidity2m?.getOrNull(index),
-                    uvIndex = response.hourly.uvIndex?.getOrNull(index),
-                    rain = response.hourly.rain?.getOrNull(index),
-                    temperature2m = response.hourly.temperature2m?.getOrNull(index),
-                    time = LocalDateTime.parse(s).atZone(ZoneOffset.UTC).toOffsetDateTime(),
-                    weathercode = response.hourly.weathercode?.getOrNull(index),
-                    windSpeed = response.hourly.windspeed10m?.getOrNull(index),
-                    windDirection = windDirection,
-                    isDay = response.hourly.isDay?.getOrNull(index)
+        response?.hourly?.time?.let {
+            it.forEachIndexed { index, s ->
+                val windDirection =
+                    mapWindDirection(response.hourly.winddirection10m?.getOrNull(index))
+                model.add(
+                    DailyDataLocal.HourlyLocal(
+                        apparentTemperature = response.hourly.apparentTemperature?.getOrNull(index),
+                        cloudCover = response.hourly.cloudcover?.getOrNull(index),
+                        rainChance = response.hourly.precipitationProbability?.getOrNull(index),
+                        humidity = response.hourly.relativehumidity2m?.getOrNull(index),
+                        uvIndex = response.hourly.uvIndex?.getOrNull(index),
+                        rain = response.hourly.rain?.getOrNull(index),
+                        temperature2m = response.hourly.temperature2m?.getOrNull(index),
+                        time = s,
+                        weathercode = response.hourly.weathercode?.getOrNull(index),
+                        windSpeed = response.hourly.windspeed10m?.getOrNull(index),
+                        windDirection = windDirection,
+                        isDay = response.hourly.isDay?.getOrNull(index)
+                    )
                 )
-            )
+            }
         }
         model
     } else {
