@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.search
 
 sealed class DataSearches(val type: Int) {
 

@@ -1,9 +1,7 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.search
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding

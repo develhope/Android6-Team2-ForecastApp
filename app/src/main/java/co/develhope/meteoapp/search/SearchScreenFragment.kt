@@ -1,20 +1,29 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.search
 
+import android.R
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import co.develhope.meteoapp.WeatherService
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchScreenFragment : Fragment() {
 
+    private val searchViewModel : SearchViewModel by viewModels()
+
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
+
+    private val searchEditText  = binding.searchEditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +40,33 @@ class SearchScreenFragment : Fragment() {
 
 
         binding.searchVector.setOnClickListener {
-            binding.searchEditText
         }
 
-        val adapter = DataSearchAdapter(Data.getSearchData())
+        val adapter = DataSearchAdapter(emptyList())
         binding.searchRecyclerView.adapter = adapter
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     override fun onResume() {
