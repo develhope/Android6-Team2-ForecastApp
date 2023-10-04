@@ -1,6 +1,8 @@
 package co.develhope.meteoapp.data.remote
 import co.develhope.meteoapp.data.local.WeeklyDataLocal
 import com.google.gson.annotations.SerializedName
+import org.threeten.bp.OffsetDateTime
+import retrofit2.Response
 
 
 data class WeeklyDataRemote(
@@ -32,7 +34,7 @@ data class Daily(
     @SerializedName("temperature_2m_min")
     val temperature2mMin: List<Double?>?,
     @SerializedName("time")
-    val time: List<String?>?,
+    val time: List<OffsetDateTime>?,
     @SerializedName("weathercode")
     val weathercode: List<Int?>?,
     @SerializedName("windspeed_10m_max")
@@ -60,17 +62,19 @@ fun Response<WeeklyDataRemote>.toWeeklyDataLocal(): WeeklyDataLocal? {
         val model = WeeklyDataLocal()
 
 
-        response?.daily?.time?.forEachIndexed { index, s ->
-            model.add(
-                WeeklyDataLocal.WeeklyLocal(
-                    date = LocalDateTime.parse(s).atZone(ZoneOffset.UTC).toOffsetDateTime(),
-                    minTemperature = response.daily.temperature2mMin?.getOrNull(index),
-                    maxTemperature = response.daily.temperature2mMax?.getOrNull(index),
-                    weatherIcon = response.daily.weathercode?.getOrNull(index),
-                    precipitation = response.daily.precipitationSum?.getOrNull(index),
-                    windSpeed = response.daily.windspeed10mMax?.getOrNull(index),
+        response?.daily?.time?.let {
+            it.forEachIndexed { index, s ->
+                model.add(
+                    WeeklyDataLocal.WeeklyLocal(
+                        date = s,
+                        minTemperature = response.daily.temperature2mMin?.getOrNull(index),
+                        maxTemperature = response.daily.temperature2mMax?.getOrNull(index),
+                        weatherIcon = response.daily.weathercode?.getOrNull(index),
+                        precipitation = response.daily.precipitationSum?.getOrNull(index),
+                        windSpeed = response.daily.windspeed10mMax?.getOrNull(index),
+                    )
                 )
-            )
+            }
         }
         model
     } else {

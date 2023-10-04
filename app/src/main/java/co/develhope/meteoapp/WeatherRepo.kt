@@ -3,6 +3,7 @@ package co.develhope.meteoapp
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import co.develhope.meteoapp.data.local.WeeklyDataLocal
 import co.develhope.meteoapp.data.remote.toDailyDataLocal
+import co.develhope.meteoapp.data.remote.toWeeklyDataLocal
 import co.develhope.meteoapp.network.Module
 class WeatherRepo {
     private val weatherService: WeatherService = Module().getRetrofit().create(WeatherService::class.java)
@@ -26,7 +27,7 @@ class WeatherRepo {
         lon: Double
     ): WeeklyDataLocal? {
 
-        val response = weatherService.getWeekly(lat, lon, weeklyData)
+        val response = weatherService.getWeekly(lat, lon, weeklyData,"UTC")
 
         return response.toWeeklyDataLocal()
     }
