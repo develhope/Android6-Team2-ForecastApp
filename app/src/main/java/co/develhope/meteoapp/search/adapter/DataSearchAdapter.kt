@@ -1,22 +1,30 @@
 package co.develhope.meteoapp.search.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import android.widget.ArrayAdapter
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
 import co.develhope.meteoapp.search.DataSearches
 
-class DataSearchAdapter(private var dataList: List<DataSearches>) : Adapter<ViewHolder>() {
 
+
+class DataSearchAdapter(
+    context: Context,
+    private val dataList: MutableList<DataSearches>
+) : ArrayAdapter<DataSearches>(context, android.R.layout.simple_dropdown_item_1line, dataList), Filterable {
+    private val originalData: List<DataSearches> = dataList.toList()
+    private var filteredData: List<DataSearches> = dataList.toList()
 
     override fun getItemViewType(position: Int): Int {
         return dataList[position].type
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+     fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
 
             DataSearches.itemSearch1 -> SearchViewHolder(
@@ -30,7 +38,7 @@ class DataSearchAdapter(private var dataList: List<DataSearches>) : Adapter<View
         }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+     fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val searchData = dataList[position]
 
@@ -45,12 +53,43 @@ class DataSearchAdapter(private var dataList: List<DataSearches>) : Adapter<View
 
     }
 
-    override fun getItemCount(): Int {
+     fun getItemCount(): Int {
         return dataList.size
     }
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val results = FilterResults()
+                val query = constraint?.toString()?.trim() ?: ""
+
+                if (query.length >= 3) {
+                    filteredData = originalData
+                } else {
+                    // Filtriamo i dati in base al testo di ricerca.
+                    filteredData = originalData.filter {
+                        it.type == 1
+                    }
+                }
+
+                results.values = filteredData
+                results.count = filteredData.size
+                return results
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                if (results != null && results.count > 0) {
+                    notifyDataSetChanged()
+                } else {
+                    notifyDataSetInvalidated()
+                }
+            }
+        }
+    }
+
 
     fun updateData(newHints: List<DataSearches>) {
-        dataList = newHints
+        dataList.clear()
+        dataList.addAll(newHints)
         notifyDataSetChanged()
     }
 }
