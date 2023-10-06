@@ -3,11 +3,9 @@ package co.develhope.meteoapp
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.data.local.toSearchDataLocal
-import co.develhope.meteoapp.data.remote.SearchDataRemote
 import co.develhope.meteoapp.data.remote.toDailyDataLocal
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

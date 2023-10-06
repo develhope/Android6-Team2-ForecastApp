@@ -80,7 +80,8 @@ class SearchScreenFragment : Fragment() {
             val newList = mutableListOf<DataSearches>()
 
             this?.forEach {
-                newList.add(DataSearches.itemSearch(recentCitySearch = it.name.toString()))
+                val cityName = it.name.toString()
+                newList.add(DataSearches.itemSearch(recentCitySearch = cityName))
             }
             return newList
         }
