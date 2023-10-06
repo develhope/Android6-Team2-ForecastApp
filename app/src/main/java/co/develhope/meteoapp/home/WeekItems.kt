@@ -1,8 +1,7 @@
 package co.develhope.meteoapp.home
 
 import co.develhope.meteoapp.data.domain.DailySummaryForecast
-import co.develhope.meteoapp.data.domain.WeatherIcon
-import org.threeten.bp.OffsetDateTime
+
 
 
 sealed class WeekItems(val id : Int){

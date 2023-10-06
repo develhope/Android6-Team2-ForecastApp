@@ -11,6 +11,9 @@
         android:name="co.develhope.meteoapp.home.HomeScreenFragment"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_home_screen_to_search_screen"
+            app:destination="@id/search_screen" />
     </fragment>
     <fragment
         android:id="@+id/today_screen"

@@ -1,12 +1,11 @@
 package co.develhope.meteoapp.home.adapter
 
-import android.os.Build
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.home.WeekItems.Companion.DaysId
 import co.develhope.meteoapp.home.WeekItems.Companion.HomeSubtitleId
@@ -71,7 +70,7 @@ class WeekAdapter(private var items: List<WeekItems>, private val onClick: (Week
 
     override fun getItemCount(): Int = items.size
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         Log.d("WeekAdapter", "holder is $holder")
@@ -87,6 +86,7 @@ class WeekAdapter(private var items: List<WeekItems>, private val onClick: (Week
 
     fun setNewList(newList: List<WeekItems>){
         items = newList
+        notifyDataSetChanged()
     }
 }
 

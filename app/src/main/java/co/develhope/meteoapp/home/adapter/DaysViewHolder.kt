@@ -15,7 +15,7 @@ import org.threeten.bp.format.DateTimeFormatter
 import java.util.Locale
 
 class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
-    @RequiresApi(Build.VERSION_CODES.O)
+
     fun bind(item: Days, onClick: (WeekItems) -> Unit) {
         val tomorrow = OffsetDateTime.now().plusDays(1)
 
