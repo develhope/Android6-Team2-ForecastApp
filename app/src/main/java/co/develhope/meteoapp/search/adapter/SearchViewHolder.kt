@@ -1,4 +1,4 @@
-package co.develhope.meteoapp.home.adapter
+package co.develhope.meteoapp.search.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.search.DataSearches
@@ -10,8 +10,8 @@ class SearchViewHolder(val binding: SearchRecyclerviewItemBinding) :
 
     fun onBind(model: DataSearches.itemSearch) {
         binding.searchRecentCityItem.text = model.recentCitySearch
-        binding.searchRecentTemperatureItem.text = model.recentTemperatureSearch
-        binding.searchRecentWeatherItem.text = model.recentWeatherSearch
+//        binding.searchRecentTemperatureItem.text = model.recentTemperatureSearch
+//        binding.searchRecentWeatherItem.text = model.recentWeatherSearch
     }
 
 

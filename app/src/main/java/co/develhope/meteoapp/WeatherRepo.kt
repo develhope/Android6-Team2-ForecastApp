@@ -1,7 +1,8 @@
 package co.develhope.meteoapp
 
 import co.develhope.meteoapp.data.local.DailyDataLocal
-import co.develhope.meteoapp.data.remote.Result
+import co.develhope.meteoapp.data.local.SearchDataLocal
+import co.develhope.meteoapp.data.local.toSearchDataLocal
 import co.develhope.meteoapp.data.remote.SearchDataRemote
 import co.develhope.meteoapp.data.remote.toDailyDataLocal
 import okhttp3.OkHttpClient
@@ -34,15 +35,16 @@ object WeatherRepo {
 
 
     // SEARCH SERVICE
-    var searchService: WeatherService? = null
+    var searchService: SearchService? = null
 
-    suspend fun getSearchCity(): Response<SearchDataRemote>? {
+    suspend fun getSearchCity(cityName : String): SearchDataLocal? {
         if (searchService == null) {
-            searchService = createSearchRetrofitInstance().create(WeatherService::class.java)
+            searchService = createSearchRetrofitInstance().create(SearchService::class.java)
         }
 
-        return searchService?.getSearchCity("Agrigento", 5, "it")
+       val response = searchService?.getSearchCity(cityName, 5, "it")
 
+    return response?.toSearchDataLocal()
     }
 
 

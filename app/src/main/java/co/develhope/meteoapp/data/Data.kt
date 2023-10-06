@@ -15,18 +15,18 @@ import org.threeten.bp.OffsetDateTime
 
 object Data {
 
-    fun getSearchData(): List<DataSearches.itemSearch> {
-        return listOf<DataSearches.itemSearch>(
-            DataSearches.itemSearch("Palermo", "14°", "soleggiato"),
-            DataSearches.itemSearch("Agrigento", "16°", "parz. nuvoloso"),
-            DataSearches.itemSearch("Catania", "20°", "soleggiato"),
-            DataSearches.itemSearch("Siracusa", "12°", "pioggia"),
-        )
-    }
+//    fun getSearchData(): List<DataSearches.itemSearch> {
+//        return listOf<DataSearches.itemSearch>(
+//            DataSearches.itemSearch("Palermo", "14°", "soleggiato"),
+//            DataSearches.itemSearch("Agrigento", "16°", "parz. nuvoloso"),
+//            DataSearches.itemSearch("Catania", "20°", "soleggiato"),
+//            DataSearches.itemSearch("Siracusa", "12°", "pioggia"),
+//        )
+//    }
 
 
 
-//insrisci i dati giusti
+//inserisci i dati giusti
     fun getHourlyForecast(): List<HourlyForecast> = listOf(
         HourlyForecast(
             date = OffsetDateTime.now(),

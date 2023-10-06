@@ -1,13 +1,14 @@
-package co.develhope.meteoapp.search
+package co.develhope.meteoapp.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
-import co.develhope.meteoapp.home.adapter.SearchViewHolder
+import co.develhope.meteoapp.search.DataSearches
 
-class DataSearchAdapter(val dataList: List<DataSearches>) : Adapter<ViewHolder>() {
+class DataSearchAdapter(private var dataList: List<DataSearches>) : Adapter<ViewHolder>() {
 
 
     override fun getItemViewType(position: Int): Int {
@@ -46,5 +47,10 @@ class DataSearchAdapter(val dataList: List<DataSearches>) : Adapter<ViewHolder>(
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+
+    fun updateData(newHints: List<DataSearches>) {
+        dataList = newHints
+        notifyDataSetChanged()
     }
 }
