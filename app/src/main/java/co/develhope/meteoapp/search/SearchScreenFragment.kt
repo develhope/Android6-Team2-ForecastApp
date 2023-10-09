@@ -11,6 +11,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
@@ -52,6 +54,7 @@ class SearchScreenFragment : Fragment() {
             AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 val item: DataSearches? = adapter.getItem(p2)
                 Data.saveSearchCity(item)
+                findNavController().navigate(R.id.action_search_to_today_after_click)
                 Log.d("DATA SAVED", "Success: $item")
             }
 
