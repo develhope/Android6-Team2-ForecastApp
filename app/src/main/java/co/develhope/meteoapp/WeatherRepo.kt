@@ -1,91 +1,34 @@
 package co.develhope.meteoapp
 
 import co.develhope.meteoapp.data.local.DailyDataLocal
-import co.develhope.meteoapp.data.local.SearchDataLocal
-import co.develhope.meteoapp.data.local.toSearchDataLocal
+import co.develhope.meteoapp.data.local.WeeklyDataLocal
 import co.develhope.meteoapp.data.remote.toDailyDataLocal
-import co.develhope.meteoapp.search.SearchService
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import co.develhope.meteoapp.data.remote.toWeeklyDataLocal
+import co.develhope.meteoapp.network.Module
+class WeatherRepo {
+    private val weatherService: WeatherService = Module().getRetrofit().create(WeatherService::class.java)
 
-object WeatherRepo {
+    private val dailyData =
+        "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,rain,weathercode,cloudcover,windspeed_10m,winddirection_10m,uv_index,is_day"
 
+    private val weeklyData =
+        "precipitation_sum,temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max"
+    suspend fun getWeather(
+        lat: Double,
+        lon: Double
+    ): DailyDataLocal? {
 
-    //WEATHER SERVICE
-    var weatherService: WeatherService? = null
+        val response = weatherService.getDaily(lat, lon, dailyData, "UTC", 1)
 
-    var dailyData = "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,rain,weathercode,cloudcover,windspeed_10m,winddirection_10m,uv_index,is_day"
-
-    suspend fun getWeather(lat: Double,
-                           lon: Double): DailyDataLocal? {
-        if (weatherService == null){
-            weatherService = createRetrofitInstance().create(WeatherService::class.java)
-        }
-
-        val response = weatherService?.getDaily(lat,lon,dailyData,"UTC",1)
-
-        return response?.toDailyDataLocal()
+        return response.toDailyDataLocal()
     }
+    suspend fun getHomeWeather(
+        lat: Double,
+        lon: Double
+    ): WeeklyDataLocal? {
 
-//    41.8919,12.5113 Palermo, Sicilia
+        val response = weatherService.getWeekly(lat, lon, weeklyData,"UTC")
 
-
-    // SEARCH SERVICE
-    var searchService: SearchService? = null
-
-    suspend fun getSearchCity(cityName : String): SearchDataLocal? {
-        if (searchService == null) {
-            searchService = createSearchRetrofitInstance().create(SearchService::class.java)
-        }
-
-       val response = searchService?.getSearchCity(cityName, 5, "it")
-
-    return response?.toSearchDataLocal()
+        return response.toWeeklyDataLocal()
     }
-
-
-    // RETROFIT INSTANCES
-    private fun createRetrofitInstance(): Retrofit {
-        val baseUrl = "https://api.open-meteo.com/"
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val httpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .build()
-
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-
-    private fun createSearchRetrofitInstance(): Retrofit {
-        val baseUrl = "https://geocoding-api.open-meteo.com/"
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val httpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .build()
-
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-
 }

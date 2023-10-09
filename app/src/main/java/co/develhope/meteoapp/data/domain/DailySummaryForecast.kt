@@ -8,7 +8,7 @@ data class DailySummaryForecast(
     val date: OffsetDateTime,
     val minTemperature: Int,
     val maxTemperature: Int,
-    val weatherIcon: WeatherIcon,
+    val weatherIcon: Int,
     val precipitation: Int,
     val windSpeed: Int
 )

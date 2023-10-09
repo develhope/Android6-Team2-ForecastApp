@@ -1,10 +1,11 @@
 package co.develhope.meteoapp.home.adapter
 
-import android.os.Build
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.home.WeekItems.Companion.DaysId
 import co.develhope.meteoapp.home.WeekItems.Companion.HomeSubtitleId
@@ -20,11 +21,11 @@ import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.home.WeekItems
 
 
-class WeekAdapter(private val list: List<WeekItems>, private val onClick: (WeekItems) -> Unit) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WeekAdapter(private var items: List<WeekItems>, private val onClick: (WeekItems) -> Unit) :
+    Adapter<ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
-        val item = list[position]
+        val item = items[position]
         return item.id
     }
 
@@ -67,11 +68,11 @@ class WeekAdapter(private val list: List<WeekItems>, private val onClick: (WeekI
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = items.size
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = list[position]
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
         Log.d("WeekAdapter", "holder is $holder")
 
         when (holder) {
@@ -81,6 +82,11 @@ class WeekAdapter(private val list: List<WeekItems>, private val onClick: (WeekI
             is SubtitleViewHolder -> holder.bind(item as HomeSubtitle)
             else -> throw Exception("Invalid ViewHolder Not Recognized")
         }
+    }
+
+    fun setNewList(newList: List<WeekItems>){
+        items = newList
+        notifyDataSetChanged()
     }
 }
 
