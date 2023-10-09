@@ -24,29 +24,23 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         val bottomNav: BottomNavigationView = binding.bottomNavigationView
 
-        bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.search_screen -> {
-                    if (!navController.popBackStack(R.id.search_screen, false)) {
-                        it.onNavDestinationSelected(navController)
-                    }
 
-                    true
-                }
-
-                R.id.home_screen -> {
-                    if (!navController.popBackStack(R.id.home_screen, false)) {
-                        it.onNavDestinationSelected(navController)
-                    }
-
-                    true
-                }
-
-                else -> {
-                    it.onNavDestinationSelected(navController)
-                }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.home_screen -> bottomNav.menu.findItem(R.id.home_screen).isChecked = true
+                R.id.today_screen -> bottomNav.menu.findItem(R.id.today_screen).isChecked = true
+                R.id.tomorrow_screen -> bottomNav.menu.findItem(R.id.tomorrow_screen).isChecked = true
+                R.id.search_screen -> bottomNav.menu.findItem(R.id.search_screen).isChecked = true
             }
         }
+
+        bottomNav.setOnItemSelectedListener {
+            it.onNavDestinationSelected(navController)
+            true
+        }
+    }
+
+}
 
 //        binding.bottomNavigationView.setupWithNavController(findNavController(R.id.nav_host_fragment_content_main))
 
@@ -62,7 +56,4 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            }
 //        }
-    }
-
-}
 
