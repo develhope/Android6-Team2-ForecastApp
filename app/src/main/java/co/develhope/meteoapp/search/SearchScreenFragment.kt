@@ -3,11 +3,14 @@ package co.develhope.meteoapp.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
 import co.develhope.meteoapp.search.adapter.DataSearchAdapter
@@ -19,7 +22,7 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter : DataSearchAdapter
+    private lateinit var adapter: DataSearchAdapter
 
 
     override fun onCreateView(
@@ -34,7 +37,17 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       adapter = DataSearchAdapter(requireContext(), mutableListOf())
+        adapter = DataSearchAdapter(requireContext(), mutableListOf()) {
+            Data.saveSearchCity(
+                SearchDataLocal.ResultLocal(
+                admin1 = it.admin1,
+                latitude = it.latitude,
+                longitude = it.longitude,
+                name = it.recentCitySearch
+            ))
+            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+            Log.d("CLICKED", "Item Clicked $it")
+        }
         binding.searchEditText.setAdapter(adapter)
 
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
@@ -49,42 +62,23 @@ class SearchScreenFragment : Fragment() {
         })
 
         observerSearch()
-//        binding.searchEditText.addTextChangedListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//
-//                if (newText != null) {
-//                    if (!newText.isEmpty() && newText.length > 3) {
-//                        searchViewModel.getPlaces(newText.toString())
-//                    }
-//
-//                    binding.searchEditText.post {
-//                        binding.searchEditText.
-//                    }
-//                }
-//
-//
-//                val adapter = DataSearchAdapter(emptyList())
-//                binding.searchRecyclerView.adapter = adapter
-//
-//                return true
-//            }
-//        })
     }
 
-        private fun SearchDataLocal?.toDataSearches(): List<DataSearches> {
-
-            val newList = mutableListOf<DataSearches>()
-
-            this?.forEach {
-                val cityName = it.name.toString()
-                newList.add(DataSearches.itemSearch(recentCitySearch = cityName))
-            }
-            return newList
+    private fun SearchDataLocal?.toDataSearches(): List<DataSearches> {
+        val newList = mutableListOf<DataSearches>()
+        this?.forEach {
+            val cityName = it.name.toString()
+            newList.add(
+                DataSearches.itemSearch(
+                    recentCitySearch = cityName,
+                    admin1 = it.admin1,
+                    latitude = it.latitude,
+                    longitude = it.longitude
+                )
+            )
         }
+        return newList
+    }
 
     fun observerSearch() {
         searchViewModel.cityHints.observe(viewLifecycleOwner) { hints ->
@@ -96,10 +90,10 @@ class SearchScreenFragment : Fragment() {
         }
 
 
-
     }
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

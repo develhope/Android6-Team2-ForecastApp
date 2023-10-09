@@ -11,11 +11,11 @@ import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
 import co.develhope.meteoapp.search.DataSearches
 
 
-
 class DataSearchAdapter(
     context: Context,
-    private val dataList: MutableList<DataSearches>
-) : ArrayAdapter<DataSearches>(context, android.R.layout.simple_dropdown_item_1line, dataList), Filterable {
+    private val dataList: MutableList<DataSearches>, private val onItemClick : (DataSearches.itemSearch) -> Unit
+) : ArrayAdapter<DataSearches>(context, android.R.layout.simple_dropdown_item_1line, dataList),
+    Filterable {
     private val originalData: List<DataSearches> = dataList.toList()
     private var filteredData: List<DataSearches> = dataList.toList()
 
@@ -24,38 +24,36 @@ class DataSearchAdapter(
     }
 
 
-     fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
 
             DataSearches.itemSearch1 -> SearchViewHolder(
                 SearchRecyclerviewItemBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
-            )
+            ){ itemClicked ->
+                onItemClick(itemClicked)
+            }
 
             else -> throw Exception("Invalid View Holder type")
 
         }
     }
 
-     fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val searchData = dataList[position]
-
-
         when (holder) {
-
             is SearchViewHolder -> {
                 holder.onBind(searchData as DataSearches.itemSearch)
             }
         }
-
-
     }
 
-     fun getItemCount(): Int {
+    fun getItemCount(): Int {
         return dataList.size
     }
+
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -66,8 +64,8 @@ class DataSearchAdapter(
                     filteredData = originalData
                 } else {
                     // Filtriamo i dati in base al testo di ricerca.
-                    filteredData = originalData.filter {
-                        it.type == 1
+                    filteredData = originalData.filterIsInstance<DataSearches.itemSearch>().filter {
+                        it.type == 1 && it.recentCitySearch.contains(query, ignoreCase = true)
                     }
                 }
 

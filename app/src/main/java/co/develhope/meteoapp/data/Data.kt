@@ -1,6 +1,7 @@
 package co.develhope.meteoapp.data
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import co.develhope.meteoapp.search.DataSearches
 
@@ -9,11 +10,15 @@ import co.develhope.meteoapp.data.domain.HourlyForecast
 import co.develhope.meteoapp.data.domain.WeatherIcon.RAIN
 import co.develhope.meteoapp.data.domain.WeatherIcon.SUN
 import co.develhope.meteoapp.data.domain.WeatherIcon.SUN_CLOUD
+import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.home.WeekItems
 import org.threeten.bp.OffsetDateTime
 
 
 object Data {
+
+    private var searchedData: SearchDataLocal.ResultLocal? = null
+
 
 //    fun getSearchData(): List<DataSearches.itemSearch> {
 //        return listOf<DataSearches.itemSearch>(
@@ -25,8 +30,7 @@ object Data {
 //    }
 
 
-
-//inserisci i dati giusti
+    //inserisci i dati giusti
     fun getHourlyForecast(): List<HourlyForecast> = listOf(
         HourlyForecast(
             date = OffsetDateTime.now(),
@@ -55,6 +59,7 @@ object Data {
             forecastIndex = 2
         )
     )
+
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
     fun getTitle(): String {
@@ -125,4 +130,17 @@ object Data {
 
         )
     }
+
+
+    fun saveSearchCity(data: SearchDataLocal.ResultLocal) {
+        Log.d("SAVE DATA", "saved clicked $data")
+        searchedData = data
+    }
+
+    fun getSearchCity(): SearchDataLocal.ResultLocal? {
+        return searchedData
+    }
+
+
 }
+

@@ -4,6 +4,7 @@ import co.develhope.meteoapp.data.local.DailyDataLocal
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.data.local.toSearchDataLocal
 import co.develhope.meteoapp.data.remote.toDailyDataLocal
+import co.develhope.meteoapp.search.SearchService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.search
 
 import co.develhope.meteoapp.data.remote.SearchDataRemote
 import retrofit2.Response
