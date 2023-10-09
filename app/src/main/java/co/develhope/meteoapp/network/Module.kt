@@ -17,6 +17,13 @@ class Module() {
         )
     }
 
+    fun getSearchRetrofit(): Retrofit {
+        return provideSearchRetrofit(
+            client = provideOkHttpClient(provideHttpLoggingInterceptor()),
+            gson = provideGson()
+        )
+    }
+
     private fun provideGson(): Gson = GsonBuilder()
         .registerTypeAdapter(OffsetDateTime::class.java, OffsetDateTimeTypeAdapter())
         .create()
@@ -28,6 +35,17 @@ class Module() {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://api.open-meteo.com")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+            .build()
+    }
+
+    private fun provideSearchRetrofit(
+        client: OkHttpClient,
+        gson: Gson
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://geocoding-api.open-meteo.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
