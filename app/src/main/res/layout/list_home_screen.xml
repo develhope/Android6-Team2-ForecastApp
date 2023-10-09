@@ -8,9 +8,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_home_screen_list"
-            android:layout_width="@dimen/cardView_width_home_list_item"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/cardView_height_home_list_item"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             app:cardCornerRadius="@dimen/cardCornerRadiius_card_view_home_list_item"
+            android:background="@drawable/card_shadow_bottom"
             app:cardBackgroundColor="@color/cardBackgroundColor_cardView_home_list_item"
             android:elevation="@dimen/elevation_card_view_home_list_item"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -7,22 +7,24 @@ import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.home.WeekItems.Today
 import co.develhope.meteoapp.data.domain.setWeatherIcon
+import co.develhope.meteoapp.today.getWeatherIconbasedonId
 import org.threeten.bp.format.DateTimeFormatter
 
 class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Today, onClick: (WeekItems) -> Unit) {
         binding.textDayOfWeekList.text = binding.root.context.getString(R.string.oggi)
         binding.textDayOfMonthList.text =
-            item.date.format(DateTimeFormatter.ofPattern("dd/MM"))
+            item.forecast.date.format(DateTimeFormatter.ofPattern("dd/MM"))
         binding.textMinNumList.text =
-            itemView.resources.getString(R.string.degrees, item.minTemperature.toString())
+            itemView.resources.getString(R.string.degrees, item.forecast.minTemperature.toString())
         binding.textMaxNumList.text =
-            itemView.resources.getString(R.string.degrees,item.maxTemperature.toString())
-        binding.imgSkyList.setWeatherIcon(item.weatherIcon)
+            itemView.resources.getString(R.string.degrees,item.forecast.maxTemperature.toString())
+        binding.imgSkyList.setWeatherIcon(
+            getWeatherIconbasedonId(item.forecast.weatherIcon))
         binding.textPrecipNumList.text =
-            itemView.resources.getString(R.string.millimetres, item.precipitation.toString())
+            itemView.resources.getString(R.string.millimetres, item.forecast.precipitation.toString())
         binding.textWindNumList.text =
-            itemView.resources.getString(R.string.kilometers_per_hour, item.windSpeed.toString())
+            itemView.resources.getString(R.string.kilometers_per_hour, item.forecast.windSpeed.toString())
         binding.root.setOnClickListener {
             binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)

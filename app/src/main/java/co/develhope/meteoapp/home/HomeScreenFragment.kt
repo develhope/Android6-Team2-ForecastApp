@@ -1,27 +1,25 @@
 package co.develhope.meteoapp.home
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import co.develhope.meteoapp.home.WeekItems.Days
-import co.develhope.meteoapp.home.WeekItems.HomeSubtitle
-import co.develhope.meteoapp.home.WeekItems.HomeTitle
-import co.develhope.meteoapp.home.WeekItems.Today
-import co.develhope.meteoapp.data.Data
-import co.develhope.meteoapp.data.domain.DailySummaryForecast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import co.develhope.meteoapp.R
+import co.develhope.meteoapp.data.local.toWeekItems
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
 import co.develhope.meteoapp.home.adapter.WeekAdapter
-import org.threeten.bp.OffsetDateTime
 
 
 
 
 
 class HomeScreenFragment : Fragment() {
+    private val weeklyViewModel: WeeklyViewModel by viewModels()
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
@@ -36,69 +34,45 @@ class HomeScreenFragment : Fragment() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onStart() {
+        super.onStart()
+        weeklyViewModel.getWeekly()
+        setupAdapter()
+        setupObserver()
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        weeklyViewModel.getWeekly()
         setupAdapter()
+        setupObserver()
+
+        weeklyViewModel.navigateToSearchScreen.observe(viewLifecycleOwner, Observer { shouldNavigate ->
+            if (shouldNavigate) {
+                findNavController().navigate(R.id.action_home_screen_to_search_screen)
+                weeklyViewModel.navigateToSearchScreen.postValue(false)
+            }
+        })
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupAdapter() {
-        val weekList = Data.getWeatherDataList()
-        val titleHome = Data.getTitle()
-        val itemsToShow = createItemList(weekList, titleHome)
-        binding.homeRecyclerView.adapter = WeekAdapter(list = itemsToShow) {}
+
+        binding.homeRecyclerView.adapter = WeekAdapter(listOf()) {}
 
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun createItemList(
-        dailySummaryForecastList: List<DailySummaryForecast>,
-        titleHome: String
-    ): List<WeekItems> {
+    private fun setupObserver() {
 
-        val itemToShow = mutableListOf<WeekItems>()
-
-        itemToShow.add(HomeTitle(titleHome))
-
-        dailySummaryForecastList.forEach { week ->
-            if (week.date.dayOfMonth == OffsetDateTime.now().dayOfMonth) {
-                itemToShow.add(
-                    Today(
-                        date = week.date,
-                        minTemperature = week.minTemperature,
-                        maxTemperature = week.maxTemperature,
-                        weatherIcon = week.weatherIcon,
-                        precipitation = week.precipitation,
-                        windSpeed = week.windSpeed
-                    )
-                )
-            }
+        weeklyViewModel.isLoading.observe(viewLifecycleOwner){
+            binding.homeProgress.isVisible = it
         }
 
-
-        itemToShow.add(HomeSubtitle)
-        val currentDate = OffsetDateTime.now().dayOfMonth
-        val sortedList = dailySummaryForecastList
-            .filter { it.date.dayOfMonth != currentDate }
-            .sortedBy { it.date }
-        sortedList.forEach { week ->
-            if (week.date.dayOfMonth != OffsetDateTime.now().dayOfMonth) {
-                itemToShow.add(
-                    Days(
-                        date = week.date,
-                        minTemperature = week.minTemperature,
-                        maxTemperature = week.maxTemperature,
-                        weatherIcon = week.weatherIcon,
-                        precipitation = week.precipitation,
-                        windSpeed = week.windSpeed
-                    )
-                )
-            }
-
+        weeklyViewModel.result.observe(viewLifecycleOwner) {
+            (binding.homeRecyclerView.adapter as WeekAdapter).setNewList(it.toWeekItems())
         }
-        return itemToShow.toList()
-
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
