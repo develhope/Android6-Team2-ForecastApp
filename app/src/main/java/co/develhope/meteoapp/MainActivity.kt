@@ -42,18 +42,3 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-//        binding.bottomNavigationView.setupWithNavController(findNavController(R.id.nav_host_fragment_content_main))
-
-
-//        if (navController != null) {
-//            bottomNav.setupWithNavController(navController)
-//            bottomNav.setOnItemSelectedListener {
-//                when (it.itemId) {
-//                    R.id.home_screen -> {
-//                        if(navController.popBackStack())
-//                        true}
-//                    else -> it.onNavDestinationSelected(navController)
-//                }
-//            }
-//        }
-

@@ -2,7 +2,6 @@ package co.develhope.meteoapp.search
 
 sealed class DataSearches {
 
-
     data class itemSearch(
         val recentCitySearch: String,
         val admin1: String?,

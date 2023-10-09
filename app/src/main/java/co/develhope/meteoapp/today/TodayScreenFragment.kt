@@ -35,20 +35,27 @@ class TodayScreenFragment : Fragment() {
 
         val dataSearches = Data.getSearchCity()
 
-        var longitude = DataSearches.itemSearch(longitude = 0.0, latitude = 0.0, recentCitySearch = "", admin1 = "").longitude
-        if(dataSearches is DataSearches.itemSearch){
+        var longitude = DataSearches.itemSearch(
+            longitude = 0.0,
+            latitude = 0.0,
+            recentCitySearch = "",
+            admin1 = ""
+        ).longitude
+        if (dataSearches is DataSearches.itemSearch) {
             longitude = dataSearches.longitude
         }
 
-        var latitude = DataSearches.itemSearch(longitude = 0.0, latitude = 0.0, recentCitySearch = "", admin1 = "").latitude
-        if(dataSearches is DataSearches.itemSearch){
+        var latitude = DataSearches.itemSearch(
+            longitude = 0.0,
+            latitude = 0.0,
+            recentCitySearch = "",
+            admin1 = ""
+        ).latitude
+        if (dataSearches is DataSearches.itemSearch) {
             latitude = dataSearches.latitude
         }
 
-
-
-
-        dailyViewModel.getDaily(latitude!!,longitude!!)
+        dailyViewModel.getDaily(latitude!!, longitude!!)
 
         setupAdapter()
         setupObserver()
@@ -56,14 +63,12 @@ class TodayScreenFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-
         binding.todayRecyclerview.adapter = TodayAdapter(listOf())
-
     }
 
     private fun setupObserver() {
 
-        dailyViewModel.isLoading.observe(viewLifecycleOwner){
+        dailyViewModel.isLoading.observe(viewLifecycleOwner) {
             binding.todayProgress.isVisible = it
         }
 
@@ -76,7 +81,6 @@ class TodayScreenFragment : Fragment() {
 
     private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
 
-
         val newList = mutableListOf<HourlyForecastItems>()
 
         newList.add(HourlyForecastItems.Title("Palermo, Sicilia", OffsetDateTime.now()))
@@ -86,24 +90,21 @@ class TodayScreenFragment : Fragment() {
                 HourlyForecastItems.Forecast(
                     HourlyForecast(
                         date = hourly.time,
-                        hourlyTemp = hourly.temperature2m?.toInt()?:0,
-                        possibleRain = hourly.rainChance?:0,
-                        apparentTemp = hourly.apparentTemperature?.toInt()?:0,
-                        uvIndex = hourly.uvIndex?.toInt()?:0,
-                        humidity = hourly.humidity?:0,
+                        hourlyTemp = hourly.temperature2m?.toInt() ?: 0,
+                        possibleRain = hourly.rainChance ?: 0,
+                        apparentTemp = hourly.apparentTemperature?.toInt() ?: 0,
+                        uvIndex = hourly.uvIndex?.toInt() ?: 0,
+                        humidity = hourly.humidity ?: 0,
                         windDirection = hourly.windDirection.toString(),
-                        windSpeed = hourly.windSpeed?.toInt()?:0,
-                        cloudyness = hourly.cloudCover?:0,
-                        rain = hourly.rain?.toInt()?:0,
-                        forecastIndex = hourly.weathercode?:0
+                        windSpeed = hourly.windSpeed?.toInt() ?: 0,
+                        cloudyness = hourly.cloudCover ?: 0,
+                        rain = hourly.rain?.toInt() ?: 0,
+                        forecastIndex = hourly.weathercode ?: 0
 
                     )
                 )
             )
         }
-
         return newList
     }
-
-
 }
