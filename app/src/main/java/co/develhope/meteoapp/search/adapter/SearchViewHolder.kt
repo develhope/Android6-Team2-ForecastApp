@@ -11,6 +11,7 @@ class SearchViewHolder(val binding: SearchRecyclerviewItemBinding, val action : 
 
     fun onBind(model: DataSearches.itemSearch) {
         binding.searchRecentCityItem.text = model.recentCitySearch
+        Log.d("SEARCH VIEW HOLDER", "${model.recentCitySearch}")
         binding.searchRecentCityItem.setOnClickListener{
             Log.d("SEARCH VIEW HOLDER", "item clicked $it")
             action(model)

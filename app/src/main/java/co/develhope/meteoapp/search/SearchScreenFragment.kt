@@ -7,13 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
-import co.develhope.meteoapp.search.adapter.DataSearchAdapter
+
 
 
 class SearchScreenFragment : Fragment() {
@@ -22,7 +23,7 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: DataSearchAdapter
+    private lateinit var adapter: ArrayAdapter<DataSearches>
 
 
     override fun onCreateView(
@@ -37,18 +38,22 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = DataSearchAdapter(requireContext(), mutableListOf()) {
-            Data.saveSearchCity(
-                SearchDataLocal.ResultLocal(
-                admin1 = it.admin1,
-                latitude = it.latitude,
-                longitude = it.longitude,
-                name = it.recentCitySearch
-            ))
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
-            Log.d("CLICKED", "Item Clicked $it")
-        }
+        adapter = ArrayAdapter<DataSearches>(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
         binding.searchEditText.setAdapter(adapter)
+        binding.searchEditText.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Log.d("CIAO", "ECCOMI QUA $position")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
 
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -84,7 +89,7 @@ class SearchScreenFragment : Fragment() {
         searchViewModel.cityHints.observe(viewLifecycleOwner) { hints ->
             hints?.let {
                 if (::adapter.isInitialized) {
-                    adapter.updateData(hints.toDataSearches())
+                    adapter.addAll(hints.toDataSearches())
                 }
             }
         }
