@@ -8,9 +8,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import co.develhope.meteoapp.DailyViewModel
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.domain.HourlyForecast
 import co.develhope.meteoapp.data.local.DailyDataLocal
 import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
+import co.develhope.meteoapp.search.DataSearches
 import co.develhope.meteoapp.today.adapter.TodayAdapter
 import org.threeten.bp.OffsetDateTime
 
@@ -31,7 +33,22 @@ class TodayScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dailyViewModel.getDaily(38.132,13.3356)
+        val dataSearches = Data.getSearchCity()
+
+        var longitude = DataSearches.itemSearch(longitude = 0.0, latitude = 0.0, recentCitySearch = "", admin1 = "").longitude
+        if(dataSearches is DataSearches.itemSearch){
+            longitude = dataSearches.longitude
+        }
+
+        var latitude = DataSearches.itemSearch(longitude = 0.0, latitude = 0.0, recentCitySearch = "", admin1 = "").latitude
+        if(dataSearches is DataSearches.itemSearch){
+            latitude = dataSearches.latitude
+        }
+
+
+
+
+        dailyViewModel.getDaily(latitude!!,longitude!!)
 
         setupAdapter()
         setupObserver()
@@ -87,4 +104,6 @@ class TodayScreenFragment : Fragment() {
 
         return newList
     }
+
+
 }

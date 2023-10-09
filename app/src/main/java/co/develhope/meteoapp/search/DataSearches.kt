@@ -1,6 +1,6 @@
 package co.develhope.meteoapp.search
 
-sealed class DataSearches(val type: Int) {
+sealed class DataSearches {
 
 
     data class itemSearch(
@@ -8,14 +8,10 @@ sealed class DataSearches(val type: Int) {
         val admin1: String?,
         val longitude : Double?,
         val latitude : Double?
-    ) : DataSearches(itemSearch1){
+    ) : DataSearches(){
         override fun toString(): String {
-            return this.recentCitySearch
+            return "${this.recentCitySearch}, ${this.admin1}"
         }
-    }
-
-    companion object {
-        const val itemSearch1 = 1
     }
 
 }

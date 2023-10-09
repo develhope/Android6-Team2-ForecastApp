@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
-
 
 
 class SearchScreenFragment : Fragment() {
@@ -38,22 +37,25 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ArrayAdapter<DataSearches>(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf())
+
+        // This is my search adapter.
+        adapter = ArrayAdapter<DataSearches>(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            mutableListOf()
+        )
         binding.searchEditText.setAdapter(adapter)
-        binding.searchEditText.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                Log.d("CIAO", "ECCOMI QUA $position")
+
+
+        // Click listener for taking the position and save data network in a local data.
+        binding.searchEditText.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
+                val item: DataSearches? = adapter.getItem(p2)
+                Data.saveSearchCity(item)
+                Log.d("DATA SAVED", "Success: $item")
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
 
-        }
 
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -101,4 +103,6 @@ class SearchScreenFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
