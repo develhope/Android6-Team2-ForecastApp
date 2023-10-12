@@ -32,7 +32,7 @@ class DailyViewModel : ViewModel() {
         _isLoading.postValue(true)
 
         viewModelScope.launch(IO) {
-            val response = repo.getWeather(lat,lon)
+            val response = repo.getWeather(lat, lon)
             if (response != null) {
                 _isLoading.postValue(false)
                 _result.postValue(response)

@@ -1,4 +1,4 @@
-package co.develhope.meteoapp
+package co.develhope.meteoapp.data.error_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

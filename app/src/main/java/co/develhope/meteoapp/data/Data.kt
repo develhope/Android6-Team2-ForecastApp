@@ -1,35 +1,13 @@
 package co.develhope.meteoapp.data
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import co.develhope.meteoapp.DataSearches
-import co.develhope.meteoapp.R
 
-import co.develhope.meteoapp.data.domain.DailySummaryForecast
-import co.develhope.meteoapp.data.domain.HourlyForecast
-import co.develhope.meteoapp.data.domain.HourlySummaryForecast
-import co.develhope.meteoapp.data.domain.WeatherIcon.RAIN
-import co.develhope.meteoapp.data.domain.WeatherIcon.SUN
-import co.develhope.meteoapp.data.domain.WeatherIcon.SUN_CLOUD
-import co.develhope.meteoapp.data.domain.WeatherIcon
+import android.util.Log
 import co.develhope.meteoapp.home.WeekItems
-import org.threeten.bp.OffsetDateTime
-
+import co.develhope.meteoapp.search.DataSearches
 
 object Data {
 
-    fun getSearchData(): List<DataSearches.itemSearch> {
-        return listOf<DataSearches.itemSearch>(
-            DataSearches.itemSearch("Palermo", "14°", "soleggiato"),
-            DataSearches.itemSearch("Agrigento", "16°", "parz. nuvoloso"),
-            DataSearches.itemSearch("Catania", "20°", "soleggiato"),
-            DataSearches.itemSearch("Siracusa", "12°", "pioggia"),
-        )
-    }
-
-
-
-//insrisci i dati giusti
+    private var searchedData: DataSearches? = null
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
@@ -38,5 +16,17 @@ object Data {
         return homeTitle.locality
     }
 
+    // This function is for save da data when users click on search hints.
+    fun saveSearchCity(data: DataSearches?) {
+        Log.d("SAVE DATA", "saved clicked $data")
+        searchedData = data
+    }
+
+    // Use this function for take the saved data.
+    fun getSearchCity(): DataSearches? {
+        return searchedData
+    }
+
 
 }
+
