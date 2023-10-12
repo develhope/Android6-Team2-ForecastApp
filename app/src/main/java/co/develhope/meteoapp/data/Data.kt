@@ -27,6 +27,14 @@ object Data {
         return searchedData
     }
 
+    fun getCityLocation(): String {
+        return if(searchedData is DataSearches.itemSearch){
+            "${(searchedData as DataSearches.itemSearch).recentCitySearch}, ${(searchedData as DataSearches.itemSearch).admin1}"
+        } else{
+            ""
+        }
+    }
+
 
 }
 
