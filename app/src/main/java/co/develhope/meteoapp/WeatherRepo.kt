@@ -27,7 +27,7 @@ class WeatherRepo {
     }
     suspend fun getHomeWeather(
         lat: Double,
-        lon: Double
+        lon: Double,
     ): WeeklyDataLocal? {
 
         val response = weatherService.getWeekly(lat, lon, weeklyData,"UTC")

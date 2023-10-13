@@ -47,20 +47,16 @@ class TomorrowScreenFragment : Fragment() {
 
         var longitude = defaultData.longitude
         var latitude = defaultData.latitude
-        var cityName = defaultData.recentCitySearch
-        var cityRegion = defaultData.admin1
 
         if(dataSearches is DataSearches.itemSearch){
             longitude = dataSearches.longitude
             latitude = dataSearches.latitude
-            cityName = dataSearches.recentCitySearch
-            cityRegion = dataSearches.admin1
         }
 
-        val tomorrowDate = OffsetDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
-        Log.d("DATE",tomorrowDate)
+        val selectedDate = Data.getSavedDate()!!.format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
+        Log.d("DATE",selectedDate!!)
 
-        dailyViewModel.getDaily(latitude!!, longitude!!,tomorrowDate,tomorrowDate)
+        dailyViewModel.getDaily(latitude!!, longitude!!,selectedDate,selectedDate)
 
         setupAdapter()
         setupObserver()

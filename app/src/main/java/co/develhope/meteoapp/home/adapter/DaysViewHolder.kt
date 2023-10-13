@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.R
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.home.WeekItems.Days
@@ -38,6 +39,7 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
         binding.textWindNumList.text =
             itemView.resources.getString(R.string.kilometers_per_hour, item.forecast.windSpeed.toString())
         binding.root.setOnClickListener {
+            Data.saveDate(item.forecast.date)
             binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
             }

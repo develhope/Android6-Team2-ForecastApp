@@ -4,12 +4,16 @@ package co.develhope.meteoapp.data
 import android.util.Log
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.search.DataSearches
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 object Data {
 
 //    private var searchedData: DataSearches? = null
 
     private var searchedData: DataSearches? = null
+    private var selectedDate: OffsetDateTime? = OffsetDateTime.now().plusDays(1)
+    private var selectedDateTitle: String? = "Domani"
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
@@ -41,6 +45,13 @@ object Data {
         }
     }
 
+    fun saveDate(savedDate: OffsetDateTime){
+        selectedDate = savedDate
+    }
+
+    fun getSavedDate(): OffsetDateTime?{
+        return selectedDate
+    }
 
 }
 
