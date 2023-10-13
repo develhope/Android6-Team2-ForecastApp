@@ -45,5 +45,9 @@
         <action
             android:id="@+id/action_search_to_today_after_click"
             app:destination="@id/today_screen" />
+
+        <action
+            android:id="@+id/action_search_to_home_screen"
+            app:destination="@id/home_screen"/>
     </fragment>
 </navigation>
