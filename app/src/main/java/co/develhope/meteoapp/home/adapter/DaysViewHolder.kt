@@ -32,7 +32,7 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView.
             itemView.resources.getString(R.string.degrees, item.forecast.minTemperature.toString())
         binding.textMaxNumList.text =
             itemView.resources.getString(R.string.degrees,item.forecast.maxTemperature.toString())
-        binding.imgSkyList.setWeatherIcon(getWeatherIconbasedonId(0,item.forecast.weatherIcon))
+        binding.imgSkyList.setWeatherIcon(getWeatherIconbasedonId(1,item.forecast.weatherIcon))
         binding.textPrecipNumList.text =
             itemView.resources.getString(R.string.millimetres, item.forecast.precipitation.toString())
         binding.textWindNumList.text =
