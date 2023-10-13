@@ -28,6 +28,15 @@ class TomorrowTitleViewHolder(private val binding: TitleTodayScreenBinding) :
             )
         )
 
+        val dayAndMonth = capitalizeWords(
+            currentDate.format(
+                DateTimeFormatter.ofPattern(
+                    "d MMMM",
+                    Locale.ITALIAN
+                )
+            )
+        )
+
         val formattedWeekDay = capitalizeWords(currentDate.format(DateTimeFormatter.ofPattern("EEEE", Locale.ITALIAN)))
 
         val tomorrow = OffsetDateTime.now().plusDays(1)
@@ -39,6 +48,7 @@ class TomorrowTitleViewHolder(private val binding: TitleTodayScreenBinding) :
             binding.todaySubtitleLongTv.text = fullDate
         } else{
             binding.todaySubtitleShortTv.text = formattedWeekDay
+            binding.todaySubtitleLongTv.text = dayAndMonth
         }
 
         binding.todayLocationTv.text = item.todayLocation
