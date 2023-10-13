@@ -13,7 +13,6 @@ object Data {
 
     private var searchedData: DataSearches? = null
     private var selectedDate: OffsetDateTime? = OffsetDateTime.now().plusDays(1)
-    private var selectedDateTitle: String? = "Domani"
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
