@@ -36,11 +36,14 @@ class TomorrowTitleViewHolder(private val binding: TitleTodayScreenBinding) :
 
         if (weekDay == tomorrow.dayOfMonth) {
             binding.todaySubtitleShortTv.text = binding.root.context.getString(R.string.domani)
+            binding.todaySubtitleLongTv.text = fullDate
         } else{
             binding.todaySubtitleShortTv.text = formattedWeekDay
         }
 
         binding.todayLocationTv.text = item.todayLocation
-        binding.todaySubtitleLongTv.text = fullDate
+        binding.todayConditionTv.text = Data.weatherCodetoCondition(Data.getSavedCondition()!!)
+
+
     }
 }

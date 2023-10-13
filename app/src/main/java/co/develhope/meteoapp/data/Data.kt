@@ -2,6 +2,7 @@ package co.develhope.meteoapp.data
 
 
 import android.util.Log
+import co.develhope.meteoapp.data.domain.WeatherIcon
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.search.DataSearches
 import org.threeten.bp.OffsetDateTime
@@ -13,6 +14,8 @@ object Data {
 
     private var searchedData: DataSearches? = null
     private var selectedDate: OffsetDateTime? = OffsetDateTime.now().plusDays(1)
+    private var selectedCondition: Int? = 0
+    private var todayCondition: Int? = 0
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
@@ -50,6 +53,31 @@ object Data {
 
     fun getSavedDate(): OffsetDateTime?{
         return selectedDate
+    }
+
+    fun saveWeatherCondition(savedCondition: Int){
+        selectedCondition = savedCondition
+    }
+
+    fun getSavedCondition(): Int?{
+        return selectedCondition
+    }
+
+    fun weatherCodetoCondition(weatherCode: Int): String{
+        return when(weatherCode){
+            in 0..1 -> "Sereno"
+            in 2..48 -> "Nuvoloso"
+            in 49..200 -> "Piovoso"
+            else -> "Non disponibile"
+        }
+    }
+
+    fun saveTodayCondition(savedTodayCondition: Int){
+        todayCondition = savedTodayCondition
+    }
+
+    fun getTodayCondition(): Int?{
+        return todayCondition
     }
 
 }

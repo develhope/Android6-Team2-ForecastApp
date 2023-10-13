@@ -46,6 +46,7 @@ class DaysViewHolder(private val binding: ListHomeScreenBinding) :
             )
         binding.root.setOnClickListener {
             Data.saveDate(item.forecast.date)
+            Data.saveWeatherCondition(item.forecast.weatherIcon)
             binding.root.findNavController().navigate(R.id.action_home_screen_to_tomorrow_screen)
             onClick(item)
         }
