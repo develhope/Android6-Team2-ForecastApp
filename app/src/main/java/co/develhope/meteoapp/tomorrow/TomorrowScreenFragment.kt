@@ -1,6 +1,7 @@
 package co.develhope.meteoapp.tomorrow
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import co.develhope.meteoapp.search.DataSearches
 import co.develhope.meteoapp.today.HourlyForecastItems
 import co.develhope.meteoapp.tomorrow.adapter.TomorrowAdapter
 import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class TomorrowScreenFragment : Fragment() {
     private var _binding: FragmentTomorrowScreenBinding? = null
@@ -55,7 +57,10 @@ class TomorrowScreenFragment : Fragment() {
             cityRegion = dataSearches.admin1
         }
 
-        dailyViewModel.getDaily(latitude!!, longitude!!)
+        val tomorrowDate = OffsetDateTime.now().plusDays(1).format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
+        Log.d("DATE",tomorrowDate)
+
+        dailyViewModel.getDaily(latitude!!, longitude!!,tomorrowDate,tomorrowDate)
 
         setupAdapter()
         setupObserver()
@@ -95,7 +100,8 @@ class TomorrowScreenFragment : Fragment() {
                         windSpeed = hourly.windSpeed?.toInt() ?: 0,
                         cloudyness = hourly.cloudCover ?: 0,
                         rain = hourly.rain?.toInt() ?: 0,
-                        forecastIndex = hourly.weathercode ?: 0
+                        forecastIndex = hourly.weathercode ?: 0,
+                        isDay = hourly.isDay ?: 0
                     )
                 )
             )

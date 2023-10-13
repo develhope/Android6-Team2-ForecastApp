@@ -7,6 +7,8 @@ import co.develhope.meteoapp.search.DataSearches
 
 object Data {
 
+//    private var searchedData: DataSearches? = null
+
     private var searchedData: DataSearches? = null
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
@@ -24,14 +26,18 @@ object Data {
 
     // Use this function for take the saved data.
     fun getSearchCity(): DataSearches? {
-        return searchedData
+        return if(searchedData == null){
+            DataSearches.itemSearch("Roma","Lazio", latitude = 41.89, longitude = 12.51)
+        } else{
+            searchedData
+        }
     }
 
     fun getCityLocation(): String {
         return if(searchedData is DataSearches.itemSearch){
             "${(searchedData as DataSearches.itemSearch).recentCitySearch}, ${(searchedData as DataSearches.itemSearch).admin1}"
         } else{
-            ""
+            "Roma, Lazio"
         }
     }
 

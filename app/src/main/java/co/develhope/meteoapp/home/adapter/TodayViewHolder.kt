@@ -20,7 +20,7 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
         binding.textMaxNumList.text =
             itemView.resources.getString(R.string.degrees,item.forecast.maxTemperature.toString())
         binding.imgSkyList.setWeatherIcon(
-            getWeatherIconbasedonId(item.forecast.weatherIcon))
+            getWeatherIconbasedonId(1,item.forecast.weatherIcon))
         binding.textPrecipNumList.text =
             itemView.resources.getString(R.string.millimetres, item.forecast.precipitation.toString())
         binding.textWindNumList.text =

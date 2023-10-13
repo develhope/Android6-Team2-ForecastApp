@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.databinding.TitleTodayScreenBinding
 import co.develhope.meteoapp.today.HourlyForecastItems
-import co.develhope.meteoapp.today.adapter.TodayTitleViewHolder
 
 class TomorrowAdapter(private var items: List<HourlyForecastItems>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val openedItems = mutableListOf<Int>()

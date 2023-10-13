@@ -15,7 +15,7 @@ class TomorrowTitleViewHolder(private val binding: TitleTodayScreenBinding) :
     }
 
     fun onBind(item: HourlyForecastItems.Title) {
-        val currentDate = LocalDate.now()
+        val currentDate = LocalDate.now().plusDays(1)
 
         val formattedDate = capitalizeWords(
             currentDate.format(

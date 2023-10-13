@@ -14,7 +14,8 @@ interface WeatherService {
         @Query("longitude") longitude: Double,
         @Query("hourly") hourly: String,
         @Query("timezone") timezone: String,
-        @Query("forecast_days") forecastDays: Int
+        @Query("start_date") startDate: String,
+        @Query("end_date") endDate: String
     ): Response<DailyDataRemote>
 
     @GET("/v1/forecast")

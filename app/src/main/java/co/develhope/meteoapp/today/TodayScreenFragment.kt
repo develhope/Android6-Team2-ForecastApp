@@ -1,6 +1,7 @@
 package co.develhope.meteoapp.today
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
 import co.develhope.meteoapp.search.DataSearches
 import co.develhope.meteoapp.today.adapter.TodayAdapter
 import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 class TodayScreenFragment : Fragment() {
     private val dailyViewModel: DailyViewModel by viewModels()
@@ -55,7 +57,10 @@ class TodayScreenFragment : Fragment() {
             latitude = dataSearches.latitude
         }
 
-        dailyViewModel.getDaily(latitude!!, longitude!!)
+        val currentDate = OffsetDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
+        Log.d("DATE:", currentDate)
+
+        dailyViewModel.getDaily(latitude!!, longitude!!,currentDate,currentDate)
 
         setupAdapter()
         setupObserver()
@@ -83,7 +88,7 @@ class TodayScreenFragment : Fragment() {
 
         val newList = mutableListOf<HourlyForecastItems>()
 
-        newList.add(HourlyForecastItems.Title("Palermo, Sicilia", OffsetDateTime.now()))
+        newList.add(HourlyForecastItems.Title(Data.getCityLocation(), OffsetDateTime.now()))
 
         this?.forEach { hourly ->
             newList.add(
@@ -99,7 +104,8 @@ class TodayScreenFragment : Fragment() {
                         windSpeed = hourly.windSpeed?.toInt() ?: 0,
                         cloudyness = hourly.cloudCover ?: 0,
                         rain = hourly.rain?.toInt() ?: 0,
-                        forecastIndex = hourly.weathercode ?: 0
+                        forecastIndex = hourly.weathercode ?: 0,
+                        isDay = hourly.isDay ?: 0
 
                     )
                 )
