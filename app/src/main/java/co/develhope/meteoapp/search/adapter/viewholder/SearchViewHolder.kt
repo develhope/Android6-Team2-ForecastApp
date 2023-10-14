@@ -1,6 +1,6 @@
 package co.develhope.meteoapp.search.adapter.viewholder
 
-import android.util.Log
+
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.R
@@ -18,12 +18,6 @@ class SearchViewHolder(val binding: SearchRecyclerviewItemBinding) :
             Data.saveSearchCity(model)
             binding.root.findNavController().navigate(R.id.action_search_to_home_screen)
         }
-
-
-
-//        binding.searchRecentTemperatureItem.text = model.recentTemperatureSearch
-//        binding.searchRecentWeatherItem.text = model.recentWeatherSearch
     }
-
 
 }

@@ -25,7 +25,6 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: ArrayAdapter<DataSearches>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +36,9 @@ class SearchScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recentSearches = Data.getRecentSearches()
+        binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches)
 
 
 //        // This is my search adapter.
@@ -73,6 +75,7 @@ class SearchScreenFragment : Fragment() {
         observerSearch()
     }
 
+
     private fun SearchDataLocal?.toDataSearches(): List<DataSearches> {
         val newList = mutableListOf<DataSearches>()
         this?.forEach {
@@ -98,7 +101,6 @@ class SearchScreenFragment : Fragment() {
 
     fun observerSearch() {
         searchViewModel.cityHints.observe(viewLifecycleOwner) { hints ->
-
             (binding.searchRecyclerView.adapter as DataSearchAdapter).setNewList(hints.toDataSearches())
 //            hints?.let {
 //                if (::adapter.isInitialized) {
@@ -106,6 +108,8 @@ class SearchScreenFragment : Fragment() {
 //                }
         }
     }
+
+
 
 override fun onDestroyView() {
     super.onDestroyView()
