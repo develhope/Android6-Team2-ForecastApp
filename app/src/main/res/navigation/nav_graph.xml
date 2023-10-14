@@ -11,9 +11,16 @@
         android:name="co.develhope.meteoapp.home.HomeScreenFragment"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen">
+
         <action
             android:id="@+id/action_home_screen_to_search_screen"
-            app:destination="@id/search_screen" />
+            app:destination="@id/search_screen"/>
+
+        <action
+            android:id="@+id/action_home_screen_to_tomorrow_screen"
+            app:destination="@id/tomorrow_screen"/>
+
+
     </fragment>
     <fragment
         android:id="@+id/today_screen"
@@ -24,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/tomorrow_screen"
-        android:name="co.develhope.meteoapp.TomorrowScreenFragment"
+        android:name="co.develhope.meteoapp.tomorrow.TomorrowScreenFragment"
         android:label="fragment_tomorrow_screen"
         tools:layout="@layout/fragment_tomorrow_screen">
 
@@ -38,5 +45,9 @@
         <action
             android:id="@+id/action_search_to_today_after_click"
             app:destination="@id/today_screen" />
+
+        <action
+            android:id="@+id/action_search_to_home_screen"
+            app:destination="@id/home_screen"/>
     </fragment>
 </navigation>

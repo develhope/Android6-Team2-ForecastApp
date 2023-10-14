@@ -3,6 +3,7 @@ package co.develhope.meteoapp.home.adapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.R
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.ListHomeScreenBinding
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.home.WeekItems.Today
@@ -20,12 +21,13 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
         binding.textMaxNumList.text =
             itemView.resources.getString(R.string.degrees,item.forecast.maxTemperature.toString())
         binding.imgSkyList.setWeatherIcon(
-            getWeatherIconbasedonId(item.forecast.weatherIcon))
+            getWeatherIconbasedonId(1,item.forecast.weatherIcon))
         binding.textPrecipNumList.text =
             itemView.resources.getString(R.string.millimetres, item.forecast.precipitation.toString())
         binding.textWindNumList.text =
             itemView.resources.getString(R.string.kilometers_per_hour, item.forecast.windSpeed.toString())
         binding.root.setOnClickListener {
+            Data.saveTodayCondition(item.forecast.weatherIcon)
             binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
         }

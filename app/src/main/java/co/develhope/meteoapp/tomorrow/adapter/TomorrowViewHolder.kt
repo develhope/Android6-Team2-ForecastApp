@@ -1,14 +1,14 @@
-package co.develhope.meteoapp.today.adapter
+package co.develhope.meteoapp.tomorrow.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.data.domain.setWeatherIcon
+import co.develhope.meteoapp.databinding.ListTodayScreenBinding
 import co.develhope.meteoapp.today.HourlyForecastItems
 import co.develhope.meteoapp.today.getWeatherIconbasedonId
 import org.threeten.bp.format.DateTimeFormatter
 
-open class TodayViewHolder(val binding: ListTodayScreenBinding) :
+open class TomorrowViewHolder(val binding: ListTodayScreenBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(
         item: HourlyForecastItems.Forecast,
@@ -19,7 +19,7 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
 
         binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
 
-       binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.isDay,item.forecast.forecastIndex))
+        binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.isDay,item.forecast.forecastIndex))
         binding.degreesToday.text = item.forecast.hourlyTemp.toString().plus("°")
         binding.rainChanceTv.text = item.forecast.possibleRain.toString().plus("%")
         binding.perceivedDegreesToday.text = item.forecast.apparentTemp.toString().plus("°")
