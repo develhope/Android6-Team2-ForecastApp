@@ -2,11 +2,9 @@ package co.develhope.meteoapp.data
 
 
 import android.util.Log
-import co.develhope.meteoapp.data.domain.WeatherIcon
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.search.DataSearches
 import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.format.DateTimeFormatter
 
 object Data {
 
@@ -33,15 +31,15 @@ object Data {
     // Use this function for take the saved data.
     fun getSearchCity(): DataSearches? {
         return if(searchedData == null){
-            DataSearches.itemSearch("Roma","Lazio", latitude = 41.89, longitude = 12.51)
+            DataSearches.ItemSearch("Roma","Lazio", latitude = 41.89, longitude = 12.51)
         } else{
             searchedData
         }
     }
 
     fun getCityLocation(): String {
-        return if(searchedData is DataSearches.itemSearch){
-            "${(searchedData as DataSearches.itemSearch).recentCitySearch}, ${(searchedData as DataSearches.itemSearch).admin1}"
+        return if(searchedData is DataSearches.ItemSearch){
+            "${(searchedData as DataSearches.ItemSearch).recentCitySearch}, ${(searchedData as DataSearches.ItemSearch).admin1}"
         } else{
             "Roma, Lazio"
         }

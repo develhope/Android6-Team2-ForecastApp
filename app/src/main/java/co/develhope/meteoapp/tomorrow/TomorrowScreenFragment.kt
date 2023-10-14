@@ -38,7 +38,7 @@ class TomorrowScreenFragment : Fragment() {
 
         val dataSearches = Data.getSearchCity()
 
-        var defaultData = DataSearches.itemSearch(
+        var defaultData = DataSearches.ItemSearch(
             longitude = 12.51,
             latitude = 41.89,
             recentCitySearch = "Roma",
@@ -48,7 +48,7 @@ class TomorrowScreenFragment : Fragment() {
         var longitude = defaultData.longitude
         var latitude = defaultData.latitude
 
-        if(dataSearches is DataSearches.itemSearch){
+        if(dataSearches is DataSearches.ItemSearch){
             longitude = dataSearches.longitude
             latitude = dataSearches.latitude
         }
