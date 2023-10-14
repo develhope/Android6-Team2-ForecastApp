@@ -1,4 +1,4 @@
-package co.develhope.meteoapp.today
+package co.develhope.meteoapp.tomorrow
 
 import android.os.Bundle
 import android.util.Log
@@ -12,23 +12,24 @@ import co.develhope.meteoapp.DailyViewModel
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.domain.HourlyForecast
 import co.develhope.meteoapp.data.local.DailyDataLocal
-import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
+import co.develhope.meteoapp.databinding.FragmentTomorrowScreenBinding
 import co.develhope.meteoapp.search.DataSearches
-import co.develhope.meteoapp.today.adapter.TodayAdapter
+import co.develhope.meteoapp.today.HourlyForecastItems
+import co.develhope.meteoapp.tomorrow.adapter.TomorrowAdapter
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
-class TodayScreenFragment : Fragment() {
-    private val dailyViewModel: DailyViewModel by viewModels()
-
-    private var _binding: FragmentTodayScreenBinding? = null
+class TomorrowScreenFragment : Fragment() {
+    private var _binding: FragmentTomorrowScreenBinding? = null
     private val binding get() = _binding!!
+
+    private val dailyViewModel: DailyViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTodayScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentTomorrowScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,55 +38,46 @@ class TodayScreenFragment : Fragment() {
 
         val dataSearches = Data.getSearchCity()
 
-        var longitude = DataSearches.itemSearch(
-            longitude = 0.0,
-            latitude = 0.0,
-            recentCitySearch = "",
-            admin1 = ""
-        ).longitude
-        if (dataSearches is DataSearches.itemSearch) {
-            longitude = dataSearches.longitude
-        }
+        var defaultData = DataSearches.itemSearch(
+            longitude = 12.51,
+            latitude = 41.89,
+            recentCitySearch = "Roma",
+            admin1 = "Lazio"
+        )
 
-        var latitude = DataSearches.itemSearch(
-            longitude = 0.0,
-            latitude = 0.0,
-            recentCitySearch = "",
-            admin1 = ""
-        ).latitude
-        if (dataSearches is DataSearches.itemSearch) {
+        var longitude = defaultData.longitude
+        var latitude = defaultData.latitude
+
+        if(dataSearches is DataSearches.itemSearch){
+            longitude = dataSearches.longitude
             latitude = dataSearches.latitude
         }
 
-        val currentDate = OffsetDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
-        Log.d("DATE:", currentDate)
+        val selectedDate = Data.getSavedDate()!!.format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
+        Log.d("DATE",selectedDate!!)
 
-        dailyViewModel.getDaily(latitude!!, longitude!!,currentDate,currentDate)
+        dailyViewModel.getDaily(latitude!!, longitude!!,selectedDate,selectedDate)
 
         setupAdapter()
         setupObserver()
 
     }
 
-    private fun setupAdapter() {
-        binding.todayRecyclerview.adapter = TodayAdapter(listOf())
+    private fun setupAdapter(){
+        binding.tomorrowRecyclerview.adapter = TomorrowAdapter(listOf())
     }
 
-    private fun setupObserver() {
-
-        dailyViewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.todayProgress.isVisible = it
+    private fun setupObserver(){
+        dailyViewModel.isLoading.observe(viewLifecycleOwner){
+            binding.tomorrowProgress.isVisible = it
         }
 
-        dailyViewModel.result.observe(viewLifecycleOwner) {
-            (binding.todayRecyclerview.adapter as TodayAdapter).setNewList(it.toHourlyForecastItems())
+        dailyViewModel.result.observe(viewLifecycleOwner){
+            (binding.tomorrowRecyclerview.adapter as TomorrowAdapter).setNewList(it.toHourlyForecastItems())
         }
     }
 
-    //TODO: DA FINIRE
-
-    private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
-
+    private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems>{
         val newList = mutableListOf<HourlyForecastItems>()
 
         newList.add(HourlyForecastItems.Title(Data.getCityLocation(), OffsetDateTime.now()))
@@ -106,11 +98,10 @@ class TodayScreenFragment : Fragment() {
                         rain = hourly.rain?.toInt() ?: 0,
                         forecastIndex = hourly.weathercode ?: 0,
                         isDay = hourly.isDay ?: 0
-
                     )
                 )
             )
         }
-        return newList
+            return newList
     }
 }

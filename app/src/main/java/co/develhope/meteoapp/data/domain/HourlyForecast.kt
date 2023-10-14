@@ -13,5 +13,6 @@ data class HourlyForecast(
         val windSpeed: Int,
         val cloudyness: Int,
         val rain: Int,
-        val forecastIndex: Int
+        val forecastIndex: Int,
+        val isDay: Int
     )

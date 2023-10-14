@@ -1,6 +1,7 @@
 package co.develhope.meteoapp.today.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.TitleTodayScreenBinding
 import co.develhope.meteoapp.today.HourlyForecastItems
 import org.threeten.bp.LocalDate
@@ -28,5 +29,6 @@ class TodayTitleViewHolder(private val binding: TitleTodayScreenBinding) :
 
         binding.todayLocationTv.text = item.todayLocation
         binding.todaySubtitleLongTv.text = formattedDate
+        binding.todayConditionTv.text = Data.weatherCodetoCondition(Data.getTodayCondition()!!)
     }
 }

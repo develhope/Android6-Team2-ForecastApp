@@ -27,12 +27,14 @@ class DailyViewModel : ViewModel() {
     }
 
     fun getDaily(lat: Double,
-                 lon: Double) {
+                 lon: Double,
+                 startDate: String,
+                 endDate: String) {
 
         _isLoading.postValue(true)
 
         viewModelScope.launch(IO) {
-            val response = repo.getWeather(lat, lon)
+            val response = repo.getWeather(lat, lon, startDate, endDate)
             if (response != null) {
                 _isLoading.postValue(false)
                 _result.postValue(response)

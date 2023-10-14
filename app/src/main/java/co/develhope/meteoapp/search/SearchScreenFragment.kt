@@ -52,7 +52,7 @@ class SearchScreenFragment : Fragment() {
             AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 val item: DataSearches? = adapter.getItem(p2)
                 Data.saveSearchCity(item)
-                findNavController().navigate(R.id.action_search_to_today_after_click)
+                findNavController().navigate(R.id.action_search_to_home_screen)
                 Log.d("DATA SAVED", "Success: $item")
             }
 
