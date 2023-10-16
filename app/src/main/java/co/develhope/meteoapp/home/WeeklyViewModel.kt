@@ -20,13 +20,13 @@ class WeeklyViewModel : ViewModel() {
     }
 
 
-    fun getWeekly(){
+    fun getWeekly(lat: Double, lon: Double){
 
         isLoading.postValue(true)
 
         viewModelScope.launch(IO){
 
-            val response = repo.getHomeWeather(41.8919,12.5113)
+            val response = repo.getHomeWeather(lat, lon)
             if (response != null) {
                 isLoading.postValue(false)
                 result.postValue(response)

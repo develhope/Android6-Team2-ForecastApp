@@ -1,5 +1,6 @@
 package co.develhope.meteoapp.data.local
 
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.domain.DailySummaryForecast
 import co.develhope.meteoapp.data.domain.WeatherIcon
 import co.develhope.meteoapp.home.WeekItems
@@ -18,7 +19,7 @@ class WeeklyDataLocal(): ArrayList<WeeklyDataLocal.WeeklyLocal>() {
 }
 fun WeeklyDataLocal?.toWeekItems(): List<WeekItems> {
     val newList = mutableListOf<WeekItems>()
-    newList.add(WeekItems.HomeTitle("Palermo, Sicilia"))
+    newList.add(WeekItems.HomeTitle(Data.getCityLocation()))
 
     this?.forEach { week ->
         if (week.date.dayOfMonth == OffsetDateTime.now().dayOfMonth) {
