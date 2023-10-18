@@ -22,7 +22,7 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recentSearchTitle: TextView
+    private lateinit var title: TextView
     private lateinit var searchRecyclerView: RecyclerView
 
     override fun onCreateView(
@@ -36,6 +36,9 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        title = binding.title
+        searchRecyclerView = binding.searchRecyclerView
+
         val recentSearches = Data.getRecentSearches()
         binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches)
 
@@ -46,14 +49,14 @@ class SearchScreenFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 if (!s.isEmpty() && s.length >= 3) {
 
-                    recentSearchTitle.visibility = View.GONE
+                    title.visibility = View.GONE
                     searchRecyclerView.visibility = View.GONE
 
                     searchViewModel.getPlaces(s.toString())
                     setUpAdapter()
                     observerSearch()
                 } else {
-                    recentSearchTitle.visibility = View.VISIBLE
+                    title.visibility = View.VISIBLE
                     searchRecyclerView.visibility = View.VISIBLE
                 }
             }
@@ -93,10 +96,10 @@ class SearchScreenFragment : Fragment() {
             adapter.setNewList(hints.toDataSearches())
 
             if(hints?.isNotEmpty() == true){
-                recentSearchTitle.visibility = View.GONE
+                title.visibility = View.GONE
                 searchRecyclerView.visibility = View.VISIBLE
             } else {
-                recentSearchTitle.visibility = View.VISIBLE
+                title.visibility = View.VISIBLE
                 searchRecyclerView.visibility = View.GONE
             }
 
