@@ -6,10 +6,12 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
@@ -24,6 +26,8 @@ class SearchScreenFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var title: TextView
     private lateinit var searchRecyclerView: RecyclerView
+    lateinit var autoCompleteTextView: AutoCompleteTextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +40,17 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        autoCompleteTextView = binding.root.findViewById(R.id.search_auto_complete_text_view)
         title = binding.title
         searchRecyclerView = binding.searchRecyclerView
 
+
         val recentSearches = Data.getRecentSearches()
-        binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches)
+        binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches, this)
 
 
-        binding.searchEditText.addTextChangedListener(object : TextWatcher {
+
+        binding.searchAutoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
@@ -85,7 +92,7 @@ class SearchScreenFragment : Fragment() {
 
 
     fun setUpAdapter() {
-        searchRecyclerView.adapter = DataSearchAdapter(emptyList())
+        searchRecyclerView.adapter = DataSearchAdapter(emptyList(), this)
     }
 
 
@@ -95,7 +102,7 @@ class SearchScreenFragment : Fragment() {
             val adapter = binding.searchRecyclerView.adapter as DataSearchAdapter
             adapter.setNewList(hints.toDataSearches())
 
-            if(hints?.isNotEmpty() == true){
+            if (hints?.isNotEmpty() == true) {
                 title.visibility = View.GONE
                 searchRecyclerView.visibility = View.VISIBLE
             } else {
@@ -107,11 +114,15 @@ class SearchScreenFragment : Fragment() {
     }
 
 
+    fun clearAutoCompleteTextView() {
+        autoCompleteTextView.text = null
+    }
 
-override fun onDestroyView() {
-    super.onDestroyView()
-    _binding = null
-}
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 }
 

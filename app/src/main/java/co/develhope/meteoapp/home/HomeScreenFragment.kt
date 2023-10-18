@@ -23,7 +23,6 @@ class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +30,6 @@ class HomeScreenFragment : Fragment() {
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
-
     }
 
     override fun onStart() {
@@ -47,6 +45,8 @@ class HomeScreenFragment : Fragment() {
         weeklyViewModel.getWeekly()
         setupAdapter()
         setupObserver()
+
+
 
         weeklyViewModel.navigateToSearchScreen.observe(viewLifecycleOwner, Observer { shouldNavigate ->
             if (shouldNavigate) {
