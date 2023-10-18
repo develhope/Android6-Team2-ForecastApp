@@ -27,6 +27,7 @@ class SearchScreenFragment : Fragment() {
     private lateinit var title: TextView
     private lateinit var searchRecyclerView: RecyclerView
     lateinit var autoCompleteTextView: AutoCompleteTextView
+    private val lastSearchesSelected = mutableListOf<DataSearches.ItemSearch>()
 
 
     override fun onCreateView(
@@ -92,7 +93,7 @@ class SearchScreenFragment : Fragment() {
 
 
     fun setUpAdapter() {
-        searchRecyclerView.adapter = DataSearchAdapter(emptyList(), this)
+        searchRecyclerView.adapter = DataSearchAdapter(lastSearchesSelected, this)
     }
 
 
@@ -117,6 +118,15 @@ class SearchScreenFragment : Fragment() {
     fun clearAutoCompleteTextView() {
         autoCompleteTextView.text = null
     }
+
+    fun setLastSearches(model: DataSearches.ItemSearch){
+    model.isSelected = true
+        lastSearchesSelected.add(model)
+        if (lastSearchesSelected.size > 5){
+            lastSearchesSelected.removeAt(0)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
