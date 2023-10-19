@@ -62,7 +62,7 @@ class HomeScreenFragment : Fragment() {
 
         weeklyViewModel.navigateToSearchScreen.observe(viewLifecycleOwner, Observer { shouldNavigate ->
             if (shouldNavigate) {
-                findNavController().navigate(R.id.action_home_screen_to_search_screen)
+                findNavController().navigate(R.id.search_screen)
                 weeklyViewModel.navigateToSearchScreen.postValue(false)
             }
         })
