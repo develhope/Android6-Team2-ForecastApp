@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">meteoapp</string>
+    <string name="app_name">Dev Meteo</string>
     <string name="napoli_campania">Napoli, Campania</string>
     <string name="_10_09">10/09</string>
     <string name="_22">22°</string>
