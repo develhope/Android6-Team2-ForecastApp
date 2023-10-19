@@ -2,11 +2,10 @@ package co.develhope.meteoapp.data
 
 
 import android.util.Log
-import co.develhope.meteoapp.data.domain.WeatherIcon
 import co.develhope.meteoapp.home.WeekItems
 import co.develhope.meteoapp.search.DataSearches
 import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.format.DateTimeFormatter
+
 
 object Data {
 
