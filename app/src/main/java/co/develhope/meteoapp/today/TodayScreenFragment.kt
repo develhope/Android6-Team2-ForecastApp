@@ -37,23 +37,23 @@ class TodayScreenFragment : Fragment() {
 
         val dataSearches = Data.getSearchCity()
 
-        var longitude = DataSearches.itemSearch(
+        var longitude = DataSearches.ItemSearch(
             longitude = 0.0,
             latitude = 0.0,
             recentCitySearch = "",
             admin1 = ""
         ).longitude
-        if (dataSearches is DataSearches.itemSearch) {
+        if (dataSearches is DataSearches.ItemSearch) {
             longitude = dataSearches.longitude
         }
 
-        var latitude = DataSearches.itemSearch(
+        var latitude = DataSearches.ItemSearch(
             longitude = 0.0,
             latitude = 0.0,
             recentCitySearch = "",
             admin1 = ""
         ).latitude
-        if (dataSearches is DataSearches.itemSearch) {
+        if (dataSearches is DataSearches.ItemSearch) {
             latitude = dataSearches.latitude
         }
 

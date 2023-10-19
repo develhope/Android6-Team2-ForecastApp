@@ -15,6 +15,7 @@ object Data {
     private var selectedDate: OffsetDateTime? = OffsetDateTime.now().plusDays(1)
     private var selectedCondition: Int? = 0
     private var todayCondition: Int? = 0
+    private val recentSearches : MutableList<DataSearches> = mutableListOf()
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
@@ -78,6 +79,18 @@ object Data {
     fun getTodayCondition(): Int?{
         return todayCondition
     }
+
+    fun saveSearchedCity(data: DataSearches){
+        recentSearches.add(data)
+        if(recentSearches.size > 5){
+            recentSearches.removeAt(0)
+        }
+    }
+
+    fun getRecentSearches() : List<DataSearches>{
+        return recentSearches.toList()
+    }
+
 
 }
 

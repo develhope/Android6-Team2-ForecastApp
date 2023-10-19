@@ -3,19 +3,19 @@ package co.develhope.meteoapp.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
+import co.develhope.meteoapp.search.adapter.DataSearchAdapter
 
 
 class SearchScreenFragment : Fragment() {
@@ -24,7 +24,11 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: ArrayAdapter<DataSearches>
+    private lateinit var title: TextView
+    private lateinit var searchRecyclerView: RecyclerView
+    lateinit var autoCompleteTextView: AutoCompleteTextView
+    private val lastSearchesSelected = mutableListOf<DataSearches.ItemSearch>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,32 +41,31 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        // This is my search adapter.
-        adapter = ArrayAdapter<DataSearches>(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            mutableListOf()
-        )
-        binding.searchEditText.setAdapter(adapter)
+        autoCompleteTextView = binding.root.findViewById(R.id.search_auto_complete_text_view)
+        title = binding.title
+        searchRecyclerView = binding.searchRecyclerView
 
 
-        // Click listener for taking the position and save data network in a local data.
-        binding.searchEditText.onItemClickListener =
-            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
-                val item: DataSearches? = adapter.getItem(p2)
-                Data.saveSearchCity(item)
-                findNavController().navigate(R.id.action_search_to_home_screen)
-                Log.d("DATA SAVED", "Success: $item")
-            }
+        val recentSearches = Data.getRecentSearches()
+        binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches, this)
 
 
-        binding.searchEditText.addTextChangedListener(object : TextWatcher {
+
+        binding.searchAutoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 if (!s.isEmpty() && s.length >= 3) {
+
+                    title.visibility = View.GONE
+                    searchRecyclerView.visibility = View.GONE
+
                     searchViewModel.getPlaces(s.toString())
+                    setUpAdapter()
+                    observerSearch()
+                } else {
+                    title.visibility = View.VISIBLE
+                    searchRecyclerView.visibility = View.VISIBLE
                 }
             }
         })
@@ -70,36 +73,66 @@ class SearchScreenFragment : Fragment() {
         observerSearch()
     }
 
+
     private fun SearchDataLocal?.toDataSearches(): List<DataSearches> {
         val newList = mutableListOf<DataSearches>()
         this?.forEach {
             val cityName = it.name.toString()
             newList.add(
-                DataSearches.itemSearch(
+                DataSearches.ItemSearch(
                     recentCitySearch = cityName,
                     admin1 = it.admin1,
                     latitude = it.latitude,
                     longitude = it.longitude
                 )
             )
+
         }
         return newList
     }
 
+
+    fun setUpAdapter() {
+        searchRecyclerView.adapter = DataSearchAdapter(lastSearchesSelected, this)
+    }
+
+
     fun observerSearch() {
         searchViewModel.cityHints.observe(viewLifecycleOwner) { hints ->
-            hints?.let {
-                if (::adapter.isInitialized) {
-                    adapter.addAll(hints.toDataSearches())
-                }
+
+            val adapter = binding.searchRecyclerView.adapter as DataSearchAdapter
+            adapter.setNewList(hints.toDataSearches())
+
+            if (hints?.isNotEmpty() == true) {
+                title.visibility = View.GONE
+                searchRecyclerView.visibility = View.VISIBLE
+            } else {
+                title.visibility = View.VISIBLE
+                searchRecyclerView.visibility = View.GONE
             }
+
         }
-
-
     }
+
+
+    fun clearAutoCompleteTextView() {
+        autoCompleteTextView.text = null
+    }
+
+    fun setLastSearches(model: DataSearches.ItemSearch){
+    model.isSelected = true
+        lastSearchesSelected.add(model)
+        if (lastSearchesSelected.size > 5){
+            lastSearchesSelected.removeAt(0)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
+

@@ -16,6 +16,9 @@ class SearchViewModel : ViewModel() {
     val cityHints: LiveData<SearchDataLocal?>
         get() = _cityHints
 
+
+
+
     fun getPlaces(place: String) {
 //        Log.d("GET PLACES", place)
         viewModelScope.launch(IO) {
