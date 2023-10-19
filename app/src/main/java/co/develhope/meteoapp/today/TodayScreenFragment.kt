@@ -86,11 +86,15 @@ class TodayScreenFragment : Fragment() {
 
     private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
 
+        val filteredList = this?.filter {
+            it.time.isEqual(OffsetDateTime.now()) || it.time.isAfter(OffsetDateTime.now())
+        }
+
         val newList = mutableListOf<HourlyForecastItems>()
 
         newList.add(HourlyForecastItems.Title(Data.getCityLocation(), OffsetDateTime.now()))
 
-        this?.forEach { hourly ->
+        filteredList?.forEach { hourly ->
             newList.add(
                 HourlyForecastItems.Forecast(
                     HourlyForecast(

@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.threeten.bp.OffsetDateTime
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +53,17 @@ class MainActivity : AppCompatActivity() {
                         it.onNavDestinationSelected(navController)
                     }
 
+                    true
+                }
+
+                R.id.tomorrow_screen -> {
+                    // Reset selected date to tomorrow
+                    val tomorrow = OffsetDateTime.now().plusDays(1)
+                    Data.saveDate(tomorrow)
+
+                    if (!navController.popBackStack(R.id.tomorrow_screen, false)) {
+                        it.onNavDestinationSelected(navController)
+                    }
                     true
                 }
 

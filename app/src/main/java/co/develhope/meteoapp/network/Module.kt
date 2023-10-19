@@ -69,9 +69,4 @@ class Module() {
             .addInterceptor(loggingInterceptor)
             .build()
     }
-
-    private val retrofit = provideRetrofit(
-        client = provideOkHttpClient(loggingInterceptor = provideHttpLoggingInterceptor()),
-        gson = provideGson()
-    )
 }

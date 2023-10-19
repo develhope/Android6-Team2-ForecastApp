@@ -10,12 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import co.develhope.meteoapp.R
+import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.local.toWeekItems
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
 import co.develhope.meteoapp.home.adapter.WeekAdapter
-
-
-
+import co.develhope.meteoapp.search.DataSearches
 
 
 class HomeScreenFragment : Fragment() {
@@ -32,17 +31,30 @@ class HomeScreenFragment : Fragment() {
         return root
     }
 
-    override fun onStart() {
-        super.onStart()
-        weeklyViewModel.getWeekly()
-        setupAdapter()
-        setupObserver()
-    }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        weeklyViewModel.getWeekly()
+        val dataSearches = Data.getSearchCity()
+
+        var longitude = DataSearches.itemSearch(
+            longitude = 0.0,
+            latitude = 0.0,
+            recentCitySearch = "",
+            admin1 = ""
+        ).longitude
+        if (dataSearches is DataSearches.itemSearch) {
+            longitude = dataSearches.longitude
+        }
+
+        var latitude = DataSearches.itemSearch(
+            longitude = 0.0,
+            latitude = 0.0,
+            recentCitySearch = "",
+            admin1 = ""
+        ).latitude
+        if (dataSearches is DataSearches.itemSearch) {
+            latitude = dataSearches.latitude
+        }
+        weeklyViewModel.getWeekly(latitude!!, longitude!!)
         setupAdapter()
         setupObserver()
 
