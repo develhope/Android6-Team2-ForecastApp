@@ -22,6 +22,9 @@
 
 
     </fragment>
+
+
+
     <fragment
         android:id="@+id/today_screen"
         android:name="co.develhope.meteoapp.ui.today.TodayScreenFragment"
@@ -29,6 +32,9 @@
         tools:layout="@layout/fragment_today_screen">
 
     </fragment>
+
+
+
     <fragment
         android:id="@+id/tomorrow_screen"
         android:name="co.develhope.meteoapp.ui.tomorrow.TomorrowScreenFragment"
@@ -36,6 +42,9 @@
         tools:layout="@layout/fragment_tomorrow_screen">
 
     </fragment>
+
+
+
     <fragment
         android:id="@+id/search_screen"
         android:name="co.develhope.meteoapp.ui.search.SearchScreenFragment"
@@ -47,7 +56,10 @@
             app:destination="@id/today_screen" />
 
         <action
-            android:id="@+id/action_search_to_home_screen"
+            android:id="@+id/action_search_to_home"
             app:destination="@id/home_screen"/>
     </fragment>
+
+
+
 </navigation>
