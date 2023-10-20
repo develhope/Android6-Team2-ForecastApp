@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager2.widget.ViewPager2
 import co.develhope.meteoapp.R.id
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.ActivityMainBinding
@@ -28,15 +29,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(id.nav_host_fragment_content_main)
         val bottomNav: BottomNavigationView = binding.bottomNavigationView
 
+        val viewPager: ViewPager2 = binding.swipper
+        val pagerAdapter = ViewPageAdapter(this)
+        viewPager.adapter = pagerAdapter
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.home_screen -> bottomNav.menu.findItem(R.id.home_screen).isChecked = true
-//                R.id.today_screen -> bottomNav.menu.findItem(R.id.today_screen).isChecked = true
-//                R.id.tomorrow_screen -> bottomNav.menu.findItem(R.id.tomorrow_screen).isChecked = true
-//                R.id.search_screen -> bottomNav.menu.findItem(R.id.search_screen).isChecked = true
-//            }
-//        }
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                bottomNav.menu.getItem(position).isChecked = true
+            }
+        })
 
         bottomNav.setupWithNavController(navController)
         bottomNav.setOnItemSelectedListener {
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 id.search_screen -> {
                     if (!navController.popBackStack(id.search_screen, false)) {
                         it.onNavDestinationSelected(navController)
+                        viewPager.currentItem = 3
                     }
 
                     true
@@ -52,6 +54,16 @@ class MainActivity : AppCompatActivity() {
                 id.home_screen -> {
                     if (!navController.popBackStack(id.home_screen, false)) {
                         it.onNavDestinationSelected(navController)
+                        viewPager.currentItem = 0
+                    }
+
+                    true
+                }
+
+                id.today_screen -> {
+                    if (!navController.popBackStack(id.today_screen, false)) {
+                        it.onNavDestinationSelected(navController)
+                        viewPager.currentItem = 1
                     }
 
                     true
@@ -64,19 +76,17 @@ class MainActivity : AppCompatActivity() {
 
                     if (!navController.popBackStack(id.tomorrow_screen, false)) {
                         it.onNavDestinationSelected(navController)
+                        viewPager.currentItem = 2
                     }
                     true
                 }
 
                 else -> {
                     it.onNavDestinationSelected(navController)
+                    false
                 }
             }
 
-//        bottomNav.setOnItemSelectedListener {
-//            it.onNavDestinationSelected(navController)
-//            true
-//        }
         }
 
     }
