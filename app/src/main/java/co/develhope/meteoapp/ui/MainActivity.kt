@@ -29,15 +29,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(id.nav_host_fragment_content_main)
         val bottomNav: BottomNavigationView = binding.bottomNavigationView
 
-        val viewPager: ViewPager2 = binding.swipper
-        val pagerAdapter = ViewPageAdapter(this)
-        viewPager.adapter = pagerAdapter
-
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                bottomNav.menu.getItem(position).isChecked = true
-            }
-        })
+//        val viewPager: ViewPager2 = binding.pageChanger
+//        val pagerAdapter = ViewPageAdapter(this)
+//        viewPager.adapter = pagerAdapter
+//
+//        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                bottomNav.menu.getItem(position).isChecked = true
+//            }
+//        })
 
         bottomNav.setupWithNavController(navController)
         bottomNav.setOnItemSelectedListener {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 id.search_screen -> {
                     if (!navController.popBackStack(id.search_screen, false)) {
                         it.onNavDestinationSelected(navController)
-                        viewPager.currentItem = 3
+//                        viewPager.currentItem = 3
                     }
 
                     true
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 id.home_screen -> {
                     if (!navController.popBackStack(id.home_screen, false)) {
                         it.onNavDestinationSelected(navController)
-                        viewPager.currentItem = 0
+//                        viewPager.currentItem = 0
                     }
 
                     true
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 id.today_screen -> {
                     if (!navController.popBackStack(id.today_screen, false)) {
                         it.onNavDestinationSelected(navController)
-                        viewPager.currentItem = 1
+//                        viewPager.currentItem = 1
                     }
 
                     true
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
                     if (!navController.popBackStack(id.tomorrow_screen, false)) {
                         it.onNavDestinationSelected(navController)
-                        viewPager.currentItem = 2
+//                        viewPager.currentItem = 2
                     }
                     true
                 }

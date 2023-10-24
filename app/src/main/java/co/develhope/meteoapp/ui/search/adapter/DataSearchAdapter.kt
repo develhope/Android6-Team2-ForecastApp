@@ -10,7 +10,6 @@ import co.develhope.meteoapp.ui.search.SearchScreenFragment
 import co.develhope.meteoapp.ui.search.adapter.viewholder.RecentSearchViewHolder
 import co.develhope.meteoapp.ui.search.adapter.viewholder.SearchTitleViewHolder
 import co.develhope.meteoapp.ui.search.adapter.viewholder.SearchViewHolder
-import co.develhope.meteoapp.ui.search.adapter.DataSearches.Companion
 import co.develhope.meteoapp.ui.search.adapter.DataSearches.ItemSearch
 import co.develhope.meteoapp.ui.search.adapter.DataSearches.RecentSearch
 import co.develhope.meteoapp.ui.search.adapter.DataSearches.SearchTitle

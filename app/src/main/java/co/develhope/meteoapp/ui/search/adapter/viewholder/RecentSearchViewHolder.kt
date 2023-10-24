@@ -15,7 +15,7 @@ class RecentSearchViewHolder(val binding: SearchRecyclerviewItemBinding) :
         binding.searchRecentCityItem.text = "${model.citySearch.recentCitySearch}, ${model.citySearch.admin1}"
         binding.root.setOnClickListener {
             Data.saveSearchedCity(model)
-            binding.root.findNavController().navigate(R.id.action_search_to_home_screen)
+            binding.root.findNavController().navigate(R.id.action_search_to_home)
         }
 
     }
