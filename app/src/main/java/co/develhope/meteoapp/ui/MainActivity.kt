@@ -7,9 +7,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.widget.ViewPager2
+import co.develhope.meteoapp.R
 import co.develhope.meteoapp.R.id
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.ActivityMainBinding
+import co.develhope.meteoapp.ui.error_screen.ErrorScreenFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.threeten.bp.OffsetDateTime
 
