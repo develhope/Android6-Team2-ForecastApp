@@ -7,36 +7,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AutoCompleteTextView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
-import co.develhope.meteoapp.data.domain.SearchDataLocal
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearchAdapter
-import co.develhope.meteoapp.ui.search.adapter.DataSearches
 
 
 class SearchScreenFragment : Fragment() {
-
-    private val searchViewModel: SearchViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by activityViewModels()
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
-    private lateinit var title: TextView
-    private lateinit var searchRecyclerView: RecyclerView
-    lateinit var autoCompleteTextView: AutoCompleteTextView
-    private val lastSearchesSelected = mutableListOf<DataSearches.ItemSearch>()
-
-
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSearchScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,106 +34,68 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        autoCompleteTextView = binding.root.findViewById(R.id.searchAutoCompleteTextView)
-        title = binding.title
-        searchRecyclerView = binding.searchRecyclerView
-
-
-        val recentSearches = Data.getRecentSearches()
-        binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches, this)
-
-
-        binding.xIconClick.setOnClickListener {
+        binding.searchRecyclerView.adapter = DataSearchAdapter(
+            searchList = Data.getRecentSearches(),
+            onClick = { model ->
+                Data.saveSearchCity(model)
                 clearAutoCompleteTextView()
-                Log.d("X ICON CLICKED", "CLICK CLICK CLICK !")
-        }
-
-        binding.searchAutoCompleteTextView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                if (!s.isEmpty() && s.length >= 3) {
-
-                    title.visibility = View.GONE
-                    searchRecyclerView.visibility = View.GONE
-                    binding.xIconClick.visibility = View.VISIBLE
-
-
-                    searchViewModel.getPlaces(s.toString())
-                    setUpAdapter()
-                    observerSearch()
-                } else {
-                    title.visibility = View.VISIBLE
-                    searchRecyclerView.visibility = View.VISIBLE
-                    binding.xIconClick.visibility = View.GONE
-                }
+                searchViewModel.clearSearch()
+                findNavController().navigate(R.id.action_search_to_home)
             }
-        })
+        )
 
         observerSearch()
-    }
 
-
-    private fun SearchDataLocal?.toDataSearches(): List<DataSearches> {
-        val newList = mutableListOf<DataSearches>()
-        this?.forEach {
-            val cityName = it.name.toString()
-            newList.add(
-                DataSearches.ItemSearch(
-                    recentCitySearch = cityName,
-                    admin1 = it.admin1,
-                    latitude = it.latitude,
-                    longitude = it.longitude
-                )
-            )
-
+        binding.xIconClick.setOnClickListener {
+            clearAutoCompleteTextView()
+            Log.d("X ICON CLICKED", "CLICK CLICK CLICK !")
         }
-        return newList
+
+        binding.searchAutoCompleteTextView.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun afterTextChanged(s: Editable) {
+                    if (s.isEmpty()) {
+                        binding.xIconClick.visibility = View.GONE
+
+                        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(Data.getRecentSearches())
+                    } else {
+                        binding.xIconClick.visibility = View.VISIBLE
+
+                        searchViewModel.getPlaces(s.toString())
+                    }
+                }
+            })
     }
 
-
-    fun setUpAdapter() {
-        searchRecyclerView.adapter = DataSearchAdapter(lastSearchesSelected, this)
-    }
-
-
-    fun observerSearch() {
+    private fun observerSearch() {
         searchViewModel.cityHints.observe(viewLifecycleOwner) { hints ->
-
-            val adapter = binding.searchRecyclerView.adapter as DataSearchAdapter
-            adapter.setNewList(hints.toDataSearches())
-
-            if (hints?.isNotEmpty() == true) {
-                title.visibility = View.GONE
-                searchRecyclerView.visibility = View.VISIBLE
-
-            } else {
-                title.visibility = View.VISIBLE
-                searchRecyclerView.visibility = View.GONE
-            }
-
+            hints
+                ?.toDataSearches()
+                ?.let { newList ->
+                    (binding.searchRecyclerView.adapter as? DataSearchAdapter)
+                        ?.setNewList(newList)
+                }
         }
     }
 
-
-    fun clearAutoCompleteTextView() {
-        autoCompleteTextView.text = null
-
-    }
-
-    fun setLastSearches(model: DataSearches.ItemSearch) {
-        model.isSelected = true
-        lastSearchesSelected.add(model)
-        if (lastSearchesSelected.size > 5) {
-            lastSearchesSelected.removeAt(0)
-        }
+    private fun clearAutoCompleteTextView() {
+        binding.searchAutoCompleteTextView.setText("")
+        binding.xIconClick.visibility = View.GONE
+        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(Data.getRecentSearches())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
 

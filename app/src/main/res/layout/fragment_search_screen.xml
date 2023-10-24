@@ -33,12 +33,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-            <AutoCompleteTextView
+            <EditText
                 android:id="@+id/searchAutoCompleteTextView"
-                android:layout_width="@dimen/search_edit_text_width"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.7"
                 android:backgroundTint="@color/white"
@@ -67,28 +64,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter"
-        android:text="Ricerche Recenti"
-        android:textColor="@color/blue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/search_recyclerview_item" />
-
-
 </LinearLayout>

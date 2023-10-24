@@ -1,9 +1,6 @@
 package co.develhope.meteoapp.ui.search.adapter.viewholder
 
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
 import co.develhope.meteoapp.ui.search.SearchScreenFragment
@@ -15,13 +12,10 @@ class SearchViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(model: DataSearches.ItemSearch, fragment: SearchScreenFragment) {
+    fun onBind(model: DataSearches.ItemSearch, onClick: (DataSearches.ItemSearch) -> Unit) {
         binding.searchRecentCityItem.text = "${model.recentCitySearch}, ${model.admin1}"
         binding.root.setOnClickListener {
-            Data.saveSearchCity(model)
-                binding.root.findNavController().navigate(R.id.action_search_to_home)
-                fragment.clearAutoCompleteTextView()
+            onClick(model)
         }
     }
-
 }

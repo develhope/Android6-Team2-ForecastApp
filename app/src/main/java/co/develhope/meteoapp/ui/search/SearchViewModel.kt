@@ -11,20 +11,21 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
-    val repo = SearchRepo()
+    private val repo = SearchRepo()
 
     private val _cityHints = MutableLiveData<SearchDataLocal?>()
+
     val cityHints: LiveData<SearchDataLocal?>
         get() = _cityHints
 
-
-
+    fun clearSearch() {
+        _cityHints.postValue(null)
+    }
 
     fun getPlaces(place: String) {
 //        Log.d("GET PLACES", place)
         viewModelScope.launch(IO) {
-
-            var response = repo.getSearch(place)
+            val response = repo.getSearch(place)
             if (response != null) {
                 _cityHints.postValue(response)
                 response.forEach {
