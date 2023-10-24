@@ -11,7 +11,7 @@ import co.develhope.meteoapp.ui.search.adapter.DataSearches
 
 
 class SearchViewHolder(
-    private val binding: SearchRecyclerviewItemBinding,
+    private val binding: SearchRecyclerviewItemBinding
 ) :
     RecyclerView.ViewHolder(binding.root) {
 

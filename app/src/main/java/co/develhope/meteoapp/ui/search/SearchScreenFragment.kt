@@ -3,6 +3,7 @@ package co.develhope.meteoapp.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class SearchScreenFragment : Fragment() {
     private val lastSearchesSelected = mutableListOf<DataSearches.ItemSearch>()
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +44,7 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        autoCompleteTextView = binding.root.findViewById(R.id.search_auto_complete_text_view)
+        autoCompleteTextView = binding.root.findViewById(R.id.searchAutoCompleteTextView)
         title = binding.title
         searchRecyclerView = binding.searchRecyclerView
 
@@ -51,6 +53,10 @@ class SearchScreenFragment : Fragment() {
         binding.searchRecyclerView.adapter = DataSearchAdapter(recentSearches, this)
 
 
+        binding.xIconClick.setOnClickListener {
+                clearAutoCompleteTextView()
+                Log.d("X ICON CLICKED", "CLICK CLICK CLICK !")
+        }
 
         binding.searchAutoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -60,6 +66,8 @@ class SearchScreenFragment : Fragment() {
 
                     title.visibility = View.GONE
                     searchRecyclerView.visibility = View.GONE
+                    binding.xIconClick.visibility = View.VISIBLE
+
 
                     searchViewModel.getPlaces(s.toString())
                     setUpAdapter()
@@ -67,6 +75,7 @@ class SearchScreenFragment : Fragment() {
                 } else {
                     title.visibility = View.VISIBLE
                     searchRecyclerView.visibility = View.VISIBLE
+                    binding.xIconClick.visibility = View.GONE
                 }
             }
         })
@@ -107,6 +116,7 @@ class SearchScreenFragment : Fragment() {
             if (hints?.isNotEmpty() == true) {
                 title.visibility = View.GONE
                 searchRecyclerView.visibility = View.VISIBLE
+
             } else {
                 title.visibility = View.VISIBLE
                 searchRecyclerView.visibility = View.GONE
@@ -118,16 +128,16 @@ class SearchScreenFragment : Fragment() {
 
     fun clearAutoCompleteTextView() {
         autoCompleteTextView.text = null
+
     }
 
-    fun setLastSearches(model: DataSearches.ItemSearch){
-    model.isSelected = true
+    fun setLastSearches(model: DataSearches.ItemSearch) {
+        model.isSelected = true
         lastSearchesSelected.add(model)
-        if (lastSearchesSelected.size > 5){
+        if (lastSearchesSelected.size > 5) {
             lastSearchesSelected.removeAt(0)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
