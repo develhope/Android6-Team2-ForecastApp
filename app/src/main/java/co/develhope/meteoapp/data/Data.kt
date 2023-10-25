@@ -81,10 +81,12 @@ object Data {
         return todayCondition
     }
 
-    fun saveSearchedCityList(data: DataSearches){
-        recentSearches.add(data)
-        if(recentSearches.size > 5){
-            recentSearches.removeAt(0)
+    fun saveSearchedCityList(data: DataSearches) {
+        if (!recentSearches.contains(data)) {
+            recentSearches.add(data)
+            if (recentSearches.size > 5) {
+                recentSearches.removeAt(0)
+            }
         }
     }
 
@@ -92,6 +94,13 @@ object Data {
         return listOf(DataSearches.SearchTitle("Ricerche recenti")) + recentSearches.toList()
     }
 
+
+    fun moveSearchToTop(selectedItem: DataSearches) {
+        if (recentSearches.contains(selectedItem)) {
+            recentSearches.remove(selectedItem)
+            recentSearches.add(0, selectedItem)
+        }
+    }
 
 }
 

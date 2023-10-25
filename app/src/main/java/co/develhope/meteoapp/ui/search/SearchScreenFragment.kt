@@ -14,6 +14,7 @@ import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearchAdapter
+import co.develhope.meteoapp.ui.search.adapter.DataSearches
 
 
 class SearchScreenFragment : Fragment() {
@@ -21,6 +22,8 @@ class SearchScreenFragment : Fragment() {
 
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
+
+    private var selectedSearchItem: DataSearches? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +41,7 @@ class SearchScreenFragment : Fragment() {
             searchList = Data.getRecentSearches(),
             onClick = { model ->
                 Data.saveSearchCity(model)
+                moveSelectedSearchToTop(model)
                 clearAutoCompleteTextView()
                 searchViewModel.clearSearch()
                 findNavController().navigate(R.id.action_search_to_home)
@@ -91,6 +95,10 @@ class SearchScreenFragment : Fragment() {
         binding.searchAutoCompleteTextView.setText("")
         binding.xIconClick.visibility = View.GONE
         (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(Data.getRecentSearches())
+    }
+
+    private fun moveSelectedSearchToTop(selectedItem: DataSearches) {
+        Data.moveSearchToTop(selectedItem)
     }
 
     override fun onDestroyView() {
