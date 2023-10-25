@@ -77,7 +77,7 @@ class WeekAdapter(private var items: List<WeekItems>, private val onClick: (Week
         when (holder) {
             is TodayViewHolder -> holder.bind(item as Today, onClick)
             is DaysViewHolder -> holder.bind(item as Days, onClick)
-            is TitleViewHolder -> holder.bind(item as HomeTitle)
+            is TitleViewHolder -> holder.bind(item as HomeTitle, onClick)
             is SubtitleViewHolder -> holder.bind(item as HomeSubtitle)
             else -> throw Exception("Invalid ViewHolder Not Recognized")
         }
