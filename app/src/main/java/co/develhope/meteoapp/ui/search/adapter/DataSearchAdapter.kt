@@ -1,25 +1,22 @@
 package co.develhope.meteoapp.ui.search.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import co.develhope.meteoapp.databinding.RecentSearchTitleBinding
 import co.develhope.meteoapp.databinding.SearchRecyclerviewItemBinding
-import co.develhope.meteoapp.ui.search.SearchScreenFragment
-import co.develhope.meteoapp.ui.search.adapter.viewholder.RecentSearchViewHolder
+import co.develhope.meteoapp.ui.search.adapter.DataSearches.ItemSearch
+import co.develhope.meteoapp.ui.search.adapter.DataSearches.SearchTitle
 import co.develhope.meteoapp.ui.search.adapter.viewholder.SearchTitleViewHolder
 import co.develhope.meteoapp.ui.search.adapter.viewholder.SearchViewHolder
-import co.develhope.meteoapp.ui.search.adapter.DataSearches.ItemSearch
-import co.develhope.meteoapp.ui.search.adapter.DataSearches.RecentSearch
-import co.develhope.meteoapp.ui.search.adapter.DataSearches.SearchTitle
 
 
 class DataSearchAdapter(
-    var searchList: List<DataSearches>, private val fragment: SearchScreenFragment
+    private var searchList: List<DataSearches>,
+    private val onClick: (ItemSearch) -> Unit
 ) : Adapter<ViewHolder>() {
-
-
     override fun getItemViewType(position: Int): Int {
         return searchList[position].type
     }
@@ -38,12 +35,6 @@ class DataSearchAdapter(
                 )
             )
 
-            DataSearches.recentSearchId -> RecentSearchViewHolder(
-                SearchRecyclerviewItemBinding.inflate(
-                    LayoutInflater.from(parent.context), parent, false
-                )
-            )
-
             else -> throw Exception("Error: Invalid view holder")
         }
     }
@@ -56,17 +47,18 @@ class DataSearchAdapter(
         val search = searchList[position]
 
         when (holder) {
-            is SearchViewHolder -> holder.onBind(search as ItemSearch, fragment)
+            is SearchViewHolder -> holder.onBind(
+                model = search as ItemSearch,
+                onClick = onClick
+            )
+
             is SearchTitleViewHolder -> holder.onBind(search as SearchTitle)
-            is RecentSearchViewHolder -> holder.onBind(search as RecentSearch)
         }
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     fun setNewList(newList: List<DataSearches>) {
         searchList = newList
         notifyDataSetChanged()
     }
-
-
 }

@@ -8,7 +8,6 @@ sealed class DataSearches(val type: Int) {
         val admin1: String?,
         val longitude: Double?,
         val latitude: Double?,
-        var isSelected: Boolean = false
     ) : DataSearches(
         itemSearchId
     ) {
@@ -19,13 +18,9 @@ sealed class DataSearches(val type: Int) {
 
     data class SearchTitle(val title: String) : DataSearches(searchTitleId)
 
-    data class RecentSearch(val citySearch: ItemSearch) : DataSearches(recentSearchId)
-
-
     companion object {
         const val itemSearchId = 1
         const val searchTitleId = 2
-        const val recentSearchId = 3
     }
 
 }

@@ -31,18 +31,16 @@
                 android:src="@drawable/search_vector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
-
-
-            <AutoCompleteTextView
-                android:id="@+id/search_auto_complete_text_view"
-                android:layout_width="@dimen/search_edit_text_width"
+            <EditText
+                android:id="@+id/searchAutoCompleteTextView"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.7"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/inter"
+                android:paddingStart="50dp"
                 android:hint="@string/city_search"
                 android:inputType="text"
                 android:textSize="@dimen/text_size_hint_search"
@@ -50,34 +48,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/search_vector"
                 app:layout_constraintTop_toTopOf="parent" />
-            
 
+            <ImageView
+                android:id="@+id/x_icon_click"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/x_icon"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ricerche Recenti"
-        android:textSize="18sp"
-        android:visibility="gone"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="28dp"
-        android:fontFamily="@font/inter"
-        android:textColor="@color/blue"
-        android:textStyle="bold"/>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/search_recyclerview_item" />
-
-
 </LinearLayout>
