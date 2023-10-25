@@ -66,4 +66,5 @@
     <dimen name="elevation_cardView_list_today_screen">16dp</dimen>
     <dimen name="cardCornerRadius_cardView_list_today_screen">8dp</dimen>
     <dimen name="padding_cardView_list_today_screen">12dp</dimen>
+    <dimen name="marginEnd_textView_home_title">24dp</dimen>
 </resources>
