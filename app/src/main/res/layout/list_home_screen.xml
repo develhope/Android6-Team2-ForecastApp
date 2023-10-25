@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <RelativeLayout
-                 android:layout_height="match_parent"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:padding="@dimen/padding_card_view_home_list_item">
 
@@ -35,8 +35,7 @@
                     tools:text="@string/oggi"
                     android:textColor="@color/white"
                     android:textFontWeight="600"
-                    android:textSize="@dimen/textSize_upText_card_view_home_list_item"
-                    />
+                    android:textSize="@dimen/textSize_upText_card_view_home_list_item" />
 
                 <TextView
                     android:id="@+id/text_day_of_month_list"
@@ -49,8 +48,6 @@
                     android:textColor="@color/white"
                     android:textFontWeight="400"
                     android:textSize="@dimen/textSize__smallText_card_view_home_list_item"
-                    app:layout_constraintTop_toBottomOf="@+id/text_day_of_week_list"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_below="@+id/text_day_of_week_list"/>
 
 
@@ -64,7 +61,10 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_mediumText_card_view_home_list_item"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:paddingEnd="@dimen/paddingEnd_mediumText_card_view_home_list_item"
+                    tools:ignore="RtlSymmetry" />
+
 
                 <TextView
                     android:id="@+id/text_min_list"
@@ -77,11 +77,8 @@
                     android:textColor="@color/white"
                     android:textFontWeight="400"
                     android:textSize="@dimen/textSize__smallText_card_view_home_list_item"
-                    app:layout_constraintTop_toBottomOf="@+id/text_min_num_list"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/text_min_num_list"/>
+                    android:layout_below="@id/text_min_num_list"
+                    android:layout_alignStart="@id/text_min_num_list"/>
 
 
                 <TextView
@@ -94,9 +91,8 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_mediumText_card_view_home_list_item"
-                    android:layout_toRightOf="@+id/text_min_num_list"
-                    android:layout_marginLeft="@dimen/marginLeft_mediumText_card_view_home_list_item"/>
-
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/marginEnd_mediumText_card_view_home_list_item"/>
                 <TextView
                     android:id="@+id/text_max_list"
                     android:layout_width="wrap_content"
@@ -130,8 +126,9 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_mediumText_card_view_home_list_item"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@+id/text_precip_list"/>
+                    android:layout_marginStart="@dimen/marginStart_small_mediumText_card_view_home_list_item"
+                    android:layout_alignStart="@id/text_min_num_list"
+                    android:layout_above="@+id/text_precip_list" />
 
                 <TextView
                     android:id="@+id/text_precip_list"
@@ -144,23 +141,23 @@
                     android:textColor="@color/white"
                     android:textFontWeight="400"
                     android:textSize="@dimen/textSize__smallText_card_view_home_list_item"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignStart="@id/text_precip_num_list"
                     android:layout_alignParentBottom="true"/>
 
 
                 <TextView
                     android:id="@+id/text_wind_num_list"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_above="@+id/text_wind_list"
+                    android:layout_marginStart="@dimen/marginStart_mediumText_card_view_home_list_item"
                     android:fontFamily="@font/inter"
                     android:lineHeight="@dimen/linerHeight_mediumText_card_view_home_list_item"
-                    tools:text="@string/_6kmh"
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_mediumText_card_view_home_list_item"
-                    android:layout_toRightOf="@+id/text_precip_num_list"
-                    android:layout_marginLeft="40dp"
-                    android:layout_above="@+id/text_wind_list"/>
+                    tools:text="@string/_6kmh"
+                    android:layout_alignStart="@id/text_max_num_list"/>
 
                 <TextView
                     android:id="@+id/text_wind_list"
@@ -174,7 +171,7 @@
                     android:textFontWeight="400"
                     android:textSize="@dimen/textSize__smallText_card_view_home_list_item"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@+id/text_max_list"/>
+                    android:layout_alignStart="@id/text_wind_num_list"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

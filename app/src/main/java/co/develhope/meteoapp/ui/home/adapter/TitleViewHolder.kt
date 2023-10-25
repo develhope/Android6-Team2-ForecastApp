@@ -11,7 +11,7 @@ class TitleViewHolder(private val binding: HomeTitleBinding) : RecyclerView.View
     fun bind(item: HomeTitle, onClick: (WeekItems) -> Unit) {
         binding.homeTitle.text = Data.getCityLocation()
         binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.today_screen)
+            binding.root.findNavController().navigate(R.id.search_screen)
             onClick(item)
         }
     }

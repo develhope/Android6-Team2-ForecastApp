@@ -23,7 +23,7 @@
     <dimen name="elevation_card_view_home_list_item">8dp</dimen>
     <dimen name="padding_card_view_home_list_item">18dp</dimen>
     <dimen name="linerHeight_upText_card_view_home_list_item">29.05dp</dimen>
-    <dimen name="textSize_upText_card_view_home_list_item">24sp</dimen>
+    <dimen name="textSize_upText_card_view_home_list_item">20sp</dimen>
     <dimen name="textSize__smallText_card_view_home_list_item">15sp</dimen>
     <dimen name="textSize_mediumText_card_view_home_list_item">20sp</dimen>
     <dimen name="linerHeight_smallText_card_view_home_list_item">18.15dp</dimen>
@@ -31,8 +31,8 @@
     <dimen name="marginTop_smallTopText_card_view_home_list_item">3dp</dimen>
     <dimen name="marginTop_smallText_card_view_home_list_item">5dp</dimen>
     <dimen name="marginLeft_mediumText_card_view_home_list_item">60dp</dimen>
-    <dimen name="width_imageView_card_view_home_list_item">46dp</dimen>
-    <dimen name="height_imageView_card_view_home_list_item">47.4dp</dimen>
+    <dimen name="width_imageView_card_view_home_list_item">55dp</dimen>
+    <dimen name="height_imageView_card_view_home_list_item">55dp</dimen>
     <dimen name="today_weather_icon_height">30dp</dimen>
     <dimen name="arrow_icon_width">24dp</dimen>
     <dimen name="arrow_icon_height">24dp</dimen>
@@ -67,4 +67,8 @@
     <dimen name="cardCornerRadius_cardView_list_today_screen">8dp</dimen>
     <dimen name="padding_cardView_list_today_screen">12dp</dimen>
     <dimen name="marginEnd_textView_home_title">24dp</dimen>
+    <dimen name="marginEnd_mediumText_card_view_home_list_item">70dp</dimen>
+    <dimen name="marginStart_mediumText_card_view_home_list_item">10dp</dimen>
+    <dimen name="paddingEnd_mediumText_card_view_home_list_item">25dp</dimen>
+    <dimen name="marginStart_small_mediumText_card_view_home_list_item">5dp</dimen>
 </resources>
