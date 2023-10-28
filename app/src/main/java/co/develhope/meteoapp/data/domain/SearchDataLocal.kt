@@ -2,6 +2,7 @@ package co.develhope.meteoapp.data.domain
 
 import co.develhope.meteoapp.data.domain.SearchDataLocal.ResultLocal
 import co.develhope.meteoapp.data.dto.SearchDataRemote
+import co.develhope.meteoapp.ui.search.adapter.DataSearches
 import retrofit2.Response
 
 class SearchDataLocal : ArrayList<ResultLocal>() {
@@ -11,6 +12,22 @@ class SearchDataLocal : ArrayList<ResultLocal>() {
         val longitude: Double?,
         val name: String?
     )
+    fun toDataSearches(): List<DataSearches> {
+        val newList = mutableListOf<DataSearches>()
+        this.forEach {
+            newList.add(
+                DataSearches.ItemSearch(
+                    recentCitySearch = it.name ?: "--",
+                    admin1 = it.admin1,
+                    latitude = it.latitude,
+                    longitude = it.longitude
+                )
+            )
+
+        }
+        return newList
+    }
+
 }
 
 fun Response<SearchDataRemote>.toSearchDataLocal(): SearchDataLocal? {

@@ -25,9 +25,10 @@ object Data {
     }
 
     // This function is for save da data when users click on search hints.
-    fun saveSearchCity(data: DataSearches?) {
+    fun saveSearchCity(data: DataSearches) {
         Log.d("SAVE DATA", "saved clicked $data")
         searchedData = data
+        saveSearchedCityList(data)
     }
 
     // Use this function for take the saved data.
@@ -80,17 +81,26 @@ object Data {
         return todayCondition
     }
 
-    fun saveSearchedCity(data: DataSearches){
-        recentSearches.add(data)
-        if(recentSearches.size > 5){
-            recentSearches.removeAt(0)
+    fun saveSearchedCityList(data: DataSearches) {
+        if (!recentSearches.contains(data)) {
+            recentSearches.add(data)
+            if (recentSearches.size > 5) {
+                recentSearches.removeAt(0)
+            }
         }
     }
 
     fun getRecentSearches() : List<DataSearches>{
-        return recentSearches.toList()
+        return listOf(DataSearches.SearchTitle("Ricerche recenti")) + recentSearches.toList()
     }
 
+
+    fun moveSearchToTop(selectedItem: DataSearches) {
+        if (recentSearches.contains(selectedItem)) {
+            recentSearches.remove(selectedItem)
+            recentSearches.add(0, selectedItem)
+        }
+    }
 
 }
 
