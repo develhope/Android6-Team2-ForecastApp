@@ -1,7 +1,13 @@
 package co.develhope.meteoapp.data
 
 
+
+
+import android.content.Context
+import android.location.Location
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
+
 import co.develhope.meteoapp.ui.home.adapter.WeekItems
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
 import org.threeten.bp.OffsetDateTime
@@ -16,6 +22,9 @@ object Data {
     private var selectedCondition: Int? = 0
     private var todayCondition: Int? = 0
     private val recentSearches : MutableList<DataSearches> = mutableListOf()
+    private const val PREFERENCES_NAME = "location"
+    private const val KEY_LATITUDE = "latitude"
+    private const val KEY_LONGITUDE = "longitude"
 
     fun getTodayTitle(): String = "Palermo, Sicilia"
 
@@ -81,6 +90,7 @@ object Data {
         return todayCondition
     }
 
+
     fun saveSearchedCityList(data: DataSearches) {
         if (!recentSearches.contains(data)) {
             recentSearches.add(data)
@@ -101,6 +111,28 @@ object Data {
             recentSearches.add(0, selectedItem)
         }
     }
+
+
+    fun saveLocation(context: Context, location: Location) {
+        val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putFloat(KEY_LATITUDE, location.latitude.toFloat())
+            putFloat(KEY_LONGITUDE, location.longitude.toFloat())
+            apply()
+        }
+    }
+
+    fun getLocation(context: Context): Location? {
+        val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        if (sharedPreferences.contains(KEY_LATITUDE) && sharedPreferences.contains(KEY_LONGITUDE)) {
+            val location = Location("")
+            location.latitude = sharedPreferences.getFloat(KEY_LATITUDE, 0f).toDouble()
+            location.longitude = sharedPreferences.getFloat(KEY_LONGITUDE, 0f).toDouble()
+            return location
+        }
+        return null
+    }
+
 
 }
 
