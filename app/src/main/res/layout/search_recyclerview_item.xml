@@ -8,13 +8,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_recycler_view_card"
-        android:layout_width="@dimen/search_item_cardview_width"
-        android:layout_height="@dimen/search_item_cardview_heigth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/search_item_cardview_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +34,10 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/recent_city_item_title"
                 android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

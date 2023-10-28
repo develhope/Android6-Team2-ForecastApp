@@ -12,7 +12,7 @@ class SearchRepo @Inject constructor() {
         cityName : String
     ) : SearchDataLocal? {
 
-        val response = searchService.getSearchCity(cityName, 5, "it")
+        val response = searchService.getSearchCity(cityName, 10, "it")
 
         return response.toSearchDataLocal()
 
