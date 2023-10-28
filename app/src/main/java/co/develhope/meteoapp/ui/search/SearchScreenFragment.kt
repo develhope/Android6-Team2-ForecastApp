@@ -15,8 +15,9 @@ import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearchAdapter
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SearchScreenFragment : Fragment() {
     private val searchViewModel: SearchViewModel by activityViewModels()
 

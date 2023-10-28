@@ -1,17 +1,21 @@
 package co.develhope.meteoapp.ui.search
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.develhope.meteoapp.data.domain.SearchDataLocal
 import co.develhope.meteoapp.network.SearchRepo
+import co.develhope.meteoapp.network.WeatherRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
-    private val repo = SearchRepo()
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val repo: SearchRepo): ViewModel(){
 
     private val _cityHints = MutableLiveData<SearchDataLocal?>()
 

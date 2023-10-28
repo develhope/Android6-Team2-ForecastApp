@@ -4,8 +4,9 @@ import co.develhope.meteoapp.data.domain.DailyDataLocal
 import co.develhope.meteoapp.data.domain.WeeklyDataLocal
 import co.develhope.meteoapp.data.dto.toDailyDataLocal
 import co.develhope.meteoapp.data.dto.toWeeklyDataLocal
+import javax.inject.Inject
 
-class WeatherRepo {
+class WeatherRepo @Inject constructor() {
 
     private val weatherService: WeatherService = Module().getRetrofit().create(WeatherService::class.java)
 

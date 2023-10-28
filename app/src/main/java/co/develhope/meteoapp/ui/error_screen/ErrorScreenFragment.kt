@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.develhope.meteoapp.databinding.FragmentErrorScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ErrorScreenFragment : Fragment() {
 
     private var _binding: FragmentErrorScreenBinding? = null

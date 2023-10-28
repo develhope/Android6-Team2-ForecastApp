@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.develhope.meteoapp.network.WeatherRepo
 import co.develhope.meteoapp.data.domain.WeeklyDataLocal
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeScreenViewModel : ViewModel() {
-    val repo = WeatherRepo()
+@HiltViewModel
+class HomeScreenViewModel @Inject constructor(private val repo: WeatherRepo): ViewModel(){
     val result = MutableLiveData<WeeklyDataLocal?>()
     val isLoading = MutableLiveData<Boolean>()
     val navigateToSearchScreen = MutableLiveData<Boolean>()
