@@ -67,7 +67,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/today_cardview"
         android:layout_width="@dimen/today_cardview_width"
-        android:layout_height="@dimen/today_cardview_height"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop_cardView_list_today_screen"
         android:elevation="@dimen/elevation_cardView_list_today_screen"
         tools:visibility="visible"
@@ -79,7 +79,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/padding_cardView_list_today_screen">
 
             <TextView

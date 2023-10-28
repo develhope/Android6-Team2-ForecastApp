@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.develhope.meteoapp.network.WeatherRepo
 import co.develhope.meteoapp.data.domain.DailyDataLocal
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DailyViewModel : ViewModel() {
-    val repo = WeatherRepo()
+@HiltViewModel
+class DailyViewModel @Inject constructor(private val repo: WeatherRepo): ViewModel() {
 
     private val _result = MutableLiveData<DailyDataLocal?>()
 

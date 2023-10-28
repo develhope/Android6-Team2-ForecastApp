@@ -16,9 +16,11 @@ import co.develhope.meteoapp.databinding.FragmentTomorrowScreenBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
 import co.develhope.meteoapp.ui.today.adapter.HourlyForecastItems
 import co.develhope.meteoapp.ui.tomorrow.adapter.TomorrowAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class TomorrowScreenFragment : Fragment() {
     private var _binding: FragmentTomorrowScreenBinding? = null
     private val binding get() = _binding!!

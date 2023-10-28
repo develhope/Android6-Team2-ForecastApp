@@ -15,9 +15,11 @@ import co.develhope.meteoapp.databinding.FragmentTodayScreenBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
 import co.develhope.meteoapp.ui.today.adapter.HourlyForecastItems
 import co.develhope.meteoapp.ui.today.adapter.TodayAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class TodayScreenFragment : Fragment() {
     private val dailyViewModel: DailyViewModel by viewModels()
 
