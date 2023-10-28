@@ -11,9 +11,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_edit_text_cardview"
-        android:layout_width="@dimen/search_edit_text_cardview_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/search_edit_text_cardview_height"
         android:layout_gravity="center"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
         android:layout_marginTop="78dp"
         android:layout_weight="0"
         app:cardCornerRadius="@dimen/search_edit_text_cardview_corner_radius">
