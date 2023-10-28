@@ -15,8 +15,9 @@ import co.develhope.meteoapp.data.domain.toWeekItems
 import co.develhope.meteoapp.databinding.FragmentHomeScreenBinding
 import co.develhope.meteoapp.ui.home.adapter.WeekAdapter
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeScreenFragment : Fragment() {
     private val weeklyViewModel: HomeScreenViewModel by viewModels()
     private var _binding: FragmentHomeScreenBinding? = null
