@@ -4,6 +4,8 @@ package co.develhope.meteoapp.data
 import android.content.Context
 import android.util.Log
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.threeten.bp.OffsetDateTime
 
 
@@ -14,12 +16,12 @@ object Data {
     private var selectedDate: OffsetDateTime? = OffsetDateTime.now().plusDays(1)
     private var selectedCondition: Int? = 0
     private var todayCondition: Int? = 0
-    private val recentSearches: MutableList<DataSearches> = mutableListOf()
     private const val PREFERENCES_NAME = "location"
     private const val KEY_LATITUDE = "latitude"
     private const val KEY_LONGITUDE = "longitude"
     private const val KEY_NAME = "KEY_NAME"
     private const val KEY_REGION = "KEY_REGION"
+    private const val KEY_SEARCH_LIST = "KEY_SEARCH_LIST"
 
     // This function is for save da data when users click on search hints.
     fun saveSearchCity(context: Context, data: DataSearches.ItemSearch) {
@@ -33,7 +35,7 @@ object Data {
             apply()
         }
 
-        saveSearchedCityList(data)
+        saveSearchedCityList(data, context)
     }
 
     // Use this function for take the saved data.
@@ -98,25 +100,41 @@ object Data {
     }
 
 
-    fun saveSearchedCityList(data: DataSearches) {
+    fun saveSearchedCityList(data: DataSearches.ItemSearch, context: Context) {
+        val recentSearches = getRecentSearches(context)
+            .filterIsInstance<DataSearches.ItemSearch>()
+            .toMutableList()
+
         if (!recentSearches.contains(data)) {
             recentSearches.add(data)
             if (recentSearches.size > 5) {
                 recentSearches.removeAt(0)
             }
+            val sharedPreferences =
+                context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+
+            sharedPreferences
+                .edit()
+                .putString(
+                    KEY_SEARCH_LIST, Gson().toJson(recentSearches)
+                )
+                .apply()
         }
     }
 
-    fun getRecentSearches(): List<DataSearches> {
-        return listOf(DataSearches.SearchTitle("Ricerche recenti")) + recentSearches.toList()
+    fun getRecentSearches(context: Context): List<DataSearches> {
+        val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val jsonList = sharedPreferences.getString(KEY_SEARCH_LIST, "[]") ?: "[]"
+        val jsonToken = object : TypeToken<List<DataSearches.ItemSearch?>>() {}.type
+        val list = Gson().fromJson<List<DataSearches.ItemSearch>>(jsonList, jsonToken)
+        return listOf(DataSearches.SearchTitle("Ricerche recenti")) + list
     }
 
-
-    fun moveSearchToTop(selectedItem: DataSearches) {
-        if (recentSearches.contains(selectedItem)) {
-            recentSearches.remove(selectedItem)
-            recentSearches.add(0, selectedItem)
-        }
-    }
+//    fun moveSearchToTop(selectedItem: DataSearches) {
+//        if (recentSearches.contains(selectedItem)) {
+//            recentSearches.remove(selectedItem)
+//            recentSearches.add(0, selectedItem)
+//        }
+//    }
 }
 

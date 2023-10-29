@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         if (Data.getSearchCity(this) == null) {
             if (ContextCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 // Richiedi il permesso di posizione.
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
                     LOCATION_PERMISSION_REQUEST_CODE
                 )
             }

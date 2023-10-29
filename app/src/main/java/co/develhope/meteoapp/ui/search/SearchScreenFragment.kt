@@ -39,10 +39,10 @@ class SearchScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.searchRecyclerView.adapter = DataSearchAdapter(
-            searchList = Data.getRecentSearches(),
+            searchList = Data.getRecentSearches(requireContext()),
             onClick = { model ->
                 Data.saveSearchCity(requireContext(), model)
-                moveSelectedSearchToTop(model)
+                //moveSelectedSearchToTop(model)
                 clearAutoCompleteTextView()
                 searchViewModel.clearSearch()
                 findNavController().navigate(R.id.action_search_to_home)
@@ -71,7 +71,11 @@ class SearchScreenFragment : Fragment() {
                     if (s.isEmpty()) {
                         binding.xIconClick.visibility = View.GONE
 
-                        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(Data.getRecentSearches())
+                        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(
+                            Data.getRecentSearches(
+                                requireContext()
+                            )
+                        )
                     } else {
                         binding.xIconClick.visibility = View.VISIBLE
 
@@ -95,12 +99,16 @@ class SearchScreenFragment : Fragment() {
     private fun clearAutoCompleteTextView() {
         binding.searchAutoCompleteTextView.setText("")
         binding.xIconClick.visibility = View.GONE
-        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(Data.getRecentSearches())
+        (binding.searchRecyclerView.adapter as? DataSearchAdapter)?.setNewList(
+            Data.getRecentSearches(
+                requireContext()
+            )
+        )
     }
 
-    private fun moveSelectedSearchToTop(selectedItem: DataSearches) {
-        Data.moveSearchToTop(selectedItem)
-    }
+    /*    private fun moveSelectedSearchToTop(selectedItem: DataSearches) {
+            Data.moveSearchToTop(selectedItem)
+        }*/
 
     override fun onDestroyView() {
         super.onDestroyView()
