@@ -37,7 +37,7 @@ class TodayScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataSearches = Data.getSearchCity()
+        val dataSearches = Data.getSearchCity(requireContext())
 
         var longitude = DataSearches.ItemSearch(
             longitude = 0.0,
@@ -94,7 +94,7 @@ class TodayScreenFragment : Fragment() {
 
         val newList = mutableListOf<HourlyForecastItems>()
 
-        newList.add(HourlyForecastItems.Title(Data.getCityLocation(), OffsetDateTime.now()))
+        newList.add(HourlyForecastItems.Title(Data.getCityLocation(requireContext()), OffsetDateTime.now()))
 
         filteredList?.forEach { hourly ->
             newList.add(

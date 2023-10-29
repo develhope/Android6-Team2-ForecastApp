@@ -1,5 +1,6 @@
 package co.develhope.meteoapp.data.domain
 
+import android.content.Context
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.domain.WeeklyDataLocal.WeeklyLocal
 import co.develhope.meteoapp.ui.home.adapter.WeekItems
@@ -15,9 +16,9 @@ class WeeklyDataLocal(): ArrayList<WeeklyLocal>() {
         val windSpeed: Double?
     )
 }
-fun WeeklyDataLocal?.toWeekItems(): List<WeekItems> {
+fun WeeklyDataLocal?.toWeekItems(context: Context): List<WeekItems> {
     val newList = mutableListOf<WeekItems>()
-    newList.add(WeekItems.HomeTitle(Data.getCityLocation()))
+    newList.add(WeekItems.HomeTitle(Data.getCityLocation(context)))
 
     this?.forEach { week ->
         if (week.date.dayOfMonth == OffsetDateTime.now().dayOfMonth) {

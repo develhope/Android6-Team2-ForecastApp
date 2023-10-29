@@ -1,7 +1,9 @@
 package co.develhope.meteoapp.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,16 +13,18 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager2.widget.ViewPager2
 import co.develhope.meteoapp.R.id
 import co.develhope.meteoapp.data.Data
-import co.develhope.meteoapp.data.Data.saveLocation
+import co.develhope.meteoapp.data.Data.saveSearchCity
 import co.develhope.meteoapp.databinding.ActivityMainBinding
+import co.develhope.meteoapp.ui.search.adapter.DataSearches
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.OffsetDateTime
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import java.util.Locale
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -99,32 +103,42 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
-
         }
 
 
-
-               if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                if (location != null) {
-                    saveLocation(this, location)
+        if (Data.getSearchCity(this) == null) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                    if (location != null) {
+                        val geocoder = Geocoder(this, Locale.getDefault())
+                        val loc = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                        saveSearchCity(
+                            this, DataSearches.ItemSearch(
+                                recentCitySearch = loc.firstOrNull()?.locality ?: "---",
+                                admin1 = loc.firstOrNull()?.adminArea ?: "---",
+                                latitude = location.latitude,
+                                longitude = location.longitude
+                            )
+                        )
+                    }
                 }
+            } else {
+                // Richiedi il permesso di posizione.
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    LOCATION_PERMISSION_REQUEST_CODE
+                )
             }
-        } else {
-            // Richiedi il permesso di posizione.
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
         }
     }
 
+    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -133,36 +147,36 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             LOCATION_PERMISSION_REQUEST_CODE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // Il permesso è stato concesso.
-                    if (ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                        ) != PackageManager.PERMISSION_GRANTED
-                    ) {
-                        Toast.makeText(this, "Per favore, concedi il permesso di posizione per permettere all'app di funzionare correttamente.", Toast.LENGTH_LONG).show()
-                        return
-                    }
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
                     fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                         if (location != null) {
-                            saveLocation(this, location)
+                            val geocoder = Geocoder(this, Locale.getDefault())
+                            val loc = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                            saveSearchCity(
+                                this, DataSearches.ItemSearch(
+                                    recentCitySearch = loc.firstOrNull()?.locality ?: "---",
+                                    admin1 = loc.firstOrNull()?.adminArea ?: "---",
+                                    latitude = location.latitude,
+                                    longitude = location.longitude
+                                )
+                            )
                         }
                     }
                 } else {
-                    // Il permesso è stato negato. Mostra all'utente un messaggio appropriato.
+                    Toast.makeText(
+                        this,
+                        "Per favore, concedi il permesso di posizione per permettere all'app di funzionare correttamente.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-                return
             }
 
             else -> {
                 // Ignora tutti gli altri casi.
             }
         }
-
-
     }
 }
 

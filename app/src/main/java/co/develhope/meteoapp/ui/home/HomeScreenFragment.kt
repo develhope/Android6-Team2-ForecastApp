@@ -34,7 +34,7 @@ class HomeScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val dataSearches = Data.getSearchCity()
+        val dataSearches = Data.getSearchCity(requireContext())
 
         var longitude = DataSearches.ItemSearch(
             longitude = 0.0,
@@ -82,7 +82,7 @@ class HomeScreenFragment : Fragment() {
         }
 
         weeklyViewModel.result.observe(viewLifecycleOwner) {
-            (binding.homeRecyclerView.adapter as WeekAdapter).setNewList(it.toWeekItems())
+            (binding.homeRecyclerView.adapter as WeekAdapter).setNewList(it.toWeekItems(requireContext()))
         }
     }
 

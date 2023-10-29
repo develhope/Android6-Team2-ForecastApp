@@ -41,7 +41,7 @@ class SearchScreenFragment : Fragment() {
         binding.searchRecyclerView.adapter = DataSearchAdapter(
             searchList = Data.getRecentSearches(),
             onClick = { model ->
-                Data.saveSearchCity(model)
+                Data.saveSearchCity(requireContext(), model)
                 moveSelectedSearchToTop(model)
                 clearAutoCompleteTextView()
                 searchViewModel.clearSearch()

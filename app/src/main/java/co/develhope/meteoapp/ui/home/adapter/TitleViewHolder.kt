@@ -9,7 +9,7 @@ import co.develhope.meteoapp.ui.home.adapter.WeekItems.HomeTitle
 
 class TitleViewHolder(private val binding: HomeTitleBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(item: HomeTitle, onClick: (WeekItems) -> Unit) {
-        binding.homeTitle.text = Data.getCityLocation()
+        binding.homeTitle.text = Data.getCityLocation(binding.root.context)
         binding.root.setOnClickListener {
             binding.root.findNavController().navigate(R.id.search_screen)
             onClick(item)
