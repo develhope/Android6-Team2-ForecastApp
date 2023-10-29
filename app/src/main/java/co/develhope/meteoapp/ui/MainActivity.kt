@@ -2,9 +2,13 @@ package co.develhope.meteoapp.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -153,7 +157,8 @@ class MainActivity : AppCompatActivity() {
                     fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                         if (location != null) {
                             val geocoder = Geocoder(this, Locale.getDefault())
-                            val loc = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                            val loc =
+                                geocoder.getFromLocation(location.latitude, location.longitude, 1)
                             saveSearchCity(
                                 this, DataSearches.ItemSearch(
                                     recentCitySearch = loc.firstOrNull()?.locality ?: "---",
@@ -178,5 +183,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (!isNetworkAvailable(this)) {
+            findNavController(id.nav_host_fragment_content_main).navigate(id.error_screen)
+            setBottomNavVisibility(View.GONE)
+        }
+
+    }
+
+    fun setBottomNavVisibility(visibility: Int) {
+        binding.bottomNavigationView.visibility = visibility
+    }
+}
+
+fun isNetworkAvailable(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val network = connectivityManager.activeNetwork
+    val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
+
+    return networkCapabilities != null && (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || networkCapabilities.hasTransport(
+        NetworkCapabilities.TRANSPORT_WIFI
+    ))
 }
 
