@@ -57,9 +57,13 @@
 
         <action
             android:id="@+id/action_search_to_home"
-            app:destination="@id/home_screen"/>
+            app:destination="@id/home_screen" />
     </fragment>
 
-
+    <fragment
+        android:id="@+id/error_screen"
+        android:name="co.develhope.meteoapp.ui.error_screen.ErrorScreenFragment"
+        android:label="fragment_error_screen"
+        tools:layout="@layout/fragment_error_screen" />
 
 </navigation>

@@ -38,7 +38,7 @@ class TomorrowScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataSearches = Data.getSearchCity()
+        val dataSearches = Data.getSearchCity(requireContext())
 
         var defaultData = DataSearches.ItemSearch(
             longitude = 12.51,
@@ -82,7 +82,7 @@ class TomorrowScreenFragment : Fragment() {
     private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems>{
         val newList = mutableListOf<HourlyForecastItems>()
 
-        newList.add(HourlyForecastItems.Title(Data.getCityLocation(), OffsetDateTime.now()))
+        newList.add(HourlyForecastItems.Title(Data.getCityLocation(requireContext()), OffsetDateTime.now()))
 
         this?.forEach { hourly ->
             newList.add(
