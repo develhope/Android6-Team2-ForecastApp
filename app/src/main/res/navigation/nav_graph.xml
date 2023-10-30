@@ -66,5 +66,4 @@
         android:label="fragment_error_screen"
         tools:layout="@layout/fragment_error_screen" />
 
-
 </navigation>

@@ -132,12 +132,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                // Richiedi il permesso di posizione.
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE
-                )
+                requestLocationPermission()
             }
         }
     }
@@ -155,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                 transaction.replace(
                     id.nav_host_fragment_content_main,
                     WelcomeScreen()
-                ) // R.id.fragmentContainer è l'ID del container in cui mostri i fragment
+                )
                 transaction.commit()
                 setBottomNavVisibility(View.GONE)
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -197,6 +192,14 @@ class MainActivity : AppCompatActivity() {
 
     fun setBottomNavVisibility(visibility: Int) {
         binding.bottomNavigationView.visibility = visibility
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
     }
 }
 
