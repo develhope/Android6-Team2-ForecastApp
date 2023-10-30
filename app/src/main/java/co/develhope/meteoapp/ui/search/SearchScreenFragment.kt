@@ -59,6 +59,10 @@ class SearchScreenFragment : Fragment() {
             Log.d("X ICON CLICKED", "CLICK CLICK CLICK !")
         }
 
+        binding.locationImage.setOnClickListener {
+
+        }
+
         binding.searchAutoCompleteTextView.addTextChangedListener(
             object : TextWatcher {
                 override fun beforeTextChanged(

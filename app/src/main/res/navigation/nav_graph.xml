@@ -66,4 +66,10 @@
         android:label="fragment_error_screen"
         tools:layout="@layout/fragment_error_screen" />
 
+    <fragment
+        android:id="@+id/welcome_screen"
+        android:name="co.develhope.meteoapp.ui.welcome_screen.WelcomeScreen"
+        android:label="fragment_welcome_screen"
+        tools:layout="@layout/fragment_welcome_screen" />
+
 </navigation>

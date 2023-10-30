@@ -1,42 +1,26 @@
 package co.develhope.meteoapp.ui
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import co.develhope.meteoapp.R.id
 import co.develhope.meteoapp.data.Data
-import co.develhope.meteoapp.data.Data.saveSearchCity
 import co.develhope.meteoapp.databinding.ActivityMainBinding
-import co.develhope.meteoapp.ui.search.adapter.DataSearches
-import co.develhope.meteoapp.ui.welcome_screen.WelcomeScreen
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.OffsetDateTime
-import java.util.Locale
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,72 +95,8 @@ class MainActivity : AppCompatActivity() {
 
 
         if (Data.getSearchCity(this) == null) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                    if (location != null) {
-                        val geocoder = Geocoder(this, Locale.getDefault())
-                        val loc = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                        saveSearchCity(
-                            this, DataSearches.ItemSearch(
-                                recentCitySearch = loc.firstOrNull()?.locality ?: "---",
-                                admin1 = loc.firstOrNull()?.adminArea ?: "---",
-                                latitude = location.latitude,
-                                longitude = location.longitude
-                            )
-                        )
-                    }
-                }
-            } else {
-                requestLocationPermission()
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            LOCATION_PERMISSION_REQUEST_CODE -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(
-                    id.nav_host_fragment_content_main,
-                    WelcomeScreen()
-                )
-                transaction.commit()
-                setBottomNavVisibility(View.GONE)
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-                    fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                        if (location != null) {
-                            val geocoder = Geocoder(this, Locale.getDefault())
-                            val loc =
-                                geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                            saveSearchCity(
-                                this, DataSearches.ItemSearch(
-                                    recentCitySearch = loc.firstOrNull()?.locality ?: "---",
-                                    admin1 = loc.firstOrNull()?.adminArea ?: "---",
-                                    latitude = location.latitude,
-                                    longitude = location.longitude
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-
-            else -> {
-                // Ignora tutti gli altri casi.
-            }
+            findNavController(id.nav_host_fragment_content_main).navigate(id.welcome_screen)
+            setBottomNavVisibility(View.GONE)
         }
     }
 
@@ -187,19 +107,10 @@ class MainActivity : AppCompatActivity() {
             findNavController(id.nav_host_fragment_content_main).navigate(id.error_screen)
             setBottomNavVisibility(View.GONE)
         }
-
     }
 
     fun setBottomNavVisibility(visibility: Int) {
         binding.bottomNavigationView.visibility = visibility
-    }
-
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-            LOCATION_PERMISSION_REQUEST_CODE
-        )
     }
 }
 
