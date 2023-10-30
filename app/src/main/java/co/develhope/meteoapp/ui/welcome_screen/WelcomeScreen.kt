@@ -38,11 +38,10 @@ class WelcomeScreen : Fragment() {
                 val locationManager =
                     getSystemService(requireContext(), LocationManager::class.java)
                 if (locationManager?.isProviderEnabled(LocationManager.GPS_PROVIDER) == true) {
-                    fusedLocationClient = LocationServices
+                    if (fusedLocationClient == null) fusedLocationClient = LocationServices
                         .getFusedLocationProviderClient(requireActivity())
 
                     fusedLocationClient
-
                         ?.lastLocation
                         ?.addOnSuccessListener { location ->
                             if (location != null) {
@@ -75,7 +74,7 @@ class WelcomeScreen : Fragment() {
                 } else {
                     AlertDialog.Builder(requireContext())
                         .setTitle("GPS disattivato")
-                        .setMessage("La tua localizzazione è disattivata, vuoi attivarla, coglione?")
+                        .setMessage("La tua localizzazione è disattivata, vuoi attivarla?")
                         .setPositiveButton("SI") { _, _ ->
                             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                             startActivity(intent)
