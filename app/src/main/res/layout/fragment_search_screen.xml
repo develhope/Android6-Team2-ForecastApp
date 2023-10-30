@@ -15,8 +15,8 @@
         android:layout_height="@dimen/search_edit_text_cardview_height"
         android:layout_gravity="center"
         android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"
         android:layout_marginTop="78dp"
+        android:layout_marginEnd="18dp"
         android:layout_weight="0"
         app:cardCornerRadius="@dimen/search_edit_text_cardview_corner_radius">
 
@@ -24,6 +24,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/location_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/location_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/search_vector"
@@ -39,10 +51,10 @@
                 android:id="@+id/searchAutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="50dp"
                 android:alpha="0.7"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/inter"
-                android:paddingStart="50dp"
                 android:hint="@string/city_search"
                 android:inputType="text"
                 android:textSize="@dimen/text_size_hint_search"
@@ -51,11 +63,12 @@
                 app:layout_constraintStart_toEndOf="@id/search_vector"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <ImageView
                 android:id="@+id/x_icon_click"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="68dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/x_icon"
