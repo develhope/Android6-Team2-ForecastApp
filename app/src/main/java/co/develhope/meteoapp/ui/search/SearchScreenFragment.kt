@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import co.develhope.meteoapp.R
 import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.databinding.FragmentSearchScreenBinding
+import co.develhope.meteoapp.ui.MainActivity
 import co.develhope.meteoapp.ui.search.adapter.DataSearchAdapter
-import co.develhope.meteoapp.ui.search.adapter.DataSearches
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +24,7 @@ class SearchScreenFragment : Fragment() {
     private var _binding: FragmentSearchScreenBinding? = null
     private val binding get() = _binding!!
 
-    private var selectedSearchItem: DataSearches? = null
+//    private var selectedSearchItem: DataSearches? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +38,8 @@ class SearchScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val mainActivity = requireActivity() as MainActivity
+
         binding.searchRecyclerView.adapter = DataSearchAdapter(
             searchList = Data.getRecentSearches(requireContext()),
             onClick = { model ->
@@ -45,6 +47,7 @@ class SearchScreenFragment : Fragment() {
                 //moveSelectedSearchToTop(model)
                 clearAutoCompleteTextView()
                 searchViewModel.clearSearch()
+                (activity as MainActivity).setBottomNavVisibility(View.VISIBLE)
                 findNavController().navigate(R.id.action_search_to_home)
             }
         )

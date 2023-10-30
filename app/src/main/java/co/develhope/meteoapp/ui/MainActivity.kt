@@ -9,7 +9,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
@@ -22,6 +21,7 @@ import co.develhope.meteoapp.data.Data
 import co.develhope.meteoapp.data.Data.saveSearchCity
 import co.develhope.meteoapp.databinding.ActivityMainBinding
 import co.develhope.meteoapp.ui.search.adapter.DataSearches
+import co.develhope.meteoapp.ui.welcome_screen.WelcomeScreen
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -151,6 +151,13 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             LOCATION_PERMISSION_REQUEST_CODE -> {
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(
+                    id.nav_host_fragment_content_main,
+                    WelcomeScreen()
+                ) // R.id.fragmentContainer è l'ID del container in cui mostri i fragment
+                transaction.commit()
+                setBottomNavVisibility(View.GONE)
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -169,12 +176,6 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
                     }
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Per favore, concedi il permesso di posizione per permettere all'app di funzionare correttamente.",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
 
@@ -209,4 +210,5 @@ fun isNetworkAvailable(context: Context): Boolean {
         NetworkCapabilities.TRANSPORT_WIFI
     ))
 }
+
 
