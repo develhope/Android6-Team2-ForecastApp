@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.develhope.meteoapp.network.WeatherRepo
 import co.develhope.meteoapp.data.domain.DailyDataLocal
+import co.develhope.meteoapp.network.WeatherRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -43,7 +43,7 @@ class DailyViewModel @Inject constructor(private val repo: WeatherRepo): ViewMod
                 _result.postValue(response)
                 Log.i("NETWORK DATA", "$response")
             } else {
-                Log.e("NETWORK ERROR", "Couldn't achieve network call.")
+                Log.e("NETWORK ERROR", "Couldn't achieve network call. (Today Screen)")
             }
         }
     }

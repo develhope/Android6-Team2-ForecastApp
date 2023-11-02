@@ -12,12 +12,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 
+
 @Module
 @InstallIn(ActivityComponent::class)
 object DailyViewModelModule {
     @Provides
     fun provideTodayViewModel(fragment: TodayScreenFragment): DailyViewModel {
-        return ViewModelProvider(fragment).get(DailyViewModel::class.java)
+        return ViewModelProvider(fragment)[DailyViewModel::class.java]
     }
 }
 
@@ -25,8 +26,8 @@ object DailyViewModelModule {
 @InstallIn(ActivityComponent::class)
 object HomeScreenViewModelModule {
     @Provides
-    fun provideHomeViewModel(fragment: HomeScreenFragment): HomeScreenViewModel{
-        return ViewModelProvider(fragment).get(HomeScreenViewModel::class.java)
+    fun provideHomeViewModel(fragment: HomeScreenFragment): HomeScreenViewModel {
+        return ViewModelProvider(fragment)[HomeScreenViewModel::class.java]
     }
 }
 
@@ -34,7 +35,7 @@ object HomeScreenViewModelModule {
 @InstallIn(ActivityComponent::class)
 object SearchViewModelModule {
     @Provides
-    fun provideSearchViewModel(fragment: SearchScreenFragment): SearchViewModel{
-        return ViewModelProvider(fragment).get(SearchViewModel::class.java)
+    fun provideSearchViewModel(fragment: SearchScreenFragment): SearchViewModel {
+        return ViewModelProvider(fragment)[SearchViewModel::class.java]
     }
 }
