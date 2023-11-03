@@ -4,9 +4,9 @@ import co.develhope.meteoapp.data.domain.SearchDataLocal
 import co.develhope.meteoapp.data.domain.toSearchDataLocal
 import javax.inject.Inject
 
-class SearchRepo @Inject constructor() {
-
-    private val searchService : SearchService = Module().getSearchRetrofit().create(SearchService::class.java)
+class SearchRepo @Inject constructor(
+    private val searchService: SearchService
+) {
 
     suspend fun getSearch(
         cityName : String
