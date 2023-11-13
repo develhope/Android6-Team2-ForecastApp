@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/sanseriffic"
             android:letterSpacing="@dimen/letter_space"
-            android:textColor="@color/cardview_bg"
+            android:textColor="@color/white"
             android:textSize="@dimen/textSize_small_list_today_screen"
             tools:text="@string/_00_00" />
 
