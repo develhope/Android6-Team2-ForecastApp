@@ -14,9 +14,10 @@
         android:layout_marginStart="@dimen/marginStart_textView_home_title"
         android:layout_marginEnd="@dimen/marginEnd_textView_home_title"
         android:layout_marginBottom="@dimen/marginBottom_textView_home_title"
-        android:textColor="@color/white"
+        android:textColor="@color/purple_200"
         android:textFontWeight="600"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/sanseriffic"
+        android:letterSpacing="@dimen/letter_space"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

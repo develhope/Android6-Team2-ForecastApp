@@ -10,10 +10,11 @@
         android:layout_marginTop="@dimen/marginTop_textView_home_subtitle"
         android:layout_margin="@dimen/margin_textView_home_subtitle"
         android:text="@string/prossimi_5_giorni"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/sanseriffic"
+        android:letterSpacing="@dimen/letter_space"
         android:textFontWeight="400"
         android:textSize="@dimen/textSize_textView_home_subtitle"
-        android:textColor="@color/white"
+        android:textColor="@color/cardview_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -1,7 +1,7 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="text_size_hint_search">16sp</dimen>
-    <dimen name="text_size_title_recent_search">18sp</dimen>
+    <dimen name="text_size_title_recent_search">25sp</dimen>
     <dimen name="search_edit_text_width">298dp</dimen>
     <dimen name="search_edit_text_cardview_width">354dp</dimen>
     <dimen name="search_edit_text_cardview_height">58dp</dimen>
@@ -11,11 +11,11 @@
 
     <dimen name="search_item_cardview_width">354dp</dimen>
     <dimen name="search_item_cardview_heigth">66dp</dimen>
-    <dimen name="recent_city_item_title">22sp</dimen>
-    <dimen name="temperature_item_size">18sp</dimen>
-    <dimen name="weather_item_size">10sp</dimen>
-    <dimen name="search_item_cardview_corner_radius">4dp</dimen>
-
+    <dimen name="recent_city_item_title">27sp</dimen>
+    <dimen name="temperature_item_size">20sp</dimen>
+    <dimen name="weather_item_size">15sp</dimen>
+    <dimen name="search_item_cardview_corner_radius">15dp</dimen>
+    <dimen name="letter_space">0.15</dimen>
     <dimen name="layout_height_for_home_list_items">165dp</dimen>
     <dimen name="cardView_width_home_list_item">342dp</dimen>
     <dimen name="cardView_height_home_list_item">155dp</dimen>
@@ -23,8 +23,8 @@
     <dimen name="elevation_card_view_home_list_item">8dp</dimen>
     <dimen name="padding_card_view_home_list_item">18dp</dimen>
     <dimen name="linerHeight_upText_card_view_home_list_item">29.05dp</dimen>
-    <dimen name="textSize_upText_card_view_home_list_item">20sp</dimen>
-    <dimen name="textSize__smallText_card_view_home_list_item">15sp</dimen>
+    <dimen name="textSize_upText_card_view_home_list_item">23sp</dimen>
+    <dimen name="textSize__smallText_card_view_home_list_item">20sp</dimen>
     <dimen name="textSize_mediumText_card_view_home_list_item">20sp</dimen>
     <dimen name="linerHeight_smallText_card_view_home_list_item">18.15dp</dimen>
     <dimen name="linerHeight_mediumText_card_view_home_list_item">24.2dp</dimen>
@@ -44,20 +44,20 @@
     <dimen name="margin_text_button_error_sreen">240dp</dimen>
     <dimen name="width_button_error_screen">308dp</dimen>
     <dimen name="margin_button_text_error_screen">180dp</dimen>
-    <dimen name="textSize_button_error_screen">16sp</dimen>
+    <dimen name="textSize_button_error_screen">20sp</dimen>
     <dimen name="cornerRadius_button_error_screen">14dp</dimen>
     <dimen name="margin_nestedScrollView_home_screen">55dp</dimen>
     <dimen name="padding_recycleView_today_screen">100dp</dimen>
     <dimen name="marginTop_recycleView_today_screen">40dp</dimen>
     <dimen name="marginTop_textView_home_subtitle">30dp</dimen>
     <dimen name="margin_textView_home_subtitle">33dp</dimen>
-    <dimen name="textSize_textView_home_subtitle">16sp</dimen>
-    <dimen name="textSize_textView_home_title">32sp</dimen>
+    <dimen name="textSize_textView_home_subtitle">20sp</dimen>
+    <dimen name="textSize_textView_home_title">40sp</dimen>
     <dimen name="marginTop_textView_home_title">42dp</dimen>
     <dimen name="marginStart_textView_home_title">24dp</dimen>
     <dimen name="marginBottom_textView_home_title">20dp</dimen>
     <dimen name="padding_list_today_screen">16dp</dimen>
-    <dimen name="textSize_small_list_today_screen">16sp</dimen>
+    <dimen name="textSize_small_list_today_screen">20sp</dimen>
     <dimen name="margin_big_list_today_screen">16dp</dimen>
     <dimen name="textSize_big_list_today_screen">20sp</dimen>
     <dimen name="one">1dp</dimen>
@@ -79,5 +79,7 @@
     <dimen name="marginEnd_small_mediumText_card_view_home_list_item">5dp</dimen>
     <dimen name="paddingEnd_mediumText_card_view_home_list_item">20dp</dimen>
     <dimen name="paddingEnd_small_mediumText_card_view_home_list_item">15dp</dimen>
+    <dimen name="textSize_title_todayScreen_small">20sp</dimen>
+    <dimen name="textSize_title_todayScreen_big">25sp</dimen>
 
 </resources>
