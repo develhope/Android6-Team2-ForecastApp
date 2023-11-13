@@ -14,12 +14,12 @@
     <dimen name="recent_city_item_title">27sp</dimen>
     <dimen name="temperature_item_size">20sp</dimen>
     <dimen name="weather_item_size">15sp</dimen>
-    <dimen name="search_item_cardview_corner_radius">15dp</dimen>
+    <dimen name="search_item_cardview_corner_radius">20dp</dimen>
     <dimen name="letter_space">0.15</dimen>
     <dimen name="layout_height_for_home_list_items">165dp</dimen>
     <dimen name="cardView_width_home_list_item">342dp</dimen>
     <dimen name="cardView_height_home_list_item">155dp</dimen>
-    <dimen name="cardCornerRadiius_card_view_home_list_item">8dp</dimen>
+    <dimen name="cardCornerRadiius_card_view_home_list_item">20dp</dimen>
     <dimen name="elevation_card_view_home_list_item">8dp</dimen>
     <dimen name="padding_card_view_home_list_item">18dp</dimen>
     <dimen name="linerHeight_upText_card_view_home_list_item">29.05dp</dimen>
@@ -64,7 +64,7 @@
     <dimen name="margin_small_list_today_screen">8dp</dimen>
     <dimen name="marginTop_cardView_list_today_screen">10dp</dimen>
     <dimen name="elevation_cardView_list_today_screen">16dp</dimen>
-    <dimen name="cardCornerRadius_cardView_list_today_screen">8dp</dimen>
+    <dimen name="cardCornerRadius_cardView_list_today_screen">15dp</dimen>
     <dimen name="padding_cardView_list_today_screen">12dp</dimen>
     <dimen name="marginEnd_textView_home_title">24dp</dimen>
     <dimen name="marginEnd_mediumText_card_view_home_list_item">60dp</dimen>
