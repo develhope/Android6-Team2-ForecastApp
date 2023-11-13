@@ -34,6 +34,8 @@ class HomeScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //TODO questa logica va spostata nel viewmodel
         val dataSearches = Data.getSearchCity(requireContext())
 
         var longitude = DataSearches.ItemSearch(
@@ -55,12 +57,15 @@ class HomeScreenFragment : Fragment() {
         if (dataSearches is DataSearches.ItemSearch) {
             latitude = dataSearches.latitude
         }
+
+        //TODO la chiamata di rete va sempre eseguita dopo tutti i setup altrimenti rischi di ricevere la risposta dal Be ma non avere l'observer
+        // inizializzato o la ui pronta
         weeklyViewModel.getWeekly(latitude!!, longitude!!)
         setupAdapter()
         setupObserver()
 
 
-
+        //TODO se c'è una funziona che gestisce gli observer va spostata lì
         weeklyViewModel.navigateToSearchScreen.observe(viewLifecycleOwner, Observer { shouldNavigate ->
             if (shouldNavigate) {
                 findNavController().navigate(R.id.search_screen)

@@ -10,6 +10,7 @@ import org.threeten.bp.OffsetDateTime
 
 
 object Data {
+//TODO ha senso usare Data per la gestione della persistenza? Non sarebbe meglio usare una classe psecifica dove con la DI le si passa il context e gson?
 
 //    private var searchedData: DataSearches? = null
 
@@ -24,6 +25,7 @@ object Data {
     private const val KEY_SEARCH_LIST = "KEY_SEARCH_LIST"
 
     // This function is for save da data when users click on search hints.
+    // TODO si può salvare l'oggetto interno senza scomporlo
     fun saveSearchCity(context: Context, data: DataSearches.ItemSearch) {
         Log.d("SAVE DATA", "saved clicked $data")
         val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
@@ -57,6 +59,7 @@ object Data {
         }
     }
 
+    // TODO questa funzione può essere gestista nel viewholder e nel fragment direttamente
     fun getCityLocation(context: Context): String {
         val searchedData = getSearchCity(context)
         return if (searchedData is DataSearches.ItemSearch) {
@@ -121,7 +124,7 @@ object Data {
                 .apply()
         }
     }
-
+//TODO ci siamo persi la separazione tra oggetto di dominio e oggetti della ui qui
     fun getRecentSearches(context: Context): List<DataSearches> {
         val sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
         val jsonList = sharedPreferences.getString(KEY_SEARCH_LIST, "[]") ?: "[]"

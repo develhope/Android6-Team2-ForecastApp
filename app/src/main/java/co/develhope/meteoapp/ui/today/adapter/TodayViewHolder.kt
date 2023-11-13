@@ -19,6 +19,7 @@ open class TodayViewHolder(val binding: ListTodayScreenBinding) :
 
         binding.todayTimeTv.text = item.forecast.date.format(DateTimeFormatter.ofPattern("HH:mm"))
 
+
        binding.weatherTodayImage.setWeatherIcon(getWeatherIconbasedonId(item.forecast.isDay,item.forecast.forecastIndex))
         binding.degreesToday.text = item.forecast.hourlyTemp.toString().plus("°")
         binding.rainChanceTv.text = item.forecast.possibleRain.toString().plus("%")

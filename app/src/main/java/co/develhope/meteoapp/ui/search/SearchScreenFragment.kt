@@ -48,6 +48,7 @@ class SearchScreenFragment : Fragment() {
                     if (fusedLocationClient == null) fusedLocationClient = LocationServices
                         .getFusedLocationProviderClient(requireActivity())
 
+                    //TODO questo pezzo è illegibile. Pensa se è fattibile scorporare dei pezzi facendoli diventare delle funzioni
                     fusedLocationClient
                         ?.lastLocation
                         ?.addOnSuccessListener { location ->

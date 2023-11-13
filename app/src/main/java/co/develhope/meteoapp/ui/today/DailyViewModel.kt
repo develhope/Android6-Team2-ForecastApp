@@ -13,7 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+//TODO come norma il nome del viewmodel ricalca il nome della schermata che gestisce e a cui è accoppiato
 class DailyViewModel @Inject constructor(private val repo: WeatherRepo): ViewModel() {
+    //TODO Puoi gestire tutti gl istati della ui con un solo live data e una sealed class così avrai solo eventi che si susseguono e non eventi concorrenti
 
     private val _result = MutableLiveData<DailyDataLocal?>()
 
@@ -28,7 +30,8 @@ class DailyViewModel @Inject constructor(private val repo: WeatherRepo): ViewMod
     init {
         _isLoading.value = false
     }
-
+    //TODO ogni schermata deve avere il proprio viewmodel. Se 2 schermate hanno lo stesso viewmodel significa che sono identiche, quindi una delle due è
+    // superflua
     fun getDaily(lat: Double,
                  lon: Double,
                  startDate: String,

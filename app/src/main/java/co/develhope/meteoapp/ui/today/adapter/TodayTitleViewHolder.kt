@@ -29,6 +29,7 @@ class TodayTitleViewHolder(private val binding: TitleTodayScreenBinding) :
 
         binding.todayLocationTv.text = item.todayLocation
         binding.todaySubtitleLongTv.text = formattedDate
+        //TODO Utilizzate una sealed class per trasposrtare i dati non serve prenderli da una dipendenza esterna
         binding.todayConditionTv.text = Data.weatherCodetoCondition(Data.getTodayCondition()!!)
     }
 }
