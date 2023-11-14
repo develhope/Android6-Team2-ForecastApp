@@ -11,11 +11,21 @@
     <color name="bg_color">#F0EFFF</color>
     <color name="button_color">#5347DC</color>
     <color name="blue">#230EA5</color>
-    <color name="text_color">#230EA5</color>
+    <color name="text_color">@color/new_black_color</color>
     <color name="cardview_bg">#5B51CB</color>
     <color name="line_color">#FFD9B0</color>
     <color name="soft_yellow">#FFDC5C</color>
     <color name="screen_color_today">#F0EFFF</color>
+
+
+
+    <color name="new_primary_color">#89AAE6</color>
+    <color name="new_primary_color2">#AC80A0</color>
+
+    <color name="new_secondary_color">#3685B5</color>
+    <color name="new_secondary_color2">#0471A6</color>
+
+    <color name="new_black_color">#061826</color>
 
 
 </resources>
