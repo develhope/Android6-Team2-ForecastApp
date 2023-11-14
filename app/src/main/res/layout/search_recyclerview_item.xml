@@ -21,7 +21,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/cardview_gradient_background_2">
 
 
@@ -45,37 +45,6 @@
                 tools:text="Palermo" />
 
 
-            <TextView
-                android:id="@+id/search_recent_temperature_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="14dp"
-                android:fontFamily="@font/sanseriffic"
-                android:letterSpacing="@dimen/letter_space"
-                android:textColor="@color/white"
-                android:textSize="@dimen/temperature_item_size"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="12°" />
-
-
-            <TextView
-                android:id="@+id/search_recent_weather_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="24dp"
-                android:fontFamily="@font/sanseriffic"
-                android:letterSpacing="@dimen/letter_space"
-                android:textColor="@color/white"
-                android:textSize="@dimen/weather_item_size"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_recent_temperature_item"
-                tools:text="soleggiato" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="@dimen/cardCornerRadiius_card_view_home_list_item"
             android:background="@drawable/card_shadow_bottom"
-            app:cardBackgroundColor="@color/cardBackgroundColor_cardView_home_list_item"
+            app:cardBackgroundColor="@color/new_primary_color"
             android:elevation="@dimen/elevation_card_view_home_list_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
