@@ -79,7 +79,7 @@
         android:elevation="@dimen/elevation_cardView_list_today_screen"
         tools:visibility="visible"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/cardBackgroundColor_cardView_home_list_item"
+        app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="@dimen/cardCornerRadius_cardView_list_today_screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/cardview_gradient_background"
             android:padding="@dimen/padding_cardView_list_today_screen">
 
             <TextView

@@ -15,8 +15,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="@dimen/cardCornerRadiius_card_view_home_list_item"
-            android:background="@drawable/card_shadow_bottom"
-            app:cardBackgroundColor="@color/new_primary_color"
+            app:cardBackgroundColor="@color/transparent"
             android:elevation="@dimen/elevation_card_view_home_list_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +25,6 @@
             <RelativeLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:background="@drawable/cardview_gradient_background"
                 android:padding="@dimen/padding_card_view_home_list_item">
 
                 <TextView
@@ -45,7 +43,8 @@
                     android:textColor="@color/white"
                     android:textFontWeight="600"
                     android:textSize="@dimen/textSize_upText_card_view_home_list_item"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"
+                    />
                 <TextView
                     android:id="@+id/text_day_of_month_list"
                     android:layout_width="wrap_content"
