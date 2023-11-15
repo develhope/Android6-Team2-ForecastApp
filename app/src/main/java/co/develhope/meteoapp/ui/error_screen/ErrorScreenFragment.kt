@@ -40,6 +40,7 @@ class ErrorScreenFragment : Fragment() {
 
         binding.errorRetryButton.setOnClickListener {
             if (isNetworkAvailable(requireContext())) {
+                //TODO perchè naviga alla home? dovrebbe rifare la chiamata di rete che è andata in errore.
                 findNavController().navigate(R.id.home_screen)
 
                 (activity as? MainActivity)?.setBottomNavVisibility(View.VISIBLE)

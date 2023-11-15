@@ -16,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(private val repo: SearchRepo): ViewModel(){
-
+    //TODO Puoi gestire tutti gl istati della ui con un solo live data e una sealed class così avrai solo eventi che si susseguono e non eventi concorrenti
+    //TODO da dove arrivano le ricerche recenti? dovrebbero passare dal viemodel
     private val _cityHints = MutableLiveData<SearchDataLocal?>()
 
     val cityHints: LiveData<SearchDataLocal?>
@@ -39,6 +40,8 @@ class SearchViewModel @Inject constructor(private val repo: SearchRepo): ViewMod
                     )
                 }
             } else {
+                //TODO se va in errore cosa succede alla ui?
+
                 Log.e("ERROR", "network error ")
             }
         }

@@ -36,7 +36,7 @@ class TodayScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        // TODO questa logica appartiene al viewmodel
         val dataSearches = Data.getSearchCity(requireContext())
 
         var longitude = DataSearches.ItemSearch(
@@ -62,6 +62,8 @@ class TodayScreenFragment : Fragment() {
         val currentDate = OffsetDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-d"))
         Log.d("DATE:", currentDate)
 
+        //TODO la chiamata di rete va effettuata dopo  tutti i setup
+
         dailyViewModel.getDaily(latitude!!, longitude!!,currentDate,currentDate)
 
         setupAdapter()
@@ -86,6 +88,7 @@ class TodayScreenFragment : Fragment() {
 
     //TODO: DA FINIRE
 
+    //TODO questa logica va spostata nel viewmodel
     private fun DailyDataLocal?.toHourlyForecastItems(): List<HourlyForecastItems> {
 
         val filteredList = this?.filter {

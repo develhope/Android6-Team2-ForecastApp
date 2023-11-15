@@ -21,6 +21,7 @@ import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 @AndroidEntryPoint
+//TODO se non è usato va eliminato
 class TomorrowScreenFragment : Fragment() {
     private var _binding: FragmentTomorrowScreenBinding? = null
     private val binding get() = _binding!!

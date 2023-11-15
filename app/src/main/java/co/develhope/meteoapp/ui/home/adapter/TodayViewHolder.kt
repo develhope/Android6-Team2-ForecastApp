@@ -29,6 +29,7 @@ class TodayViewHolder(private val binding: ListHomeScreenBinding) : RecyclerView
             itemView.resources.getString(R.string.kilometers_per_hour, item.forecast.windSpeed.toString())
         binding.root.setOnClickListener {
             Data.saveTodayCondition(item.forecast.weatherIcon)
+            //TODO la navigazione va gestita nel fragment non nel viewholder, c'è la funzione onClick propprio per fare questo
             binding.root.findNavController().navigate(R.id.today_screen)
             onClick(item)
         }
