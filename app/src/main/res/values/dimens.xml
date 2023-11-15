@@ -20,7 +20,7 @@
     <dimen name="cardView_width_home_list_item">342dp</dimen>
     <dimen name="cardView_height_home_list_item">155dp</dimen>
     <dimen name="cardCornerRadiius_card_view_home_list_item">20dp</dimen>
-    <dimen name="elevation_card_view_home_list_item">8dp</dimen>
+    <dimen name="elevation_card_view_home_list_item">2dp</dimen>
     <dimen name="padding_card_view_home_list_item">18dp</dimen>
     <dimen name="linerHeight_upText_card_view_home_list_item">29.05dp</dimen>
     <dimen name="textSize_upText_card_view_home_list_item">23sp</dimen>
@@ -45,7 +45,7 @@
     <dimen name="width_button_error_screen">308dp</dimen>
     <dimen name="margin_button_text_error_screen">180dp</dimen>
     <dimen name="textSize_button_error_screen">20sp</dimen>
-    <dimen name="cornerRadius_button_error_screen">14dp</dimen>
+    <dimen name="cornerRadius_button_error_screen">20dp</dimen>
     <dimen name="margin_nestedScrollView_home_screen">55dp</dimen>
     <dimen name="padding_recycleView_today_screen">100dp</dimen>
     <dimen name="marginTop_recycleView_today_screen">40dp</dimen>
