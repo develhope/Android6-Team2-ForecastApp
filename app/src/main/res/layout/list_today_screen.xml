@@ -90,7 +90,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_cardView_list_today_screen">
+            android:padding="@dimen/padding_cardView_list_today_screen"
+            android:background="@drawable/gradient_background_2">
 
             <TextView
                 android:id="@+id/perceived_tv_today"
